@@ -1,0 +1,2076 @@
+{
+  "items": [
+    {
+      "id": "g1",
+      "name": "Beef tenderloin filets",
+      "quantity": 17,
+      "unit": "steaks",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Sunday Main River Feast"
+      ],
+      "meals": [
+        "Sunday Main River Feast"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g2",
+      "name": "Pork shoulder",
+      "quantity": 5,
+      "unit": "kg",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Monday Pulled Pork"
+      ],
+      "meals": [
+        "Monday Pulled Pork"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g3",
+      "name": "Brisket",
+      "quantity": 7,
+      "unit": "kg",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Wednesday Brisket",
+        "Thursday lunch"
+      ],
+      "meals": [
+        "Wednesday Brisket",
+        "Thursday lunch"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g4",
+      "name": "Pork spare ribs",
+      "quantity": 6,
+      "unit": "racks",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Friday Rib Night"
+      ],
+      "meals": [
+        "Friday Rib Night"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g5",
+      "name": "Boneless chicken thighs",
+      "quantity": 6,
+      "unit": "kg",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Monday dinner",
+        "Friday dinner"
+      ],
+      "meals": [
+        "Monday dinner",
+        "Friday dinner"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g6",
+      "name": "Bone-in chicken",
+      "quantity": 5,
+      "unit": "kg",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Wednesday dinner"
+      ],
+      "meals": [
+        "Wednesday dinner"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g7",
+      "name": "Beef sirloin",
+      "quantity": 2.5,
+      "unit": "kg",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Monday dinner"
+      ],
+      "meals": [
+        "Monday dinner"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g8",
+      "name": "Ground beef",
+      "quantity": 3,
+      "unit": "kg",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Friday dinner"
+      ],
+      "meals": [
+        "Friday dinner"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g9",
+      "name": "Ice cream",
+      "quantity": 3,
+      "unit": "tubs",
+      "department": "Frozen",
+      "checked": false,
+      "usedIn": [
+        "Sunday dessert",
+        "Friday dessert"
+      ],
+      "meals": [
+        "Sunday dessert",
+        "Friday dessert"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g10",
+      "name": "GF tortilla chips",
+      "quantity": 3,
+      "unit": "bags",
+      "department": "Snacks",
+      "checked": false,
+      "usedIn": [
+        "Tuesday lunch",
+        "Friday dinner"
+      ],
+      "meals": [
+        "Tuesday lunch",
+        "Friday dinner"
+      ],
+      "notes": "GF"
+    },
+    {
+      "id": "g11",
+      "name": "Trail mix",
+      "quantity": 2,
+      "unit": "bags",
+      "department": "Snacks",
+      "checked": false,
+      "usedIn": [
+        "Tuesday snack"
+      ],
+      "meals": [
+        "Tuesday snack"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g12",
+      "name": "Deli meats",
+      "quantity": 2,
+      "unit": "kg",
+      "department": "Deli",
+      "checked": false,
+      "usedIn": [
+        "Saturday lunch",
+        "Thursday lunch"
+      ],
+      "meals": [
+        "Saturday lunch",
+        "Thursday lunch"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g13",
+      "name": "Cheese assortment",
+      "quantity": 2,
+      "unit": "kg",
+      "department": "Deli",
+      "checked": false,
+      "usedIn": [
+        "Sunday snack",
+        "Thursday lunch"
+      ],
+      "meals": [
+        "Sunday snack",
+        "Thursday lunch"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g14",
+      "name": "Live lobster",
+      "quantity": 10,
+      "unit": "pieces",
+      "department": "Seafood",
+      "checked": false,
+      "usedIn": [
+        "Sunday Main River Feast"
+      ],
+      "meals": [
+        "Sunday Main River Feast"
+      ],
+      "notes": "Buy day-of"
+    },
+    {
+      "id": "g15",
+      "name": "Fresh mussels",
+      "quantity": 4,
+      "unit": "kg",
+      "department": "Seafood",
+      "checked": false,
+      "usedIn": [
+        "Sunday Main River Feast"
+      ],
+      "meals": [
+        "Sunday Main River Feast"
+      ],
+      "notes": "Buy day-of"
+    },
+    {
+      "id": "g16",
+      "name": "Cooked lobster meat",
+      "quantity": 1,
+      "unit": "kg",
+      "department": "Seafood",
+      "checked": false,
+      "usedIn": [
+        "Sunday lunch"
+      ],
+      "meals": [
+        "Sunday lunch"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g17",
+      "name": "Romaine",
+      "quantity": 8,
+      "unit": "large hearts",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Sunday Main River Feast Caesar salad"
+      ],
+      "meals": [
+        "Sunday Main River Feast Caesar salad"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g18",
+      "name": "Tomatoes",
+      "quantity": 12,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Greek salad",
+        "Sandwiches"
+      ],
+      "meals": [
+        "Greek salad",
+        "Sandwiches"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g19",
+      "name": "English cucumbers",
+      "quantity": 6,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Greek salad",
+        "Tzatziki",
+        "Snacks"
+      ],
+      "meals": [
+        "Greek salad",
+        "Tzatziki",
+        "Snacks"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g20",
+      "name": "Red onions",
+      "quantity": 6,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Greek salad",
+        "Potato salad",
+        "Guacamole"
+      ],
+      "meals": [
+        "Greek salad",
+        "Potato salad",
+        "Guacamole"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g21",
+      "name": "Garlic",
+      "quantity": 4,
+      "unit": "heads",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g22",
+      "name": "Lemons",
+      "quantity": 12,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Seafood",
+        "Greek night",
+        "Caesar"
+      ],
+      "meals": [
+        "Seafood",
+        "Greek night",
+        "Caesar"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g23",
+      "name": "Limes",
+      "quantity": 6,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Tacos",
+        "Guacamole"
+      ],
+      "meals": [
+        "Tacos",
+        "Guacamole"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g24",
+      "name": "Avocados",
+      "quantity": 10,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Friday dinner"
+      ],
+      "meals": [
+        "Friday dinner"
+      ],
+      "notes": "Buy early to ripen"
+    },
+    {
+      "id": "g25",
+      "name": "Strawberries",
+      "quantity": 3,
+      "unit": "kg",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Saturday dessert"
+      ],
+      "meals": [
+        "Saturday dessert"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g26",
+      "name": "Potatoes",
+      "quantity": 10,
+      "unit": "kg",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Potato salad",
+        "Roasted potatoes"
+      ],
+      "meals": [
+        "Potato salad",
+        "Roasted potatoes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g27",
+      "name": "Green cabbage",
+      "quantity": 1,
+      "unit": "head",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Coleslaw"
+      ],
+      "meals": [
+        "Coleslaw"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g28",
+      "name": "Red cabbage",
+      "quantity": 1,
+      "unit": "head",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Coleslaw"
+      ],
+      "meals": [
+        "Coleslaw"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g29",
+      "name": "Carrots",
+      "quantity": 2,
+      "unit": "bags",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Coleslaw",
+        "Veggie station"
+      ],
+      "meals": [
+        "Coleslaw",
+        "Veggie station"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g30",
+      "name": "Celery",
+      "quantity": 2,
+      "unit": "bunches",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Potato salad",
+        "Veggie station"
+      ],
+      "meals": [
+        "Potato salad",
+        "Veggie station"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g31",
+      "name": "Corn",
+      "quantity": 24,
+      "unit": "ears",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Sunday dinner",
+        "Thursday dinner"
+      ],
+      "meals": [
+        "Sunday dinner",
+        "Thursday dinner"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g32",
+      "name": "Watermelon",
+      "quantity": 2,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Wednesday snack"
+      ],
+      "meals": [
+        "Wednesday snack"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g33",
+      "name": "Mixed fruit",
+      "quantity": 5,
+      "unit": "kg",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Snack stations"
+      ],
+      "meals": [
+        "Snack stations"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g34",
+      "name": "Fresh herbs bundle",
+      "quantity": 1,
+      "unit": "bundle",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g35",
+      "name": "Jalape\u00f1os",
+      "quantity": 4,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Guacamole"
+      ],
+      "meals": [
+        "Guacamole"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g36",
+      "name": "Roma tomatoes",
+      "quantity": 6,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Guacamole"
+      ],
+      "meals": [
+        "Guacamole"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g37",
+      "name": "Green peppers",
+      "quantity": 4,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Greek salad",
+        "Skewers"
+      ],
+      "meals": [
+        "Greek salad",
+        "Skewers"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g38",
+      "name": "Cilantro",
+      "quantity": 2,
+      "unit": "bunches",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Friday dinner"
+      ],
+      "meals": [
+        "Friday dinner"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g39",
+      "name": "Yellow onions",
+      "quantity": 4,
+      "unit": "pieces",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Taco beef",
+        "BBQ"
+      ],
+      "meals": [
+        "Taco beef",
+        "BBQ"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g40",
+      "name": "Crudit\u00e9s",
+      "quantity": 3,
+      "unit": "packs",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Snack stations"
+      ],
+      "meals": [
+        "Snack stations"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g41",
+      "name": "Butter",
+      "quantity": 2,
+      "unit": "kg",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Filet",
+        "Ribs",
+        "Shortcake",
+        "Mac and cheese"
+      ],
+      "meals": [
+        "Filet",
+        "Ribs",
+        "Shortcake",
+        "Mac and cheese"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g42",
+      "name": "Eggs",
+      "quantity": 24,
+      "unit": "pieces",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Potato salad",
+        "Caesar",
+        "Brownies"
+      ],
+      "meals": [
+        "Potato salad",
+        "Caesar",
+        "Brownies"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g43",
+      "name": "Heavy cream",
+      "quantity": 2,
+      "unit": "L",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Shortcake"
+      ],
+      "meals": [
+        "Shortcake"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g44",
+      "name": "Whole milk",
+      "quantity": 4,
+      "unit": "L",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Mac and cheese"
+      ],
+      "meals": [
+        "Mac and cheese"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g45",
+      "name": "Greek yogurt",
+      "quantity": 1,
+      "unit": "L",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Tzatziki"
+      ],
+      "meals": [
+        "Tzatziki"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g46",
+      "name": "Buttermilk",
+      "quantity": 1.5,
+      "unit": "L",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Shortcake"
+      ],
+      "meals": [
+        "Shortcake"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g47",
+      "name": "Cheddar",
+      "quantity": 600,
+      "unit": "g",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Mac and cheese"
+      ],
+      "meals": [
+        "Mac and cheese"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g48",
+      "name": "Gruy\u00e8re",
+      "quantity": 300,
+      "unit": "g",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Mac and cheese"
+      ],
+      "meals": [
+        "Mac and cheese"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g49",
+      "name": "Fontina",
+      "quantity": 200,
+      "unit": "g",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Mac and cheese"
+      ],
+      "meals": [
+        "Mac and cheese"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g50",
+      "name": "Parmesan",
+      "quantity": 750,
+      "unit": "g",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar salad",
+        "Mac and cheese"
+      ],
+      "meals": [
+        "Sunday Caesar salad",
+        "Mac and cheese"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g51",
+      "name": "Feta",
+      "quantity": 500,
+      "unit": "g",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Greek salad"
+      ],
+      "meals": [
+        "Greek salad"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g52",
+      "name": "Dark chocolate",
+      "quantity": 300,
+      "unit": "g",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Brownies"
+      ],
+      "meals": [
+        "Brownies"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g53",
+      "name": "Panko",
+      "quantity": 400,
+      "unit": "g",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Mac and cheese"
+      ],
+      "meals": [
+        "Mac and cheese"
+      ],
+      "notes": "CONTAINS GLUTEN"
+    },
+    {
+      "id": "g54",
+      "name": "GF BBQ sauce",
+      "quantity": 2,
+      "unit": "bottles",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Chicken",
+        "Ribs"
+      ],
+      "meals": [
+        "Chicken",
+        "Ribs"
+      ],
+      "notes": "Check label"
+    },
+    {
+      "id": "g55",
+      "name": "Kalamata olives",
+      "quantity": 250,
+      "unit": "g",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Greek salad"
+      ],
+      "meals": [
+        "Greek salad"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g56",
+      "name": "Anchovy paste",
+      "quantity": 1,
+      "unit": "tube",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Caesar"
+      ],
+      "meals": [
+        "Caesar"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g57",
+      "name": "Dill pickles",
+      "quantity": 2,
+      "unit": "jars",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Potato salad",
+        "Brisket dinner"
+      ],
+      "meals": [
+        "Potato salad",
+        "Brisket dinner"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g58",
+      "name": "Apple juice",
+      "quantity": 2,
+      "unit": "L",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Pulled pork",
+        "Ribs"
+      ],
+      "meals": [
+        "Pulled pork",
+        "Ribs"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g59",
+      "name": "French's Worcestershire Sauce (GF)",
+      "quantity": 1,
+      "unit": "bottle",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar dressing"
+      ],
+      "meals": [
+        "Sunday Caesar dressing"
+      ],
+      "notes": "Use French's; GF dressing for everyone"
+    },
+    {
+      "id": "g60",
+      "name": "Dinner rolls",
+      "quantity": 2,
+      "unit": "packs",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Sunday dinner"
+      ],
+      "meals": [
+        "Sunday dinner"
+      ],
+      "notes": "CONTAINS GLUTEN"
+    },
+    {
+      "id": "g61",
+      "name": "Sourdough",
+      "quantity": 2,
+      "unit": "loaves",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Saturday lunch",
+        "Croutons"
+      ],
+      "meals": [
+        "Saturday lunch",
+        "Croutons"
+      ],
+      "notes": "CONTAINS GLUTEN"
+    },
+    {
+      "id": "g62",
+      "name": "Pita",
+      "quantity": 3,
+      "unit": "packs",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Monday dinner"
+      ],
+      "meals": [
+        "Monday dinner"
+      ],
+      "notes": "CONTAINS GLUTEN"
+    },
+    {
+      "id": "g63",
+      "name": "Corn tortillas",
+      "quantity": 3,
+      "unit": "packs",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Friday dinner"
+      ],
+      "meals": [
+        "Friday dinner"
+      ],
+      "notes": "GF"
+    },
+    {
+      "id": "g64",
+      "name": "Flour tortillas",
+      "quantity": 2,
+      "unit": "packs",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Friday dinner"
+      ],
+      "meals": [
+        "Friday dinner"
+      ],
+      "notes": "CONTAINS GLUTEN"
+    },
+    {
+      "id": "g65",
+      "name": "GF beef broth",
+      "quantity": 2,
+      "unit": "cartons",
+      "department": "Dairy / Bakery / Condiments",
+      "checked": false,
+      "usedIn": [
+        "Taco beef"
+      ],
+      "meals": [
+        "Taco beef"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g66",
+      "name": "Olive oil",
+      "quantity": 2,
+      "unit": "L",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g67",
+      "name": "Kosher salt",
+      "quantity": 1,
+      "unit": "box",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g68",
+      "name": "Black pepper",
+      "quantity": 1,
+      "unit": "container",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g69",
+      "name": "Smoked paprika",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g70",
+      "name": "Garlic powder",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g71",
+      "name": "Onion powder",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g72",
+      "name": "Dried oregano",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g73",
+      "name": "Cumin",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g74",
+      "name": "Chili powder",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g75",
+      "name": "Cayenne",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g76",
+      "name": "Brown sugar",
+      "quantity": 1,
+      "unit": "kg",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g77",
+      "name": "Granulated sugar",
+      "quantity": 2,
+      "unit": "kg",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g78",
+      "name": "All-purpose flour",
+      "quantity": 2,
+      "unit": "kg",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": "CONTAINS GLUTEN"
+    },
+    {
+      "id": "g79",
+      "name": "Baking powder",
+      "quantity": 1,
+      "unit": "tin",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g80",
+      "name": "Cocoa powder",
+      "quantity": 1,
+      "unit": "tin",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g81",
+      "name": "Vanilla extract",
+      "quantity": 1,
+      "unit": "bottle",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g82",
+      "name": "Icing sugar",
+      "quantity": 1,
+      "unit": "bag",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g83",
+      "name": "Flaky sea salt",
+      "quantity": 1,
+      "unit": "box",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g84",
+      "name": "Mayonnaise",
+      "quantity": 2,
+      "unit": "jars",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g85",
+      "name": "Dijon mustard",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g86",
+      "name": "Yellow mustard",
+      "quantity": 1,
+      "unit": "bottle",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g87",
+      "name": "Apple cider vinegar",
+      "quantity": 1,
+      "unit": "L",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g88",
+      "name": "Red wine vinegar",
+      "quantity": 1,
+      "unit": "bottle",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g89",
+      "name": "Tomato paste",
+      "quantity": 2,
+      "unit": "cans",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g90",
+      "name": "Honey",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g91",
+      "name": "Celery seed",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g92",
+      "name": "Dry mustard",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g93",
+      "name": "Avocado oil",
+      "quantity": 1,
+      "unit": "bottle",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g94",
+      "name": "Hummus",
+      "quantity": 2,
+      "unit": "containers",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Multiple recipes"
+      ],
+      "meals": [
+        "Multiple recipes"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g95",
+      "name": "Red wine",
+      "quantity": 6,
+      "unit": "bottles",
+      "department": "Drinks",
+      "checked": false,
+      "usedIn": [
+        "Week"
+      ],
+      "meals": [
+        "Week"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g96",
+      "name": "White wine",
+      "quantity": 6,
+      "unit": "bottles",
+      "department": "Drinks",
+      "checked": false,
+      "usedIn": [
+        "Week"
+      ],
+      "meals": [
+        "Week"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g97",
+      "name": "Beer",
+      "quantity": 4,
+      "unit": "24-packs",
+      "department": "Drinks",
+      "checked": false,
+      "usedIn": [
+        "Week"
+      ],
+      "meals": [
+        "Week"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g98",
+      "name": "Spirits",
+      "quantity": 3,
+      "unit": "bottles",
+      "department": "Drinks",
+      "checked": false,
+      "usedIn": [
+        "Party"
+      ],
+      "meals": [
+        "Party"
+      ],
+      "notes": "Gin, vodka, rum"
+    },
+    {
+      "id": "g99",
+      "name": "Mixers",
+      "quantity": 1,
+      "unit": "assortment",
+      "department": "Drinks",
+      "checked": false,
+      "usedIn": [
+        "Party"
+      ],
+      "meals": [
+        "Party"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g100",
+      "name": "Heavy foil",
+      "quantity": 2,
+      "unit": "rolls",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g101",
+      "name": "Pink butcher paper",
+      "quantity": 1,
+      "unit": "roll",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g102",
+      "name": "Hickory wood chunks",
+      "quantity": 1,
+      "unit": "bag",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g103",
+      "name": "Oak wood chunks",
+      "quantity": 1,
+      "unit": "bag",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g104",
+      "name": "Cherry/apple wood chunks",
+      "quantity": 1,
+      "unit": "bag",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g105",
+      "name": "Parchment paper",
+      "quantity": 2,
+      "unit": "rolls",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g106",
+      "name": "Lobster crackers",
+      "quantity": 17,
+      "unit": "sets",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Sunday Main River Feast"
+      ],
+      "meals": [
+        "Sunday Main River Feast"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g107",
+      "name": "Plastic wrap",
+      "quantity": 1,
+      "unit": "roll",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g108",
+      "name": "Gallon zip bags",
+      "quantity": 1,
+      "unit": "box",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g109",
+      "name": "Paper towels",
+      "quantity": 2,
+      "unit": "packs",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g110",
+      "name": "Napkins",
+      "quantity": 2,
+      "unit": "packs",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g111",
+      "name": "Dish soap",
+      "quantity": 2,
+      "unit": "bottles",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g112",
+      "name": "Garbage bags",
+      "quantity": 1,
+      "unit": "box",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g113",
+      "name": "Charcoal/propane",
+      "quantity": 2,
+      "unit": "bags",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g114",
+      "name": "Digital meat thermometer",
+      "quantity": 1,
+      "unit": "item",
+      "department": "Household",
+      "checked": false,
+      "usedIn": [
+        "Hosting"
+      ],
+      "meals": [
+        "Hosting"
+      ],
+      "notes": "Bring from Calgary"
+    },
+    {
+      "id": "g115",
+      "name": "Large Italian/ciabatta loaves",
+      "quantity": 4,
+      "unit": "loaves",
+      "department": "Bakery",
+      "checked": false,
+      "usedIn": [
+        "Saturday Yacht Rock"
+      ],
+      "meals": [
+        "Saturday Yacht Rock"
+      ],
+      "notes": "Buy fresh"
+    },
+    {
+      "id": "g116",
+      "name": "Provolone",
+      "quantity": 900,
+      "unit": "g",
+      "department": "Deli",
+      "checked": false,
+      "usedIn": [
+        "Pressed Italian Sandwiches"
+      ],
+      "meals": [
+        "Pressed Italian Sandwiches"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g117",
+      "name": "Salami",
+      "quantity": 750,
+      "unit": "g",
+      "department": "Deli",
+      "checked": false,
+      "usedIn": [
+        "Pressed Italian Sandwiches"
+      ],
+      "meals": [
+        "Pressed Italian Sandwiches"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g118",
+      "name": "Prosciutto",
+      "quantity": 500,
+      "unit": "g",
+      "department": "Deli",
+      "checked": false,
+      "usedIn": [
+        "Pressed Italian Sandwiches"
+      ],
+      "meals": [
+        "Pressed Italian Sandwiches"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g119",
+      "name": "Soppressata",
+      "quantity": 500,
+      "unit": "g",
+      "department": "Deli",
+      "checked": false,
+      "usedIn": [
+        "Pressed Italian Sandwiches"
+      ],
+      "meals": [
+        "Pressed Italian Sandwiches"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g120",
+      "name": "Roasted red peppers",
+      "quantity": 2,
+      "unit": "jars",
+      "department": "Condiments",
+      "checked": false,
+      "usedIn": [
+        "Pressed Italian Sandwiches"
+      ],
+      "meals": [
+        "Pressed Italian Sandwiches"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g121",
+      "name": "Olive salad / muffuletta spread",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Condiments",
+      "checked": false,
+      "usedIn": [
+        "Pressed Italian Sandwiches"
+      ],
+      "meals": [
+        "Pressed Italian Sandwiches"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g122",
+      "name": "GF sandwich rolls",
+      "quantity": 1,
+      "unit": "pack",
+      "department": "Gluten-Free",
+      "checked": false,
+      "usedIn": [
+        "Saturday Yacht Rock"
+      ],
+      "meals": [
+        "Saturday Yacht Rock"
+      ],
+      "notes": "Steve and Adele"
+    },
+    {
+      "id": "g123",
+      "name": "Cooked peeled shrimp",
+      "quantity": 2.5,
+      "unit": "kg",
+      "department": "Seafood",
+      "checked": false,
+      "usedIn": [
+        "Saturday Yacht Rock",
+        "Sunday happy hour"
+      ],
+      "meals": [
+        "Saturday Yacht Rock",
+        "Sunday happy hour"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g124",
+      "name": "Cocktail sauce GF",
+      "quantity": 2,
+      "unit": "bottles",
+      "department": "Condiments",
+      "checked": false,
+      "usedIn": [
+        "Shrimp Cocktail"
+      ],
+      "meals": [
+        "Shrimp Cocktail"
+      ],
+      "notes": "Check label"
+    },
+    {
+      "id": "g125",
+      "name": "Broccoli crowns",
+      "quantity": 8,
+      "unit": "crowns",
+      "department": "Produce",
+      "checked": false,
+      "usedIn": [
+        "Sunday broccoli salad"
+      ],
+      "meals": [
+        "Sunday broccoli salad"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g126",
+      "name": "Bacon",
+      "quantity": 500,
+      "unit": "g",
+      "department": "Meat",
+      "checked": false,
+      "usedIn": [
+        "Sunday broccoli salad"
+      ],
+      "meals": [
+        "Sunday broccoli salad"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g127",
+      "name": "Sunflower seeds",
+      "quantity": 1.5,
+      "unit": "cups",
+      "department": "Pantry",
+      "checked": false,
+      "usedIn": [
+        "Sunday broccoli salad"
+      ],
+      "meals": [
+        "Sunday broccoli salad"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g128",
+      "name": "GF crackers",
+      "quantity": 2,
+      "unit": "boxes",
+      "department": "Gluten-Free",
+      "checked": false,
+      "usedIn": [
+        "Saturday charcuterie"
+      ],
+      "meals": [
+        "Saturday charcuterie"
+      ],
+      "notes": "Keep separate"
+    },
+    {
+      "id": "g129",
+      "name": "Party chips",
+      "quantity": 5,
+      "unit": "bags",
+      "department": "Snacks",
+      "checked": false,
+      "usedIn": [
+        "Saturday Yacht Rock"
+      ],
+      "meals": [
+        "Saturday Yacht Rock"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g130",
+      "name": "Party dips",
+      "quantity": 4,
+      "unit": "containers",
+      "department": "Snacks",
+      "checked": false,
+      "usedIn": [
+        "Saturday Yacht Rock"
+      ],
+      "meals": [
+        "Saturday Yacht Rock"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g131",
+      "name": "Maille Dijon mustard",
+      "quantity": 1,
+      "unit": "jar",
+      "department": "Condiments",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar dressing"
+      ],
+      "meals": [
+        "Sunday Caesar dressing"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g132",
+      "name": "Hellmann's mayonnaise",
+      "quantity": 1,
+      "unit": "large jar",
+      "department": "Condiments",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar dressing"
+      ],
+      "meals": [
+        "Sunday Caesar dressing"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g133",
+      "name": "Regular croutons",
+      "quantity": 2,
+      "unit": "large bags",
+      "department": "Bakery",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar salad"
+      ],
+      "meals": [
+        "Sunday Caesar salad"
+      ],
+      "notes": "Contains gluten"
+    },
+    {
+      "id": "g134",
+      "name": "Gluten-free croutons",
+      "quantity": 1,
+      "unit": "bag",
+      "department": "Gluten-Free",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar salad"
+      ],
+      "meals": [
+        "Sunday Caesar salad"
+      ],
+      "notes": "For Steve and Adele"
+    }
+  ]
+}
