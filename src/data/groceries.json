@@ -280,18 +280,16 @@
     {
       "id": "g17",
       "name": "Romaine",
-      "quantity": 6,
-      "unit": "heads",
+      "quantity": 8,
+      "unit": "large hearts",
       "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
-        "Saturday dinner",
-        "Thursday dinner"
+        "Sunday Main River Feast Caesar salad"
       ],
       "meals": [
-        "Saturday dinner",
-        "Thursday dinner"
+        "Sunday Main River Feast Caesar salad"
       ],
       "notes": ""
     },
@@ -848,17 +846,17 @@
     {
       "id": "g50",
       "name": "Parmesan",
-      "quantity": 500,
+      "quantity": 750,
       "unit": "g",
       "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
-        "Caesar",
+        "Sunday Caesar salad",
         "Mac and cheese"
       ],
       "meals": [
-        "Caesar",
+        "Sunday Caesar salad",
         "Mac and cheese"
       ],
       "notes": ""
@@ -999,21 +997,19 @@
     },
     {
       "id": "g59",
-      "name": "Worcestershire regular + GF",
-      "quantity": 2,
-      "unit": "bottles",
+      "name": "French's Worcestershire Sauce (GF)",
+      "quantity": 1,
+      "unit": "bottle",
       "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
-        "Caesar",
-        "Brisket"
+        "Sunday Caesar dressing"
       ],
       "meals": [
-        "Caesar",
-        "Brisket"
+        "Sunday Caesar dressing"
       ],
-      "notes": "Buy both"
+      "notes": "Use French's; GF dressing for everyone"
     },
     {
       "id": "g60",
@@ -2154,6 +2150,70 @@
         "Saturday Yacht Rock"
       ],
       "notes": ""
+    },
+    {
+      "id": "g131",
+      "name": "Maille Dijon mustard",
+      "quantity": 1,
+      "unit": "jar",
+      "store": "Sobeys",
+      "department": "Condiments",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar dressing"
+      ],
+      "meals": [
+        "Sunday Caesar dressing"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g132",
+      "name": "Hellmann's mayonnaise",
+      "quantity": 1,
+      "unit": "large jar",
+      "store": "Sobeys",
+      "department": "Condiments",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar dressing"
+      ],
+      "meals": [
+        "Sunday Caesar dressing"
+      ],
+      "notes": ""
+    },
+    {
+      "id": "g133",
+      "name": "Regular croutons",
+      "quantity": 2,
+      "unit": "large bags",
+      "store": "Sobeys",
+      "department": "Bakery",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar salad"
+      ],
+      "meals": [
+        "Sunday Caesar salad"
+      ],
+      "notes": "Contains gluten"
+    },
+    {
+      "id": "g134",
+      "name": "Gluten-free croutons",
+      "quantity": 1,
+      "unit": "bag",
+      "store": "Sobeys",
+      "department": "Gluten-Free",
+      "checked": false,
+      "usedIn": [
+        "Sunday Caesar salad"
+      ],
+      "meals": [
+        "Sunday Caesar salad"
+      ],
+      "notes": "For Steve and Adele"
     }
   ]
 }

@@ -173,19 +173,19 @@
       "id": "adam",
       "name": "Adam",
       "role": "TBD",
-      "arrival": null,
-      "departure": null,
+      "arrival": "2026-08-23",
+      "departure": "2026-08-23",
       "dietary": [],
-      "notes": "Attendance TBD; everyone will get a job"
+      "notes": "Main River Feast guest — Aug 23"
     },
     {
       "id": "chloe",
       "name": "Chloe",
       "role": "TBD",
-      "arrival": null,
-      "departure": null,
+      "arrival": "2026-08-23",
+      "departure": "2026-08-23",
       "dietary": [],
-      "notes": "Attendance TBD; everyone will get a job"
+      "notes": "Main River Feast guest — Aug 23"
     },
     {
       "id": "neighbours",
