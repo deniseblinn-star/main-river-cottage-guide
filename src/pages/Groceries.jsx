@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Check, RotateCcw, ListChecks, Home, Pencil, Save, Plus, X, Trash2 } from 'lucide-react'
 import data from '../data/groceries.json'
 import baseData from '../data/baseGroceries.json'
+import guestData from '../data/guests.json'
 import { getGeneratedGroceries } from '../utils/recipeEngine'
 
 const checkedKey='cottage-groceries-checked'
@@ -9,6 +10,7 @@ const baseCheckedKey='cottage-base-groceries-checked'
 const baseEditsKey='cottage-base-groceries-edits'
 const manualItemsKey='cottage-manual-groceries'
 const manualCheckedKey='cottage-manual-groceries-checked'
+const seededKey='cottage-shopping-seeded-v18'
 
 const emptyForm={
  name:'',
@@ -18,7 +20,10 @@ const emptyForm={
  store:'Costco',
  notes:'',
  gf:false,
- merge:true
+ merge:true,
+ assignedTo:'',
+ shoppingRun:'',
+ active:true
 }
 
 export default function Groceries(){
@@ -28,7 +33,16 @@ export default function Groceries(){
  const [baseChecked,setBaseChecked]=useState(()=>JSON.parse(localStorage.getItem(baseCheckedKey)||'{}'))
  const [baseEdits,setBaseEdits]=useState(()=>JSON.parse(localStorage.getItem(baseEditsKey)||'{}'))
  const [editing,setEditing]=useState(null)
- const [manualItems,setManualItems]=useState(()=>JSON.parse(localStorage.getItem(manualItemsKey)||'[]'))
+ const [manualItems,setManualItems]=useState(()=>{
+  const saved=JSON.parse(localStorage.getItem(manualItemsKey)||'[]')
+  if(saved.length||localStorage.getItem(seededKey)) return saved
+  const seeded=[
+   {id:'manual-thursday-chips',name:'Chips',quantity:2,unit:'bags',department:'Snacks',store:'Town Run',notes:'Thursday town trip',gf:false,merge:true,source:'manual',assignedTo:'charles',shoppingRun:'Thursday Town Run',active:true},
+   {id:'manual-thursday-beer',name:'Beer',quantity:1,unit:'case',department:'Drinks',store:'Town Run',notes:'Thursday town trip',gf:false,merge:true,source:'manual',assignedTo:'charles',shoppingRun:'Thursday Town Run',active:true},
+   {id:'manual-thursday-sour-patch',name:'Sour Patch Kids',quantity:2,unit:'bags',department:'Snacks',store:'Town Run',notes:'Thursday town trip',gf:false,merge:true,source:'manual',assignedTo:'charles',shoppingRun:'Thursday Town Run',active:true}
+  ]
+  localStorage.setItem(manualItemsKey,JSON.stringify(seeded));localStorage.setItem(seededKey,'1');return seeded
+ })
  const [manualChecked,setManualChecked]=useState(()=>JSON.parse(localStorage.getItem(manualCheckedKey)||'{}'))
  const [showAdd,setShowAdd]=useState(false)
  const [form,setForm]=useState(emptyForm)
@@ -62,6 +76,9 @@ export default function Groceries(){
    notes:form.notes.trim(),
    gf:Boolean(form.gf),
    merge:Boolean(form.merge),
+   assignedTo:form.assignedTo,
+   shoppingRun:form.shoppingRun.trim(),
+   active:Boolean(form.active),
    source:'manual'
   }
   const next=[...manualItems,item]
@@ -71,6 +88,11 @@ export default function Groceries(){
   setShowAdd(false)
   setStore(item.store)
   setMode('trip')
+ }
+
+ const updateManualItem=(id,patch)=>{
+  const next=manualItems.map(item=>item.id===id?{...item,...patch}:item)
+  setManualItems(next);localStorage.setItem(manualItemsKey,JSON.stringify(next))
  }
 
  const deleteManualItem=id=>{
@@ -87,7 +109,8 @@ export default function Groceries(){
  const legacyItems=data.items.filter(item=>!['Beef tenderloin fillets','Romaine','Parmesan'].includes(item.name)).map(item=>({...item,source:'planned'}))
  const recipeItems=generatedRecipeItems
  const allTripItems=[...recipeItems,...legacyItems,...manualItems]
- const tripDone=[...recipeItems,...legacyItems].filter(i=>checked[i.id]).length + manualItems.filter(i=>manualChecked[i.id]).length
+ const activeManualItems=manualItems.filter(i=>i.active!==false)
+ const tripDone=[...recipeItems,...legacyItems].filter(i=>checked[i.id]).length + activeManualItems.filter(i=>manualChecked[i.id]).length
  const storeItems=allTripItems.filter(i=>i.store===store)
  const groups=Object.groupBy
   ? Object.groupBy(storeItems,i=>i.department)
@@ -95,6 +118,7 @@ export default function Groceries(){
  const baseItems=useMemo(()=>baseData.categories.flatMap(c=>c.items),[])
  const baseDone=baseItems.filter(i=>baseChecked[i.id]).length
  const storeNames=[...new Set([...data.stores,...manualItems.map(item=>item.store)])]
+ const guestNames=guestData.guests.map(g=>({id:g.id,name:g.name}))
 
  return <div className="space-y-4">
   <div className="flex flex-wrap justify-between gap-3">
@@ -124,7 +148,7 @@ export default function Groceries(){
      <span className="badge bg-navy/10 text-navy">Recipe / planned</span>
      <span className="text-sm text-stone">Items already required by the current meal plan.</span>
      <span className="badge bg-wood-100 text-wood-600">Manual</span>
-     <span className="text-sm text-stone">Extra vegetables, snacks, ice, supplies or anything else you add.</span>
+     <span className="text-sm text-stone">Add only items needed above and beyond recipes. Assign them to a person or shopping run.</span>
     </div>
    </div>
 
@@ -142,7 +166,7 @@ export default function Groceries(){
      const isManual=item.source==='manual'
      const isChecked=isManual?manualChecked[item.id]:checked[item.id]
      const onToggle=()=>isManual?toggleManual(item.id):toggle(item.id)
-     return <div key={item.id} className="flex gap-3 py-3 border-b last:border-0 items-start">
+     return <div key={item.id} className={`flex gap-3 py-3 border-b last:border-0 items-start ${isManual&&item.active===false?'opacity-50':''}`}>
       <button onClick={onToggle} className={`w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 mt-0.5 ${isChecked?'bg-forest border-forest text-white':'border-stone/30'}`}>
        {isChecked&&<Check size={16}/>}
       </button>
@@ -158,6 +182,11 @@ export default function Groceries(){
           ? `${item.notes||'No notes'}${item.merge===false?' · Keep separate from matching recipe items':''}`
           : item.source==='recipe' ? `${item.sources.map(x=>`${x.recipe} → ${x.meal} (${x.attendance} guests)`).join(' • ')}${item.notes?` · ${item.notes}`:''}` : `${item.usedIn.join(' • ')}${item.notes&&` · ${item.notes}`}`}
        </p>
+       {isManual&&<div className="flex flex-wrap gap-2 mt-2 text-xs">
+        {item.assignedTo&&<span className="badge bg-navy/10 text-navy">Assigned: {guestNames.find(g=>g.id===item.assignedTo)?.name||item.assignedTo}</span>}
+        {item.shoppingRun&&<span className="badge bg-forest/10 text-forest">{item.shoppingRun}</span>}
+        <button onClick={()=>updateManualItem(item.id,{active:item.active===false})} className="badge bg-stone/10 text-stone">{item.active===false?'Put on list':'Take off list'}</button>
+       </div>}
       </div>
       {isManual&&<button onClick={()=>deleteManualItem(item.id)} className="text-stone hover:text-red-600 p-1" title="Delete manual item"><Trash2 size={18}/></button>}
      </div>
@@ -225,10 +254,13 @@ export default function Groceries(){
       {data.stores.map(x=><option key={x}>{x}</option>)}
      </select></label>
      <label className="sm:col-span-2"><span className="section-title">Notes</span><input value={form.notes} onChange={e=>updateForm('notes',e.target.value)} placeholder="For snacks and lunches, specific brand, ripeness..." className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
+     <label><span className="section-title">Assign to</span><select value={form.assignedTo} onChange={e=>updateForm('assignedTo',e.target.value)} className="w-full mt-2 p-3 rounded-xl bg-white border"><option value="">Unassigned</option>{guestNames.map(g=><option value={g.id} key={g.id}>{g.name}</option>)}</select></label>
+     <label><span className="section-title">Shopping run</span><input value={form.shoppingRun} onChange={e=>updateForm('shoppingRun',e.target.value)} placeholder="e.g., Thursday Town Run" className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
     </div>
 
     <div className="grid sm:grid-cols-2 gap-3 mt-4">
      <label className="bg-white rounded-2xl p-4 flex gap-3 items-center"><input type="checkbox" checked={form.gf} onChange={e=>updateForm('gf',e.target.checked)} className="w-5 h-5"/><span><b>Gluten-free</b><p className="text-xs text-stone">Show a GF marker.</p></span></label>
+     <label className="bg-white rounded-2xl p-4 flex gap-3 items-center"><input type="checkbox" checked={form.active} onChange={e=>updateForm('active',e.target.checked)} className="w-5 h-5"/><span><b>Put on active list</b><p className="text-xs text-stone">Turn off to keep the item for later without shopping for it now.</p></span></label>
      <label className="bg-white rounded-2xl p-4 flex gap-3 items-center"><input type="checkbox" checked={form.merge} onChange={e=>updateForm('merge',e.target.checked)} className="w-5 h-5"/><span><b>Merge later</b><p className="text-xs text-stone">May combine with matching recipe items in the future engine.</p></span></label>
     </div>
 

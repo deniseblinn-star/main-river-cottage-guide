@@ -166,21 +166,30 @@
       "mealName": "Main River Feast",
       "attendance": 19,
       "recipeId": "filet",
-      "recipeLead": "TBD"
+      "recipeLead": "TBD",
+      "date": "2026-08-23",
+      "slot": "dinner",
+      "attendanceSource": "Main River Feast meal attendance"
     },
     {
       "id": "feast-caesar",
       "mealName": "Main River Feast",
       "attendance": 19,
       "recipeId": "caesar",
-      "recipeLead": "Lonita"
+      "recipeLead": "Lonita",
+      "date": "2026-08-23",
+      "slot": "dinner",
+      "attendanceSource": "Main River Feast meal attendance"
     },
     {
       "id": "taco-guac",
       "mealName": "Taco Fiesta",
       "attendance": 10,
       "recipeId": "guacamole",
-      "recipeLead": "TBD"
+      "recipeLead": "TBD",
+      "date": "2026-08-28",
+      "slot": "dinner",
+      "attendanceSource": "Taco Fiesta meal attendance"
     }
   ]
 }
