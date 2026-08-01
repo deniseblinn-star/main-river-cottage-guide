@@ -21,3 +21,11 @@
 .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
 html { scroll-behavior: smooth; }
 button, a { touch-action: manipulation; }
+
+@layer components {
+  .photo-control { @apply grid h-8 w-8 place-items-center rounded-full border border-black/10 bg-white text-stone shadow-sm transition hover:text-forest hover:shadow; }
+  .photo-tile { @apply block w-full overflow-hidden rounded-2xl bg-white shadow-card transition duration-300 hover:-translate-y-0.5 hover:shadow-card-hover; }
+  .photo-tile img { @apply h-full w-full object-cover; }
+  .photo-tile-feature { height: 430px; }
+  .photo-tile-small { height: 155px; }
+}

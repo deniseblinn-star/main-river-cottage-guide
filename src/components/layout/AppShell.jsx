@@ -6,7 +6,7 @@ export default function AppShell({children}) {
     <Sidebar/>
     <div className="lg:pl-64">
       <TopBar/>
-      <main className="max-w-4xl mx-auto px-4 py-5 pb-28 lg:pb-8">{children}</main>
+      <main className="max-w-7xl mx-auto px-4 py-5 pb-28 lg:pb-8">{children}</main>
     </div>
     <BottomNav/>
   </div>
