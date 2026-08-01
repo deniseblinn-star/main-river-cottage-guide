@@ -1,0 +1,200 @@
+{
+  "cottageDates": {
+    "start": "2026-08-22",
+    "end": "2026-08-30",
+    "location": "Main River, New Brunswick"
+  },
+  "dietary": {
+    "glutenFree": {
+      "label": "Gluten-Free",
+      "color": "amber",
+      "note": "Use separate utensils and preparation areas for gluten-free food."
+    }
+  },
+  "guests": [
+    {
+      "id": "denise",
+      "name": "Denise",
+      "role": "Chief Planning Officer",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-30",
+      "dietary": [],
+      "notes": "Primary organizer"
+    },
+    {
+      "id": "steve",
+      "name": "Steve",
+      "role": "Travel & Logistics Coordinator",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-30",
+      "dietary": [
+        "gluten-free"
+      ],
+      "notes": "Town runs, ice, chips, forgotten supplies"
+    },
+    {
+      "id": "adele",
+      "name": "Adele",
+      "role": "TBD",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-30",
+      "dietary": [
+        "gluten-free"
+      ],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "alex",
+      "name": "Alex",
+      "role": "TBD",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-30",
+      "dietary": [],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "danielle",
+      "name": "Danielle",
+      "role": "Director of Fun",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-30",
+      "dietary": [],
+      "notes": "Local in New Brunswick"
+    },
+    {
+      "id": "kevin",
+      "name": "Kevin",
+      "role": "Pitmaster",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-30",
+      "dietary": [],
+      "notes": "Local in New Brunswick; smoker and BBQ lead"
+    },
+    {
+      "id": "lonita",
+      "name": "Lonita",
+      "role": "Quality & Safety",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Arrives Aug 22; leaves Aug 28"
+    },
+    {
+      "id": "danny",
+      "name": "Danny",
+      "role": "TBD",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "chuck",
+      "name": "Chuck (Dad)",
+      "role": "Chief Storytelling Officer",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-29",
+      "dietary": [],
+      "notes": "Local in New Brunswick; joins Aug 23"
+    },
+    {
+      "id": "mimi",
+      "name": "Mimi",
+      "role": "Keeper of the Classics",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-29",
+      "dietary": [],
+      "notes": "Local in New Brunswick; Mimi's potato salad"
+    },
+    {
+      "id": "charles",
+      "name": "Charles",
+      "role": "Assistant Pitmaster & Fireworks Director",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Arrives Aug 23 with Jackson, Mackenzie and Ella"
+    },
+    {
+      "id": "jackson",
+      "name": "Jackson",
+      "role": "TBD",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "mackenzie",
+      "name": "Mackenzie",
+      "role": "TBD",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "ella",
+      "name": "Ella",
+      "role": "TBD",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "brad",
+      "name": "Brad",
+      "role": "TBD",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "sophie",
+      "name": "Sophie",
+      "role": "TBD",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "nathan",
+      "name": "Nathan",
+      "role": "TBD",
+      "arrival": "2026-08-23",
+      "departure": "2026-08-28",
+      "dietary": [],
+      "notes": "Everyone will get a job"
+    },
+    {
+      "id": "adam",
+      "name": "Adam",
+      "role": "TBD",
+      "arrival": null,
+      "departure": null,
+      "dietary": [],
+      "notes": "Attendance TBD; everyone will get a job"
+    },
+    {
+      "id": "chloe",
+      "name": "Chloe",
+      "role": "TBD",
+      "arrival": null,
+      "departure": null,
+      "dietary": [],
+      "notes": "Attendance TBD; everyone will get a job"
+    },
+    {
+      "id": "neighbours",
+      "name": "Yacht Rock Neighbour Guest(s)",
+      "role": "Party Guest",
+      "arrival": "2026-08-22",
+      "departure": "2026-08-22",
+      "dietary": [],
+      "notes": "Exact number TBD; Yacht Rock party only"
+    }
+  ]
+}
