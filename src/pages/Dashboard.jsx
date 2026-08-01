@@ -37,7 +37,6 @@ export default function Dashboard(){
       </div>
     </section>
 
-    <PhotoRail/>
 
     <section>
       <h3 className="section-title mb-3">This week</h3>
