@@ -6,6 +6,7 @@ import DailyPlanner from './pages/DailyPlanner'
 import Recipes from './pages/Recipes'
 import RecipeEngine from './pages/RecipeEngine'
 import RecipeDetail from './pages/RecipeDetail'
+import AddRecipe from './pages/AddRecipe'
 import Groceries from './pages/Groceries'
 import Guests from './pages/Guests'
 import SmokerHQ from './pages/SmokerHQ'
@@ -20,6 +21,8 @@ export default function App() {
     <Route path="/daily" element={<DailyPlanner />} />
     <Route path="/daily/:dayId" element={<DailyPlanner />} />
     <Route path="/recipes" element={<Recipes />} />
+    <Route path="/recipes/new" element={<AddRecipe />} />
+    <Route path="/recipes/:id/edit" element={<AddRecipe />} />
     <Route path="/recipe-engine" element={<RecipeEngine />} />
     <Route path="/recipes/:id" element={<RecipeDetail />} />
     <Route path="/groceries" element={<Groceries />} />
