@@ -1,0 +1,51 @@
+MAIN RIVER COTTAGE PLANNER — FULL REPLACEMENT
+
+This ZIP is intentionally flattened so that package.json, src, public, and index.html
+sit directly at the top level of the ZIP.
+
+SAFE REPLACEMENT STEPS
+
+1. In your current project folder, keep the .git folder.
+2. Delete these items from the project folder:
+   - src
+   - public
+   - index.html
+   - package.json
+   - vite.config.js
+   - tailwind.config.js
+   - postcss.config.js
+   - all RELEASE-NOTES files if you want a clean reset
+3. Do NOT delete the .git folder.
+4. Extract everything from this ZIP directly into:
+   main-river-cottage-guide
+5. Confirm the project root now contains:
+   .git
+   public
+   src
+   index.html
+   package.json
+   vite.config.js
+6. Confirm there is NO folder named:
+   src - Copy
+7. Open GitKraken.
+8. Stage all changes.
+9. Commit:
+   Full replacement with unified grocery list
+10. Push.
+11. Wait for Netlify to publish.
+12. Hard refresh the site with Ctrl + Shift + R.
+
+EXPECTED RESULT
+
+The Grocery page should show:
+- Trip Grocery List
+- All
+- Outstanding
+- Purchased
+- Unassigned
+- By Person
+
+It should NOT show:
+- Costco
+- Sobeys
+- Town Run
