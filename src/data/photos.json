@@ -1,0 +1,63 @@
+{
+  "years": [
+    2026,
+    2025,
+    2024
+  ],
+  "photos": [
+    {
+      "id": "p1",
+      "src": "/photos/morning-mist.jpeg",
+      "year": 2026,
+      "eventId": "",
+      "caption": "Morning mist",
+      "uploadedBy": "Denise",
+      "uploadedAt": "2026-08-01"
+    },
+    {
+      "id": "p2",
+      "src": "/photos/tube-day.jpeg",
+      "year": 2026,
+      "eventId": "lazy-river-float",
+      "caption": "On the water",
+      "uploadedBy": "Denise",
+      "uploadedAt": "2026-08-01"
+    },
+    {
+      "id": "p3",
+      "src": "/photos/boat-day.jpeg",
+      "year": 2026,
+      "eventId": "",
+      "caption": "Boat day",
+      "uploadedBy": "Denise",
+      "uploadedAt": "2026-08-01"
+    },
+    {
+      "id": "p4",
+      "src": "/photos/first-boat-ride.jpeg",
+      "year": 2025,
+      "eventId": "",
+      "caption": "First boat ride",
+      "uploadedBy": "Denise",
+      "uploadedAt": "2025-08-01"
+    },
+    {
+      "id": "p5",
+      "src": "/photos/family-boat.jpeg",
+      "year": 2025,
+      "eventId": "",
+      "caption": "Family boat day",
+      "uploadedBy": "Denise",
+      "uploadedAt": "2025-08-01"
+    },
+    {
+      "id": "p6",
+      "src": "/photos/captains-seat.jpeg",
+      "year": 2024,
+      "eventId": "",
+      "caption": "Captain's seat",
+      "uploadedBy": "Denise",
+      "uploadedAt": "2024-08-01"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "years": [
+    2026,
+    2025,
+    2024
+  ],
+  "events": [
+    {
+      "id": "yacht-rock-party",
+      "name": "Yacht Rock Party",
+      "description": "Dockside music, drinks, grazing food and neighbours.",
+      "year": 2026,
+      "date": "2026-08-22",
+      "startTime": "15:00",
+      "endTime": "23:30",
+      "status": "scheduled",
+      "foodMode": "linked-slots",
+      "linkedSlots": [
+        "early-snack",
+        "dinner",
+        "evening-snack"
+      ],
+      "restaurantName": "",
+      "attendeeIds": [
+        "denise",
+        "steve",
+        "adele",
+        "alex",
+        "danielle",
+        "kevin",
+        "lonita",
+        "danny"
+      ],
+      "externalGuests": [
+        "Neighbour guests \u2014 names TBD"
+      ],
+      "notes": "Neighbour attendance is event-only and does not affect cottage or Sunday meal counts.",
+      "music": [
+        {
+          "label": "Apple Music Yacht Rock Playlist",
+          "url": ""
+        },
+        {
+          "label": "SiriusXM Yacht Rock",
+          "url": ""
+        }
+      ],
+      "photoTag": "yacht-rock-party"
+    },
+    {
+      "id": "main-river-feast",
+      "name": "Main River Feast",
+      "description": "The signature filet, lobster and mussels dinner.",
+      "year": 2026,
+      "date": "2026-08-23",
+      "startTime": "18:30",
+      "endTime": "21:30",
+      "status": "scheduled",
+      "foodMode": "linked-slots",
+      "linkedSlots": [
+        "dinner"
+      ],
+      "restaurantName": "",
+      "attendeeIds": [
+        "denise",
+        "steve",
+        "adele",
+        "alex",
+        "danielle",
+        "kevin",
+        "lonita",
+        "danny",
+        "chuck",
+        "mimi",
+        "charles",
+        "jackson",
+        "mackenzie",
+        "ella",
+        "brad",
+        "sophie",
+        "nathan",
+        "adam",
+        "chloe"
+      ],
+      "externalGuests": [],
+      "notes": "Dinner attendance inherits the 19 event attendees.",
+      "music": [],
+      "photoTag": "main-river-feast"
+    },
+    {
+      "id": "golf-day",
+      "name": "Golf Day",
+      "description": "A daytime golf outing for selected guests.",
+      "year": 2026,
+      "date": "2026-08-25",
+      "startTime": "09:30",
+      "endTime": "15:00",
+      "status": "scheduled",
+      "foodMode": "restaurant",
+      "linkedSlots": [],
+      "restaurantName": "TBD \u2014 golf course or nearby restaurant",
+      "attendeeIds": [
+        "kevin",
+        "charles",
+        "brad",
+        "nathan"
+      ],
+      "externalGuests": [],
+      "notes": "Golf attendance is separate from cottage and dinner attendance. Denise is at the cottage but not attending golf.",
+      "music": [],
+      "photoTag": "golf-day"
+    },
+    {
+      "id": "big-birthday-bash",
+      "name": "Big Birthday Bash",
+      "description": "Reusable birthday event template.",
+      "year": 2026,
+      "date": "",
+      "startTime": "",
+      "endTime": "",
+      "status": "unscheduled",
+      "foodMode": "none",
+      "linkedSlots": [],
+      "restaurantName": "",
+      "attendeeIds": [],
+      "externalGuests": [],
+      "notes": "Available to schedule in any year.",
+      "music": [],
+      "photoTag": "big-birthday-bash"
+    },
+    {
+      "id": "christmas-on-the-river",
+      "name": "Christmas on the River",
+      "description": "Reusable holiday-on-the-river event template.",
+      "year": 2026,
+      "date": "",
+      "startTime": "",
+      "endTime": "",
+      "status": "unscheduled",
+      "foodMode": "none",
+      "linkedSlots": [],
+      "restaurantName": "",
+      "attendeeIds": [],
+      "externalGuests": [],
+      "notes": "Available to schedule in any year.",
+      "music": [],
+      "photoTag": "christmas-on-the-river"
+    },
+    {
+      "id": "lazy-river-float",
+      "name": "Lazy River Float",
+      "description": "Reusable group float event template.",
+      "year": 2026,
+      "date": "",
+      "startTime": "",
+      "endTime": "",
+      "status": "unscheduled",
+      "foodMode": "none",
+      "linkedSlots": [],
+      "restaurantName": "",
+      "attendeeIds": [],
+      "externalGuests": [],
+      "notes": "Available to schedule in any year.",
+      "music": [],
+      "photoTag": "lazy-river-float"
+    }
+  ]
+}

@@ -10,6 +10,8 @@ import Guests from './pages/Guests'
 import SmokerHQ from './pages/SmokerHQ'
 import Hosting from './pages/Hosting'
 import Settings from './pages/Settings'
+import Events from './pages/Events'
+import Photos from './pages/Photos'
 export default function App() {
   return <AppShell><Routes>
     <Route path="/" element={<Dashboard />} />
@@ -22,6 +24,8 @@ export default function App() {
     <Route path="/guests" element={<Guests />} />
     <Route path="/smoker" element={<SmokerHQ />} />
     <Route path="/hosting" element={<Hosting />} />
-    <Route path="/settings" element={<Settings />} />
+    <Route path="/events" element={<Events />} />
+        <Route path="/photos" element={<Photos />} />
+        <Route path="/settings" element={<Settings />} />
   </Routes></AppShell>
 }
