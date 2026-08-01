@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { TreePine, ChevronLeft } from 'lucide-react'
-const titles={'/':'Main River Cottage','/planner':'Weekly Planner','/daily':'Daily Planner','/recipes':'Recipes','/groceries':'Groceries','/guests':'Guests','/smoker':'Smoker HQ','/hosting':'Hosting','/events':'Events','/photos':'Photos','/settings':'Settings'}
+const titles={'/':'Main River Cottage','/planner':'Weekly Planner','/daily':'Daily Planner','/recipes':'Recipes','/recipe-engine':'Recipe Engine','/groceries':'Groceries','/guests':'Guests','/smoker':'Smoker HQ','/hosting':'Hosting','/events':'Events','/photos':'Photos','/settings':'Settings'}
 export default function TopBar(){
  const l=useLocation(), n=useNavigate()
  const detail=l.pathname.split('/').length>2

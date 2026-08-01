@@ -1,0 +1,157 @@
+{
+  "ingredients": [
+    {
+      "id": "beef-tenderloin-fillet",
+      "name": "Beef tenderloin fillet",
+      "category": "Meat & Seafood",
+      "defaultUnit": "each",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": "One fillet per guest"
+    },
+    {
+      "id": "butter",
+      "name": "Butter",
+      "category": "Dairy",
+      "defaultUnit": "g",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": ""
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "category": "Produce",
+      "defaultUnit": "clove",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": ""
+    },
+    {
+      "id": "romaine-heart",
+      "name": "Romaine heart",
+      "category": "Produce",
+      "defaultUnit": "each",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": "Buy large fresh hearts"
+    },
+    {
+      "id": "anchovy-paste",
+      "name": "Anchovy paste",
+      "category": "Pantry",
+      "defaultUnit": "tsp",
+      "preferredStore": "Sobeys",
+      "usuallyStocked": false,
+      "purchaseNote": ""
+    },
+    {
+      "id": "lemon-juice",
+      "name": "Fresh lemon juice",
+      "category": "Produce",
+      "defaultUnit": "tbsp",
+      "preferredStore": "Sobeys",
+      "usuallyStocked": false,
+      "purchaseNote": "About 2 tbsp per lemon"
+    },
+    {
+      "id": "dijon",
+      "name": "Dijon mustard",
+      "category": "Pantry",
+      "defaultUnit": "tsp",
+      "preferredStore": "Sobeys",
+      "usuallyStocked": false,
+      "purchaseNote": "Maille preferred"
+    },
+    {
+      "id": "worcestershire",
+      "name": "French's Worcestershire Sauce",
+      "category": "Pantry",
+      "defaultUnit": "tsp",
+      "preferredStore": "Sobeys",
+      "usuallyStocked": false,
+      "purchaseNote": "Gluten-free"
+    },
+    {
+      "id": "mayonnaise",
+      "name": "Mayonnaise",
+      "category": "Pantry",
+      "defaultUnit": "cup",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": "Hellmann's or Duke's"
+    },
+    {
+      "id": "parmesan",
+      "name": "Parmigiano-Reggiano",
+      "category": "Dairy",
+      "defaultUnit": "cup",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": "Freshly grated or shaved"
+    },
+    {
+      "id": "regular-croutons",
+      "name": "Regular croutons",
+      "category": "Bakery",
+      "defaultUnit": "bag",
+      "preferredStore": "Sobeys",
+      "usuallyStocked": false,
+      "purchaseNote": "Contains gluten"
+    },
+    {
+      "id": "gf-croutons",
+      "name": "Gluten-free croutons",
+      "category": "Bakery",
+      "defaultUnit": "bag",
+      "preferredStore": "Sobeys",
+      "usuallyStocked": false,
+      "purchaseNote": "For Steve and Adele"
+    },
+    {
+      "id": "avocado",
+      "name": "Avocado",
+      "category": "Produce",
+      "defaultUnit": "each",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": "Buy ripe for serving day"
+    },
+    {
+      "id": "lime",
+      "name": "Lime",
+      "category": "Produce",
+      "defaultUnit": "each",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": ""
+    },
+    {
+      "id": "red-onion",
+      "name": "Red onion",
+      "category": "Produce",
+      "defaultUnit": "each",
+      "preferredStore": "Costco",
+      "usuallyStocked": false,
+      "purchaseNote": ""
+    },
+    {
+      "id": "cilantro",
+      "name": "Cilantro",
+      "category": "Produce",
+      "defaultUnit": "bunch",
+      "preferredStore": "Sobeys",
+      "usuallyStocked": false,
+      "purchaseNote": "Buy near serving day"
+    },
+    {
+      "id": "jalapeno",
+      "name": "Jalape\u00f1o",
+      "category": "Produce",
+      "defaultUnit": "each",
+      "preferredStore": "Sobeys",
+      "usuallyStocked": false,
+      "purchaseNote": ""
+    }
+  ]
+}

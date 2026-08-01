@@ -1,0 +1,186 @@
+{
+  "recipes": [
+    {
+      "id": "filet",
+      "name": "Sous Vide Filet",
+      "yield": {
+        "quantity": 8,
+        "unit": "servings"
+      },
+      "tradition": "",
+      "ingredients": [
+        {
+          "ingredientId": "beef-tenderloin-fillet",
+          "quantity": 8,
+          "unit": "each",
+          "rounding": "whole-up",
+          "shopping": true
+        },
+        {
+          "ingredientId": "butter",
+          "quantity": 250,
+          "unit": "g",
+          "rounding": "practical",
+          "shopping": true
+        },
+        {
+          "ingredientId": "garlic",
+          "quantity": 8,
+          "unit": "clove",
+          "rounding": "whole-up",
+          "shopping": true
+        }
+      ]
+    },
+    {
+      "id": "caesar",
+      "name": "Lonita's Caesar Dressing",
+      "yield": {
+        "quantity": 19,
+        "unit": "servings"
+      },
+      "tradition": "Lonita makes this dressing every year. People would be disappointed if it was not on the table.",
+      "ingredients": [
+        {
+          "ingredientId": "romaine-heart",
+          "quantity": 8,
+          "unit": "each",
+          "rounding": "whole-up",
+          "shopping": true
+        },
+        {
+          "ingredientId": "garlic",
+          "quantity": 3,
+          "unit": "clove",
+          "rounding": "whole-up",
+          "shopping": true
+        },
+        {
+          "ingredientId": "anchovy-paste",
+          "quantity": 1.5,
+          "unit": "tsp",
+          "rounding": "practical",
+          "shopping": true
+        },
+        {
+          "ingredientId": "lemon-juice",
+          "quantity": 3,
+          "unit": "tbsp",
+          "rounding": "practical",
+          "shopping": true
+        },
+        {
+          "ingredientId": "dijon",
+          "quantity": 1.5,
+          "unit": "tsp",
+          "rounding": "practical",
+          "shopping": true
+        },
+        {
+          "ingredientId": "worcestershire",
+          "quantity": 1.5,
+          "unit": "tsp",
+          "rounding": "practical",
+          "shopping": true
+        },
+        {
+          "ingredientId": "mayonnaise",
+          "quantity": 1.5,
+          "unit": "cup",
+          "rounding": "practical",
+          "shopping": true
+        },
+        {
+          "ingredientId": "parmesan",
+          "quantity": 3,
+          "unit": "cup",
+          "rounding": "practical",
+          "shopping": true
+        },
+        {
+          "ingredientId": "regular-croutons",
+          "quantity": 2,
+          "unit": "bag",
+          "rounding": "whole-up",
+          "shopping": true
+        },
+        {
+          "ingredientId": "gf-croutons",
+          "quantity": 1,
+          "unit": "bag",
+          "rounding": "whole-up",
+          "shopping": true
+        }
+      ]
+    },
+    {
+      "id": "guacamole",
+      "name": "Fresh Guacamole",
+      "yield": {
+        "quantity": 10,
+        "unit": "servings"
+      },
+      "tradition": "",
+      "ingredients": [
+        {
+          "ingredientId": "avocado",
+          "quantity": 10,
+          "unit": "each",
+          "rounding": "whole-up",
+          "shopping": true
+        },
+        {
+          "ingredientId": "lime",
+          "quantity": 5,
+          "unit": "each",
+          "rounding": "whole-up",
+          "shopping": true
+        },
+        {
+          "ingredientId": "red-onion",
+          "quantity": 1,
+          "unit": "each",
+          "rounding": "whole-up",
+          "shopping": true
+        },
+        {
+          "ingredientId": "cilantro",
+          "quantity": 1,
+          "unit": "bunch",
+          "rounding": "whole-up",
+          "shopping": true
+        },
+        {
+          "ingredientId": "jalapeno",
+          "quantity": 2,
+          "unit": "each",
+          "rounding": "whole-up",
+          "shopping": true
+        }
+      ]
+    }
+  ],
+  "mealAssignments": [
+    {
+      "id": "feast-filet",
+      "mealName": "Main River Feast",
+      "attendance": 19,
+      "recipeId": "filet",
+      "recipeLead": "TBD"
+    },
+    {
+      "id": "feast-caesar",
+      "mealName": "Main River Feast",
+      "attendance": 19,
+      "recipeId": "caesar",
+      "recipeLead": "Lonita"
+    },
+    {
+      "id": "taco-guac",
+      "mealName": "Taco Fiesta",
+      "attendance": 10,
+      "recipeId": "guacamole",
+      "recipeLead": "TBD"
+    }
+  ]
+}

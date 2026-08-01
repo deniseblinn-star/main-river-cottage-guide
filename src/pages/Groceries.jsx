@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { Check, RotateCcw, ListChecks, Home, Pencil, Save, Plus, X, Trash2 } from 'lucide-react'
 import data from '../data/groceries.json'
 import baseData from '../data/baseGroceries.json'
+import { getGeneratedGroceries } from '../utils/recipeEngine'
 
 const checkedKey='cottage-groceries-checked'
 const baseCheckedKey='cottage-base-groceries-checked'
@@ -82,9 +83,11 @@ export default function Groceries(){
   localStorage.setItem(manualCheckedKey,JSON.stringify(nextChecked))
  }
 
- const recipeItems=data.items.map(item=>({...item,source:'recipe'}))
- const allTripItems=[...recipeItems,...manualItems]
- const tripDone=recipeItems.filter(i=>checked[i.id]).length + manualItems.filter(i=>manualChecked[i.id]).length
+ const generatedRecipeItems=getGeneratedGroceries()
+ const legacyItems=data.items.filter(item=>!['Beef tenderloin fillets','Romaine','Parmesan'].includes(item.name)).map(item=>({...item,source:'planned'}))
+ const recipeItems=generatedRecipeItems
+ const allTripItems=[...recipeItems,...legacyItems,...manualItems]
+ const tripDone=[...recipeItems,...legacyItems].filter(i=>checked[i.id]).length + manualItems.filter(i=>manualChecked[i.id]).length
  const storeItems=allTripItems.filter(i=>i.store===store)
  const groups=Object.groupBy
   ? Object.groupBy(storeItems,i=>i.department)
@@ -147,13 +150,13 @@ export default function Groceries(){
        <div className="flex flex-wrap gap-2 items-center">
         <b>{item.name}</b>
         <span>— {item.quantity} {item.unit}</span>
-        <span className={isManual?'badge bg-wood-100 text-wood-600':'badge bg-navy/10 text-navy'}>{isManual?'Manual':'Recipe / planned'}</span>
+        <span className={isManual?'badge bg-wood-100 text-wood-600':item.source==='recipe'?'badge bg-forest/10 text-forest':'badge bg-navy/10 text-navy'}>{isManual?'Manual':item.source==='recipe'?'Recipe generated':'Planned'}</span>
         {item.gf&&<span className="badge-gf">GF</span>}
        </div>
        <p className="text-xs text-stone mt-1">
         {isManual
           ? `${item.notes||'No notes'}${item.merge===false?' · Keep separate from matching recipe items':''}`
-          : `${item.usedIn.join(' • ')}${item.notes&&` · ${item.notes}`}`}
+          : item.source==='recipe' ? `${item.sources.map(x=>`${x.recipe} → ${x.meal} (${x.attendance} guests)`).join(' • ')}${item.notes?` · ${item.notes}`:''}` : `${item.usedIn.join(' • ')}${item.notes&&` · ${item.notes}`}`}
        </p>
       </div>
       {isManual&&<button onClick={()=>deleteManualItem(item.id)} className="text-stone hover:text-red-600 p-1" title="Delete manual item"><Trash2 size={18}/></button>}
