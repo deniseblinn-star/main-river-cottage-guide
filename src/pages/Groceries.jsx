@@ -1,271 +1,153 @@
 import { useMemo, useState } from 'react'
-import { Check, RotateCcw, ListChecks, Home, Pencil, Save, Plus, X, Trash2 } from 'lucide-react'
-import data from '../data/groceries.json'
+import { Check, Home, ListChecks, Pencil, Plus, RotateCcw, Save, Trash2, X } from 'lucide-react'
+import plannedData from '../data/groceries.json'
 import baseData from '../data/baseGroceries.json'
 import guestData from '../data/guests.json'
 import { getGeneratedGroceries } from '../utils/recipeEngine'
 
-const checkedKey='cottage-groceries-checked'
-const baseCheckedKey='cottage-base-groceries-checked'
+const stateKey='main-river-trip-grocery-state-v21'
+const manualKey='main-river-manual-groceries-v21'
 const baseEditsKey='cottage-base-groceries-edits'
-const manualItemsKey='cottage-manual-groceries'
-const manualCheckedKey='cottage-manual-groceries-checked'
-const seededKey='cottage-shopping-seeded-v18'
 
-const emptyForm={
- name:'',
- quantity:1,
- unit:'item',
- category:'Produce',
- store:'Costco',
- notes:'',
- gf:false,
- merge:true,
- assignedTo:'',
- shoppingRun:'',
- active:true
+const categories=['Meat','Seafood','Produce','Dairy','Deli','Bakery','Pantry','Frozen','Drinks','Snacks','Household','Other']
+const emptyForm={name:'',quantity:1,unit:'each',category:'Produce',notes:'',gf:false,assignedTo:''}
+
+const normalizeCategory=value=>{
+ const text=(value||'Other').toLowerCase()
+ if(text.includes('meat')) return 'Meat'
+ if(text.includes('seafood')) return 'Seafood'
+ if(text.includes('produce')) return 'Produce'
+ if(text.includes('dairy')) return 'Dairy'
+ if(text.includes('deli')) return 'Deli'
+ if(text.includes('bakery')) return 'Bakery'
+ if(text.includes('pantry')||text.includes('condiment')||text.includes('spice')) return 'Pantry'
+ if(text.includes('frozen')) return 'Frozen'
+ if(text.includes('drink')||text.includes('beverage')||text.includes('liquor')) return 'Drinks'
+ if(text.includes('snack')) return 'Snacks'
+ if(text.includes('house')||text.includes('clean')||text.includes('paper')) return 'Household'
+ return 'Other'
 }
 
 export default function Groceries(){
  const [mode,setMode]=useState('trip')
- const [store,setStore]=useState(data.stores[0])
- const [checked,setChecked]=useState(()=>JSON.parse(localStorage.getItem(checkedKey)||'{}'))
- const [baseChecked,setBaseChecked]=useState(()=>JSON.parse(localStorage.getItem(baseCheckedKey)||'{}'))
- const [baseEdits,setBaseEdits]=useState(()=>JSON.parse(localStorage.getItem(baseEditsKey)||'{}'))
- const [editing,setEditing]=useState(null)
- const [manualItems,setManualItems]=useState(()=>{
-  const saved=JSON.parse(localStorage.getItem(manualItemsKey)||'[]')
-  if(saved.length||localStorage.getItem(seededKey)) return saved
-  const seeded=[
-   {id:'manual-thursday-chips',name:'Chips',quantity:2,unit:'bags',department:'Snacks',store:'Town Run',notes:'Thursday town trip',gf:false,merge:true,source:'manual',assignedTo:'charles',shoppingRun:'Thursday Town Run',active:true},
-   {id:'manual-thursday-beer',name:'Beer',quantity:1,unit:'case',department:'Drinks',store:'Town Run',notes:'Thursday town trip',gf:false,merge:true,source:'manual',assignedTo:'charles',shoppingRun:'Thursday Town Run',active:true},
-   {id:'manual-thursday-sour-patch',name:'Sour Patch Kids',quantity:2,unit:'bags',department:'Snacks',store:'Town Run',notes:'Thursday town trip',gf:false,merge:true,source:'manual',assignedTo:'charles',shoppingRun:'Thursday Town Run',active:true}
-  ]
-  localStorage.setItem(manualItemsKey,JSON.stringify(seeded));localStorage.setItem(seededKey,'1');return seeded
- })
- const [manualChecked,setManualChecked]=useState(()=>JSON.parse(localStorage.getItem(manualCheckedKey)||'{}'))
+ const [view,setView]=useState('all')
+ const [personFilter,setPersonFilter]=useState('')
+ const [categoryFilter,setCategoryFilter]=useState('All')
  const [showAdd,setShowAdd]=useState(false)
  const [form,setForm]=useState(emptyForm)
+ const [editing,setEditing]=useState(null)
+ const [baseEdits,setBaseEdits]=useState(()=>JSON.parse(localStorage.getItem(baseEditsKey)||'{}'))
+ const [manualItems,setManualItems]=useState(()=>JSON.parse(localStorage.getItem(manualKey)||'[]'))
+ const [itemState,setItemState]=useState(()=>JSON.parse(localStorage.getItem(stateKey)||'{}'))
 
- const toggle=id=>{const n={...checked,[id]:!checked[id]};setChecked(n);localStorage.setItem(checkedKey,JSON.stringify(n))}
- const toggleBase=id=>{const n={...baseChecked,[id]:!baseChecked[id]};setBaseChecked(n);localStorage.setItem(baseCheckedKey,JSON.stringify(n))}
- const toggleManual=id=>{const n={...manualChecked,[id]:!manualChecked[id]};setManualChecked(n);localStorage.setItem(manualCheckedKey,JSON.stringify(n))}
- const reset=()=>{
-  if(mode==='trip'){
-   setChecked({})
-   setManualChecked({})
-   localStorage.removeItem(checkedKey)
-   localStorage.removeItem(manualCheckedKey)
-  }else{
-   setBaseChecked({})
-   localStorage.removeItem(baseCheckedKey)
-  }
+ const guests=guestData.guests.map(g=>({id:g.id,name:g.name}))
+ const saveState=next=>{setItemState(next);localStorage.setItem(stateKey,JSON.stringify(next))}
+ const patchState=(id,patch)=>saveState({...itemState,[id]:{...(itemState[id]||{}),...patch}})
+ const saveManual=next=>{setManualItems(next);localStorage.setItem(manualKey,JSON.stringify(next))}
+ const updateBase=(id,field,value)=>{
+  const next={...baseEdits,[id]:{...(baseEdits[id]||{}),[field]:value}}
+  setBaseEdits(next);localStorage.setItem(baseEditsKey,JSON.stringify(next))
  }
- const updateBase=(id,field,value)=>{const n={...baseEdits,[id]:{...(baseEdits[id]||{}),[field]:value}};setBaseEdits(n);localStorage.setItem(baseEditsKey,JSON.stringify(n))}
- const updateForm=(field,value)=>setForm(current=>({...current,[field]:value}))
 
- const addManualItem=()=>{
+ const generated=getGeneratedGroceries().map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Recipe generated'}))
+ const generatedNames=new Set(generated.map(item=>item.name.toLowerCase()))
+ const planned=plannedData.items
+  .filter(item=>!generatedNames.has(item.name.toLowerCase())&&item.id!=='g1')
+  .map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Planned recipe item'}))
+ const baseItems=useMemo(()=>baseData.categories.flatMap(category=>category.items.map(item=>{
+  const edit=baseEdits[item.id]||{}
+  return {...item,id:`base-${item.id}`,originalId:item.id,quantity:edit.quantity??item.quantity,unit:edit.unit??item.unit,notes:edit.notes??item.notes,category:normalizeCategory(category.name),sourceType:'base',sourceLabel:'Base Cottage List'}
+ })),[baseEdits])
+ const manual=manualItems.map(item=>({...item,category:normalizeCategory(item.category),sourceType:'manual',sourceLabel:'Added grocery item'}))
+ const allItems=[...generated,...planned,...baseItems,...manual].map(item=>({...item,...(itemState[item.id]||{})}))
+ const purchasedCount=allItems.filter(item=>item.purchased).length
+ const remainingCount=allItems.length-purchasedCount
+
+ const visible=allItems.filter(item=>{
+  if(view==='outstanding'&&item.purchased) return false
+  if(view==='purchased'&&!item.purchased) return false
+  if(view==='unassigned'&&item.assignedTo) return false
+  if(view==='person'&&item.assignedTo!==personFilter) return false
+  if(categoryFilter!=='All'&&item.category!==categoryFilter) return false
+  return true
+ })
+ const grouped=visible.reduce((acc,item)=>{(acc[item.category]??=[]).push(item);return acc},{})
+
+ const addItem=()=>{
   if(!form.name.trim()) return
-  const item={
-   id:`manual-${Date.now()}`,
-   name:form.name.trim(),
-   quantity:Number(form.quantity)||1,
-   unit:form.unit.trim()||'item',
-   department:form.category,
-   store:form.store,
-   notes:form.notes.trim(),
-   gf:Boolean(form.gf),
-   merge:Boolean(form.merge),
-   assignedTo:form.assignedTo,
-   shoppingRun:form.shoppingRun.trim(),
-   active:Boolean(form.active),
-   source:'manual'
-  }
-  const next=[...manualItems,item]
-  setManualItems(next)
-  localStorage.setItem(manualItemsKey,JSON.stringify(next))
-  setForm(emptyForm)
-  setShowAdd(false)
-  setStore(item.store)
-  setMode('trip')
+  const item={id:`manual-${Date.now()}`,name:form.name.trim(),quantity:Number(form.quantity)||1,unit:form.unit.trim()||'each',category:form.category,notes:form.notes.trim(),gf:form.gf,assignedTo:form.assignedTo}
+  saveManual([...manualItems,item]);setForm(emptyForm);setShowAdd(false)
  }
-
- const updateManualItem=(id,patch)=>{
-  const next=manualItems.map(item=>item.id===id?{...item,...patch}:item)
-  setManualItems(next);localStorage.setItem(manualItemsKey,JSON.stringify(next))
+ const resetPurchased=()=>{
+  const next={}
+  for(const [id,value] of Object.entries(itemState)) next[id]={...value,purchased:false}
+  saveState(next)
  }
-
- const deleteManualItem=id=>{
-  const next=manualItems.filter(item=>item.id!==id)
-  setManualItems(next)
-  localStorage.setItem(manualItemsKey,JSON.stringify(next))
-  const nextChecked={...manualChecked}
-  delete nextChecked[id]
-  setManualChecked(nextChecked)
-  localStorage.setItem(manualCheckedKey,JSON.stringify(nextChecked))
- }
-
- const generatedRecipeItems=getGeneratedGroceries()
- const legacyItems=data.items.filter(item=>!['Beef tenderloin fillets','Romaine','Parmesan'].includes(item.name)).map(item=>({...item,source:'planned'}))
- const recipeItems=generatedRecipeItems
- const allTripItems=[...recipeItems,...legacyItems,...manualItems]
- const activeManualItems=manualItems.filter(i=>i.active!==false)
- const tripDone=[...recipeItems,...legacyItems].filter(i=>checked[i.id]).length + activeManualItems.filter(i=>manualChecked[i.id]).length
- const storeItems=allTripItems.filter(i=>i.store===store)
- const groups=Object.groupBy
-  ? Object.groupBy(storeItems,i=>i.department)
-  : storeItems.reduce((a,i)=>((a[i.department]??=[]).push(i),a),{})
- const baseItems=useMemo(()=>baseData.categories.flatMap(c=>c.items),[])
- const baseDone=baseItems.filter(i=>baseChecked[i.id]).length
- const storeNames=[...new Set([...data.stores,...manualItems.map(item=>item.store)])]
- const guestNames=guestData.guests.map(g=>({id:g.id,name:g.name}))
 
  return <div className="space-y-4">
   <div className="flex flex-wrap justify-between gap-3">
-   <div>
-    <h1 className="page-title">Groceries</h1>
-    <p className="text-stone">{mode==='trip'
-      ? `${tripDone} of ${allTripItems.length} trip items purchased`
-      : `${baseDone} of ${baseItems.length} base items purchased`}
-    </p>
-   </div>
-   <div className="flex gap-2">
-    {mode==='trip'&&<button onClick={()=>setShowAdd(true)} className="btn-primary flex items-center gap-2"><Plus size={18}/>Add Grocery Item</button>}
-    <button onClick={reset} className="p-2 bg-white rounded-xl" title="Reset checked items"><RotateCcw/></button>
-   </div>
+   <div><h1 className="page-title">{mode==='trip'?'Trip Grocery List':'Base Cottage List'}</h1><p className="text-stone">{mode==='trip'?`${purchasedCount} purchased · ${remainingCount} remaining · ${allItems.length} total`:'Edit the reusable list that appears in every trip.'}</p></div>
+   <div className="flex gap-2">{mode==='trip'&&<button onClick={()=>setShowAdd(true)} className="btn-primary flex items-center gap-2"><Plus size={18}/>Add Grocery Item</button>}{mode==='trip'&&<button onClick={resetPurchased} className="p-2 bg-white rounded-xl" title="Clear purchased checks"><RotateCcw/></button>}</div>
   </div>
 
   <div className="grid grid-cols-2 gap-2 bg-white rounded-2xl p-1 shadow-sm">
-   <button onClick={()=>setMode('trip')} className={`rounded-xl px-4 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='trip'?'bg-forest text-white':'text-stone'}`}><ListChecks size={18}/>Trip Shopping</button>
-   <button onClick={()=>setMode('base')} className={`rounded-xl px-4 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='base'?'bg-forest text-white':'text-stone'}`}><Home size={18}/>Base Cottage List</button>
+   <button onClick={()=>setMode('trip')} className={`rounded-xl px-4 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='trip'?'bg-forest text-white':'text-stone'}`}><ListChecks size={18}/>Trip Grocery List</button>
+   <button onClick={()=>setMode('base')} className={`rounded-xl px-4 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='base'?'bg-forest text-white':'text-stone'}`}><Home size={18}/>Edit Base List</button>
   </div>
 
   {mode==='trip'?<>
-   <div className="h-3 bg-white rounded-full overflow-hidden"><div className="h-full bg-forest" style={{width:`${allTripItems.length?tripDone/allTripItems.length*100:0}%`}}/></div>
+   <div className="h-3 bg-white rounded-full overflow-hidden"><div className="h-full bg-forest" style={{width:`${allItems.length?purchasedCount/allItems.length*100:0}%`}}/></div>
+   <div className="bg-forest/5 border border-forest/15 rounded-2xl p-4 text-sm"><b>One shared running list</b><p className="text-stone mt-1">Recipes, the Base Cottage List and added items all appear here. Stores and shopping runs have been removed.</p></div>
 
-   <div className="bg-white rounded-2xl p-4 border border-black/5">
-    <div className="flex flex-wrap gap-2 items-center">
-     <span className="badge bg-navy/10 text-navy">Recipe / planned</span>
-     <span className="text-sm text-stone">Items already required by the current meal plan.</span>
-     <span className="badge bg-wood-100 text-wood-600">Manual</span>
-     <span className="text-sm text-stone">Add only items needed above and beyond recipes. Assign them to a person or shopping run.</span>
-    </div>
-   </div>
+   <div className="flex gap-2 overflow-x-auto">{[['all','All'],['outstanding','Outstanding'],['purchased','Purchased'],['unassigned','Unassigned'],['person','By Person']].map(([id,label])=><button key={id} onClick={()=>setView(id)} className={`px-4 py-2 rounded-full whitespace-nowrap font-semibold ${view===id?'bg-forest text-white':'bg-white'}`}>{label}</button>)}</div>
+   {view==='person'&&<select value={personFilter} onChange={e=>setPersonFilter(e.target.value)} className="w-full sm:w-72 bg-white border rounded-xl p-3"><option value="">Choose a guest</option>{guests.map(g=><option key={g.id} value={g.id}>{g.name}</option>)}</select>}
+   <div className="flex gap-2 overflow-x-auto">{['All',...categories].map(category=><button key={category} onClick={()=>setCategoryFilter(category)} className={`px-3 py-2 rounded-full whitespace-nowrap text-sm font-semibold ${categoryFilter===category?'bg-navy text-white':'bg-white text-stone'}`}>{category}</button>)}</div>
 
-   <div className="flex gap-2 overflow-x-auto">
-    {storeNames.map(s=><button key={s} onClick={()=>setStore(s)} className={`px-4 py-2 rounded-full whitespace-nowrap font-semibold ${s===store?'bg-forest text-white':'bg-white'}`}>
-     {s} ({allTripItems.filter(i=>i.store===s).length})
-    </button>)}
-   </div>
-
-   {store==='Sobeys'&&<div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm"><b>GF reminder:</b> check bread, buns, tortillas, panko and sauces carefully.</div>}
-
-   {Object.entries(groups).map(([group,items])=><section key={group} className="card">
-    <h2 className="section-title mb-2">{group}</h2>
+   {Object.entries(grouped).map(([category,items])=><section key={category} className="card">
+    <h2 className="section-title mb-2">{category}</h2>
     {items.map(item=>{
-     const isManual=item.source==='manual'
-     const isChecked=isManual?manualChecked[item.id]:checked[item.id]
-     const onToggle=()=>isManual?toggleManual(item.id):toggle(item.id)
-     return <div key={item.id} className={`flex gap-3 py-3 border-b last:border-0 items-start ${isManual&&item.active===false?'opacity-50':''}`}>
-      <button onClick={onToggle} className={`w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 mt-0.5 ${isChecked?'bg-forest border-forest text-white':'border-stone/30'}`}>
-       {isChecked&&<Check size={16}/>}
-      </button>
-      <div className={`flex-1 min-w-0 ${isChecked?'line-through text-stone':''}`}>
-       <div className="flex flex-wrap gap-2 items-center">
-        <b>{item.name}</b>
-        <span>— {item.quantity} {item.unit}</span>
-        <span className={isManual?'badge bg-wood-100 text-wood-600':item.source==='recipe'?'badge bg-forest/10 text-forest':'badge bg-navy/10 text-navy'}>{isManual?'Manual':item.source==='recipe'?'Recipe generated':'Planned'}</span>
-        {item.gf&&<span className="badge-gf">GF</span>}
+     const guest=guests.find(g=>g.id===item.assignedTo)
+     return <div key={item.id} className={`py-4 border-b last:border-0 ${item.purchased?'opacity-60':''}`}>
+      <div className="flex gap-3 items-start">
+       <button onClick={()=>patchState(item.id,{purchased:!item.purchased})} className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 mt-1 ${item.purchased?'bg-forest border-forest text-white':'border-stone/30'}`}>{item.purchased&&<Check size={17}/>}</button>
+       <div className="flex-1 min-w-0">
+        <div className="flex flex-wrap gap-2 items-center"><b className={`text-lg ${item.purchased?'line-through':''}`}>{item.name}</b><span>{item.quantity} {item.unit}</span><span className={`badge ${item.sourceType==='recipe'?'bg-forest/10 text-forest':item.sourceType==='base'?'bg-navy/10 text-navy':'bg-wood-100 text-wood-600'}`}>{item.sourceLabel}</span>{item.gf&&<span className="badge-gf">GF</span>}</div>
+        <p className="text-xs text-stone mt-1">{item.sourceType==='recipe'&&item.sources?.length?item.sources.map(source=>`${source.recipe} → ${source.meal} (${source.attendance} guests)`).join(' • '):item.sourceType==='recipe'&&item.usedIn?item.usedIn.join(' • '):item.notes||'No notes'}</p>
+        <div className="grid sm:grid-cols-[240px_1fr] gap-2 mt-3">
+         <label className="text-xs text-stone">Who’s getting this?<select value={item.assignedTo||''} onChange={e=>patchState(item.id,{assignedTo:e.target.value})} className="block w-full mt-1 bg-white border rounded-xl p-2 text-sm text-forest"><option value="">Unassigned</option>{guests.map(g=><option key={g.id} value={g.id}>{g.name}</option>)}</select></label>
+         <label className="text-xs text-stone">Shopping note<input value={item.shoppingNote||''} onChange={e=>patchState(item.id,{shoppingNote:e.target.value})} placeholder="Brand, ripeness, size..." className="block w-full mt-1 bg-white border rounded-xl p-2 text-sm"/></label>
+        </div>
+        {guest&&<p className="text-xs font-semibold text-navy mt-2">Assigned to {guest.name}</p>}
        </div>
-       <p className="text-xs text-stone mt-1">
-        {isManual
-          ? `${item.notes||'No notes'}${item.merge===false?' · Keep separate from matching recipe items':''}`
-          : item.source==='recipe' ? `${item.sources.map(x=>`${x.recipe} → ${x.meal} (${x.attendance} guests)`).join(' • ')}${item.notes?` · ${item.notes}`:''}` : `${item.usedIn.join(' • ')}${item.notes&&` · ${item.notes}`}`}
-       </p>
-       {isManual&&<div className="flex flex-wrap gap-2 mt-2 text-xs">
-        {item.assignedTo&&<span className="badge bg-navy/10 text-navy">Assigned: {guestNames.find(g=>g.id===item.assignedTo)?.name||item.assignedTo}</span>}
-        {item.shoppingRun&&<span className="badge bg-forest/10 text-forest">{item.shoppingRun}</span>}
-        <button onClick={()=>updateManualItem(item.id,{active:item.active===false})} className="badge bg-stone/10 text-stone">{item.active===false?'Put on list':'Take off list'}</button>
-       </div>}
+       {item.sourceType==='manual'&&<button onClick={()=>saveManual(manualItems.filter(x=>x.id!==item.id))} className="text-stone hover:text-red-600 p-1" title="Delete added item"><Trash2 size={18}/></button>}
       </div>
-      {isManual&&<button onClick={()=>deleteManualItem(item.id)} className="text-stone hover:text-red-600 p-1" title="Delete manual item"><Trash2 size={18}/></button>}
      </div>
     })}
    </section>)}
-
-   {!storeItems.length&&<div className="card text-center py-10">
-    <p className="font-semibold text-navy">No items for this store yet.</p>
-    <button onClick={()=>setShowAdd(true)} className="btn-primary mt-3 inline-flex items-center gap-2"><Plus size={18}/>Add an item</button>
-   </div>}
+   {!visible.length&&<div className="card text-center py-10"><p className="font-semibold text-navy">{view==='person'&&!personFilter?'Choose a guest to view their list.':'No grocery items match this view.'}</p></div>}
   </>:<>
-   <div className="h-3 bg-white rounded-full overflow-hidden"><div className="h-full bg-forest" style={{width:`${baseDone/baseItems.length*100}%`}}/></div>
-   <div className="bg-forest/5 border border-forest/15 rounded-2xl p-4 text-sm">
-    <b>Base Cottage List</b>
-    <p className="text-stone mt-1">General breakfast, snack and pantry items not driven by recipes. Quantities and notes are editable and saved on this device.</p>
-   </div>
-
+   <div className="bg-forest/5 border border-forest/15 rounded-2xl p-4 text-sm"><b>Base Cottage List template</b><p className="text-stone mt-1">Edits made here update the Base Cottage items in the Trip Grocery List on this device.</p></div>
    {baseData.categories.map(category=><section key={category.id} className="card">
     <h2 className="section-title mb-2">{category.name}</h2>
     {category.items.map(item=>{
-     const edit=baseEdits[item.id]||{}
-     const qty=edit.quantity??item.quantity
-     const unit=edit.unit??item.unit
-     const notes=edit.notes??item.notes
-     const isEditing=editing===item.id
-     return <div key={item.id} className="py-4 border-b last:border-0">
-      <div className="flex gap-3 items-start">
-       <button onClick={()=>toggleBase(item.id)} className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 mt-1 ${baseChecked[item.id]?'bg-forest border-forest text-white':'border-stone/30'}`}>{baseChecked[item.id]&&<Check size={17}/>}</button>
-       <div className={`flex-1 min-w-0 ${baseChecked[item.id]?'line-through text-stone':''}`}>
-        <div className="flex flex-wrap items-center justify-between gap-2">
-         <div className="flex flex-wrap items-center gap-2"><b className="text-lg">{item.name}</b><span className="badge bg-forest/10 text-forest">Base list</span></div>
-         <button onClick={()=>setEditing(isEditing?null:item.id)} className="text-stone hover:text-forest p-1" title="Edit quantity and notes">{isEditing?<Save size={18}/>:<Pencil size={18}/>}</button>
-        </div>
-        {isEditing?<div className="grid sm:grid-cols-[100px_140px_1fr] gap-2 mt-3">
-          <input type="number" min="0" step="0.5" value={qty} onChange={e=>updateBase(item.id,'quantity',e.target.value)} className="bg-white border rounded-xl p-2" aria-label="Quantity"/>
-          <input value={unit} onChange={e=>updateBase(item.id,'unit',e.target.value)} className="bg-white border rounded-xl p-2" aria-label="Unit"/>
-          <input value={notes} onChange={e=>updateBase(item.id,'notes',e.target.value)} className="bg-white border rounded-xl p-2" placeholder="Notes" aria-label="Notes"/>
-         </div>:<>
-          <p className="mt-1"><span className="font-semibold">Quantity:</span> {qty} {unit}</p>
-          {notes&&<p className="text-sm text-stone mt-1"><span className="font-semibold">Notes:</span> {notes}</p>}
-          <p className="text-xs text-stone mt-1">{item.store}{item.gf?' · Gluten-free':''}</p>
-         </>}
-       </div>
-      </div>
-     </div>
+     const edit=baseEdits[item.id]||{},qty=edit.quantity??item.quantity,unit=edit.unit??item.unit,notes=edit.notes??item.notes,isEditing=editing===item.id
+     return <div key={item.id} className="py-4 border-b last:border-0"><div className="flex justify-between gap-3"><div className="flex-1"><div className="flex flex-wrap gap-2 items-center"><b className="text-lg">{item.name}</b><span className="badge bg-navy/10 text-navy">Base list</span>{item.gf&&<span className="badge-gf">GF</span>}</div>{isEditing?<div className="grid sm:grid-cols-[100px_140px_1fr] gap-2 mt-3"><input type="number" min="0" step="0.5" value={qty} onChange={e=>updateBase(item.id,'quantity',e.target.value)} className="bg-white border rounded-xl p-2"/><input value={unit} onChange={e=>updateBase(item.id,'unit',e.target.value)} className="bg-white border rounded-xl p-2"/><input value={notes} onChange={e=>updateBase(item.id,'notes',e.target.value)} className="bg-white border rounded-xl p-2"/></div>:<><p className="mt-1"><b>Quantity:</b> {qty} {unit}</p>{notes&&<p className="text-sm text-stone mt-1"><b>Notes:</b> {notes}</p>}</>}</div><button onClick={()=>setEditing(isEditing?null:item.id)} className="text-stone hover:text-forest p-1">{isEditing?<Save size={18}/>:<Pencil size={18}/>}</button></div></div>
     })}
    </section>)}
   </>}
 
-  {showAdd&&<div className="fixed inset-0 z-[80] bg-black/40 flex items-end sm:items-center justify-center p-4" onClick={()=>setShowAdd(false)}>
-   <div className="bg-cream rounded-3xl w-full max-w-xl p-5 max-h-[90vh] overflow-auto" onClick={e=>e.stopPropagation()}>
-    <div className="flex justify-between items-center">
-     <div><h2 className="text-xl font-extrabold text-navy">Add Grocery Item</h2><p className="text-sm text-stone">For extra produce, snacks, supplies or anything not attached to a recipe.</p></div>
-     <button onClick={()=>setShowAdd(false)} className="p-2"><X/></button>
-    </div>
-
-    <div className="grid sm:grid-cols-2 gap-3 mt-5">
-     <label className="sm:col-span-2"><span className="section-title">Item name</span><input autoFocus value={form.name} onChange={e=>updateForm('name',e.target.value)} placeholder="e.g., Mini cucumbers" className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
-     <label><span className="section-title">Quantity</span><input type="number" min="0" step="0.5" value={form.quantity} onChange={e=>updateForm('quantity',e.target.value)} className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
-     <label><span className="section-title">Unit</span><input value={form.unit} onChange={e=>updateForm('unit',e.target.value)} placeholder="packs, bags, each..." className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
-     <label><span className="section-title">Category</span><select value={form.category} onChange={e=>updateForm('category',e.target.value)} className="w-full mt-2 p-3 rounded-xl bg-white border">
-      {['Produce','Meat','Seafood','Dairy','Bakery','Pantry','Snacks','Drinks','Household','Other'].map(x=><option key={x}>{x}</option>)}
-     </select></label>
-     <label><span className="section-title">Store</span><select value={form.store} onChange={e=>updateForm('store',e.target.value)} className="w-full mt-2 p-3 rounded-xl bg-white border">
-      {data.stores.map(x=><option key={x}>{x}</option>)}
-     </select></label>
-     <label className="sm:col-span-2"><span className="section-title">Notes</span><input value={form.notes} onChange={e=>updateForm('notes',e.target.value)} placeholder="For snacks and lunches, specific brand, ripeness..." className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
-     <label><span className="section-title">Assign to</span><select value={form.assignedTo} onChange={e=>updateForm('assignedTo',e.target.value)} className="w-full mt-2 p-3 rounded-xl bg-white border"><option value="">Unassigned</option>{guestNames.map(g=><option value={g.id} key={g.id}>{g.name}</option>)}</select></label>
-     <label><span className="section-title">Shopping run</span><input value={form.shoppingRun} onChange={e=>updateForm('shoppingRun',e.target.value)} placeholder="e.g., Thursday Town Run" className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
-    </div>
-
-    <div className="grid sm:grid-cols-2 gap-3 mt-4">
-     <label className="bg-white rounded-2xl p-4 flex gap-3 items-center"><input type="checkbox" checked={form.gf} onChange={e=>updateForm('gf',e.target.checked)} className="w-5 h-5"/><span><b>Gluten-free</b><p className="text-xs text-stone">Show a GF marker.</p></span></label>
-     <label className="bg-white rounded-2xl p-4 flex gap-3 items-center"><input type="checkbox" checked={form.active} onChange={e=>updateForm('active',e.target.checked)} className="w-5 h-5"/><span><b>Put on active list</b><p className="text-xs text-stone">Turn off to keep the item for later without shopping for it now.</p></span></label>
-     <label className="bg-white rounded-2xl p-4 flex gap-3 items-center"><input type="checkbox" checked={form.merge} onChange={e=>updateForm('merge',e.target.checked)} className="w-5 h-5"/><span><b>Merge later</b><p className="text-xs text-stone">May combine with matching recipe items in the future engine.</p></span></label>
-    </div>
-
-    <button onClick={addManualItem} disabled={!form.name.trim()} className="btn-primary w-full mt-5 disabled:opacity-40">Add to Trip Shopping</button>
+  {showAdd&&<div className="fixed inset-0 z-[80] bg-black/40 flex items-end sm:items-center justify-center p-4" onClick={()=>setShowAdd(false)}><div className="bg-cream rounded-3xl w-full max-w-xl p-5 max-h-[90vh] overflow-auto" onClick={e=>e.stopPropagation()}>
+   <div className="flex justify-between items-center"><div><h2 className="text-xl font-extrabold text-navy">Add Grocery Item</h2><p className="text-sm text-stone">Add anything the trip needs beyond recipes and the Base Cottage List.</p></div><button onClick={()=>setShowAdd(false)} className="p-2"><X/></button></div>
+   <div className="grid sm:grid-cols-2 gap-3 mt-5">
+    <label className="sm:col-span-2"><span className="section-title">Item name</span><input autoFocus value={form.name} onChange={e=>setForm({...form,name:e.target.value})} className="w-full mt-2 p-3 rounded-xl bg-white border" placeholder="Milk"/></label>
+    <label><span className="section-title">Quantity</span><input type="number" min="0" step="0.5" value={form.quantity} onChange={e=>setForm({...form,quantity:e.target.value})} className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
+    <label><span className="section-title">Unit</span><input value={form.unit} onChange={e=>setForm({...form,unit:e.target.value})} className="w-full mt-2 p-3 rounded-xl bg-white border"/></label>
+    <label><span className="section-title">Category</span><select value={form.category} onChange={e=>setForm({...form,category:e.target.value})} className="w-full mt-2 p-3 rounded-xl bg-white border">{categories.map(x=><option key={x}>{x}</option>)}</select></label>
+    <label><span className="section-title">Assign to</span><select value={form.assignedTo} onChange={e=>setForm({...form,assignedTo:e.target.value})} className="w-full mt-2 p-3 rounded-xl bg-white border"><option value="">Unassigned</option>{guests.map(g=><option key={g.id} value={g.id}>{g.name}</option>)}</select></label>
+    <label className="sm:col-span-2"><span className="section-title">Notes</span><input value={form.notes} onChange={e=>setForm({...form,notes:e.target.value})} className="w-full mt-2 p-3 rounded-xl bg-white border" placeholder="Honeycrisp, buy ripe, specific brand..."/></label>
+    <label className="bg-white rounded-2xl p-4 flex gap-3 items-center sm:col-span-2"><input type="checkbox" checked={form.gf} onChange={e=>setForm({...form,gf:e.target.checked})} className="w-5 h-5"/><span><b>Gluten-free</b><p className="text-xs text-stone">Show a GF marker.</p></span></label>
    </div>
-  </div>}
+   <button onClick={addItem} disabled={!form.name.trim()} className="btn-primary w-full mt-5 disabled:opacity-40">Add to Trip Grocery List</button>
+  </div></div>}
  </div>
 }

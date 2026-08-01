@@ -43,16 +43,15 @@ export function getGeneratedGroceries(){
     for(const row of scaled.ingredients){
       if(!row.shopping) continue
       const ingredient=row.ingredient
-      const key=`${row.ingredientId}|${row.unit}|${ingredient.preferredStore}`
+      const key=`${row.ingredientId}|${row.unit}`
       const source={recipe:scaled.recipe.name,meal:assignment.mealName,attendance:assignment.attendance,yield:scaled.recipe.yield.quantity,quantity:row.scaledQuantity}
       if(!merged[key]) merged[key]={
-        id:`generated-${row.ingredientId}-${row.unit}-${ingredient.preferredStore}`,
+        id:`generated-${row.ingredientId}-${row.unit}`,
         ingredientId:row.ingredientId,
         name:ingredient.name,
         quantity:row.scaledQuantity,
         unit:row.unit,
         department:ingredient.category,
-        store:ingredient.preferredStore,
         source:'recipe',
         notes:ingredient.purchaseNote||'',
         sources:[source]

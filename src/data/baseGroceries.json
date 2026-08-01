@@ -4,35 +4,154 @@
       "id": "breakfast-bakery",
       "name": "Breakfast & Bakery",
       "items": [
-        {"id":"b1","name":"Cereal","quantity":2,"unit":"boxes","notes":"Honey Nut Cheerios and Corn Pops","store":"Costco","gf":false},
-        {"id":"b2","name":"Bagels","quantity":2,"unit":"bags","notes":"Regular","store":"Costco","gf":false},
-        {"id":"b3","name":"English muffins","quantity":2,"unit":"packs","notes":"Regular","store":"Costco","gf":false},
-        {"id":"b4","name":"Regular white bread","quantity":2,"unit":"loaves","notes":"Sandwich bread","store":"Costco","gf":false},
-        {"id":"b5","name":"Gluten-free white bread","quantity":1,"unit":"loaf","notes":"Preferred brand TBD","store":"Sobeys","gf":true},
-        {"id":"b6","name":"Gluten-free hamburger buns","quantity":1,"unit":"pack","notes":"For Steve and Adele","store":"Sobeys","gf":true},
-        {"id":"b7","name":"Peanut butter","quantity":1,"unit":"large jar","notes":"Smooth","store":"Costco","gf":false},
-        {"id":"b8","name":"Jam","quantity":1,"unit":"jar","notes":"Strawberry or raspberry","store":"Costco","gf":false}
+        {
+          "id": "b1",
+          "name": "Cereal",
+          "quantity": 2,
+          "unit": "boxes",
+          "notes": "Honey Nut Cheerios and Corn Pops",
+          "gf": false
+        },
+        {
+          "id": "b2",
+          "name": "Bagels",
+          "quantity": 2,
+          "unit": "bags",
+          "notes": "Regular",
+          "gf": false
+        },
+        {
+          "id": "b3",
+          "name": "English muffins",
+          "quantity": 2,
+          "unit": "packs",
+          "notes": "Regular",
+          "gf": false
+        },
+        {
+          "id": "b4",
+          "name": "Regular white bread",
+          "quantity": 2,
+          "unit": "loaves",
+          "notes": "Sandwich bread",
+          "gf": false
+        },
+        {
+          "id": "b5",
+          "name": "Gluten-free white bread",
+          "quantity": 1,
+          "unit": "loaf",
+          "notes": "Preferred brand TBD",
+          "gf": true
+        },
+        {
+          "id": "b6",
+          "name": "Gluten-free hamburger buns",
+          "quantity": 1,
+          "unit": "pack",
+          "notes": "For Steve and Adele",
+          "gf": true
+        },
+        {
+          "id": "b7",
+          "name": "Peanut butter",
+          "quantity": 1,
+          "unit": "large jar",
+          "notes": "Smooth",
+          "gf": false
+        },
+        {
+          "id": "b8",
+          "name": "Jam",
+          "quantity": 1,
+          "unit": "jar",
+          "notes": "Strawberry or raspberry",
+          "gf": false
+        }
       ]
     },
     {
       "id": "dairy-drinks",
       "name": "Dairy, Coffee & Drinks",
       "items": [
-        {"id":"b9","name":"Milk","quantity":3,"unit":"4 L jugs","notes":"Adjust once breakfast attendance is finalized","store":"Costco","gf":false},
-        {"id":"b10","name":"Coffee","quantity":1,"unit":"large bag","notes":"House coffee","store":"Costco","gf":false},
-        {"id":"b11","name":"Tea","quantity":1,"unit":"box","notes":"Mixed regular and herbal","store":"Costco","gf":false},
-        {"id":"b12","name":"Coffee cream","quantity":2,"unit":"cartons","notes":"10% cream","store":"Costco","gf":false},
-        {"id":"b13","name":"Sugar","quantity":1,"unit":"bag","notes":"For coffee, tea and general use","store":"Pantry","gf":false}
+        {
+          "id": "b9",
+          "name": "Milk",
+          "quantity": 3,
+          "unit": "4 L jugs",
+          "notes": "Adjust once breakfast attendance is finalized",
+          "gf": false
+        },
+        {
+          "id": "b10",
+          "name": "Coffee",
+          "quantity": 1,
+          "unit": "large bag",
+          "notes": "House coffee",
+          "gf": false
+        },
+        {
+          "id": "b11",
+          "name": "Tea",
+          "quantity": 1,
+          "unit": "box",
+          "notes": "Mixed regular and herbal",
+          "gf": false
+        },
+        {
+          "id": "b12",
+          "name": "Coffee cream",
+          "quantity": 2,
+          "unit": "cartons",
+          "notes": "10% cream",
+          "gf": false
+        },
+        {
+          "id": "b13",
+          "name": "Sugar",
+          "quantity": 1,
+          "unit": "bag",
+          "notes": "For coffee, tea and general use",
+          "gf": false
+        }
       ]
     },
     {
       "id": "snacks-basics",
       "name": "General Snacks & Basics",
       "items": [
-        {"id":"b14","name":"Fresh fruit","quantity":2,"unit":"large trays","notes":"Apples, bananas, grapes and berries","store":"Produce","gf":false},
-        {"id":"b15","name":"Granola bars","quantity":2,"unit":"boxes","notes":"Include gluten-free choices","store":"Costco","gf":true},
-        {"id":"b16","name":"Popcorn","quantity":2,"unit":"boxes","notes":"Evening snack backup","store":"Costco","gf":false},
-        {"id":"b17","name":"Butter","quantity":2,"unit":"lb","notes":"Breakfast and general cooking","store":"Costco","gf":false}
+        {
+          "id": "b14",
+          "name": "Fresh fruit",
+          "quantity": 2,
+          "unit": "large trays",
+          "notes": "Apples, bananas, grapes and berries",
+          "gf": false
+        },
+        {
+          "id": "b15",
+          "name": "Granola bars",
+          "quantity": 2,
+          "unit": "boxes",
+          "notes": "Include gluten-free choices",
+          "gf": true
+        },
+        {
+          "id": "b16",
+          "name": "Popcorn",
+          "quantity": 2,
+          "unit": "boxes",
+          "notes": "Evening snack backup",
+          "gf": false
+        },
+        {
+          "id": "b17",
+          "name": "Butter",
+          "quantity": 2,
+          "unit": "lb",
+          "notes": "Breakfast and general cooking",
+          "gf": false
+        }
       ]
     }
   ]

@@ -1,20 +1,10 @@
 {
-  "stores": [
-    "Costco",
-    "Sobeys",
-    "Produce",
-    "Seafood",
-    "Liquor",
-    "Pantry",
-    "Household"
-  ],
   "items": [
     {
       "id": "g1",
       "name": "Beef tenderloin filets",
       "quantity": 17,
       "unit": "steaks",
-      "store": "Costco",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -30,7 +20,6 @@
       "name": "Pork shoulder",
       "quantity": 5,
       "unit": "kg",
-      "store": "Costco",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -46,7 +35,6 @@
       "name": "Brisket",
       "quantity": 7,
       "unit": "kg",
-      "store": "Costco",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -64,7 +52,6 @@
       "name": "Pork spare ribs",
       "quantity": 6,
       "unit": "racks",
-      "store": "Costco",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -80,7 +67,6 @@
       "name": "Boneless chicken thighs",
       "quantity": 6,
       "unit": "kg",
-      "store": "Costco",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -98,7 +84,6 @@
       "name": "Bone-in chicken",
       "quantity": 5,
       "unit": "kg",
-      "store": "Costco",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -114,7 +99,6 @@
       "name": "Beef sirloin",
       "quantity": 2.5,
       "unit": "kg",
-      "store": "Costco",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -130,7 +114,6 @@
       "name": "Ground beef",
       "quantity": 3,
       "unit": "kg",
-      "store": "Costco",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -146,7 +129,6 @@
       "name": "Ice cream",
       "quantity": 3,
       "unit": "tubs",
-      "store": "Costco",
       "department": "Frozen",
       "checked": false,
       "usedIn": [
@@ -164,7 +146,6 @@
       "name": "GF tortilla chips",
       "quantity": 3,
       "unit": "bags",
-      "store": "Costco",
       "department": "Snacks",
       "checked": false,
       "usedIn": [
@@ -182,7 +163,6 @@
       "name": "Trail mix",
       "quantity": 2,
       "unit": "bags",
-      "store": "Costco",
       "department": "Snacks",
       "checked": false,
       "usedIn": [
@@ -198,7 +178,6 @@
       "name": "Deli meats",
       "quantity": 2,
       "unit": "kg",
-      "store": "Costco",
       "department": "Deli",
       "checked": false,
       "usedIn": [
@@ -216,7 +195,6 @@
       "name": "Cheese assortment",
       "quantity": 2,
       "unit": "kg",
-      "store": "Costco",
       "department": "Deli",
       "checked": false,
       "usedIn": [
@@ -234,7 +212,6 @@
       "name": "Live lobster",
       "quantity": 10,
       "unit": "pieces",
-      "store": "Seafood",
       "department": "Seafood",
       "checked": false,
       "usedIn": [
@@ -250,7 +227,6 @@
       "name": "Fresh mussels",
       "quantity": 4,
       "unit": "kg",
-      "store": "Seafood",
       "department": "Seafood",
       "checked": false,
       "usedIn": [
@@ -266,7 +242,6 @@
       "name": "Cooked lobster meat",
       "quantity": 1,
       "unit": "kg",
-      "store": "Seafood",
       "department": "Seafood",
       "checked": false,
       "usedIn": [
@@ -282,7 +257,6 @@
       "name": "Romaine",
       "quantity": 8,
       "unit": "large hearts",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -298,7 +272,6 @@
       "name": "Tomatoes",
       "quantity": 12,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -316,7 +289,6 @@
       "name": "English cucumbers",
       "quantity": 6,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -336,7 +308,6 @@
       "name": "Red onions",
       "quantity": 6,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -356,7 +327,6 @@
       "name": "Garlic",
       "quantity": 4,
       "unit": "heads",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -372,7 +342,6 @@
       "name": "Lemons",
       "quantity": 12,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -392,7 +361,6 @@
       "name": "Limes",
       "quantity": 6,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -410,7 +378,6 @@
       "name": "Avocados",
       "quantity": 10,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -426,7 +393,6 @@
       "name": "Strawberries",
       "quantity": 3,
       "unit": "kg",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -442,7 +408,6 @@
       "name": "Potatoes",
       "quantity": 10,
       "unit": "kg",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -460,7 +425,6 @@
       "name": "Green cabbage",
       "quantity": 1,
       "unit": "head",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -476,7 +440,6 @@
       "name": "Red cabbage",
       "quantity": 1,
       "unit": "head",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -492,7 +455,6 @@
       "name": "Carrots",
       "quantity": 2,
       "unit": "bags",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -510,7 +472,6 @@
       "name": "Celery",
       "quantity": 2,
       "unit": "bunches",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -528,7 +489,6 @@
       "name": "Corn",
       "quantity": 24,
       "unit": "ears",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -546,7 +506,6 @@
       "name": "Watermelon",
       "quantity": 2,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -562,7 +521,6 @@
       "name": "Mixed fruit",
       "quantity": 5,
       "unit": "kg",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -578,7 +536,6 @@
       "name": "Fresh herbs bundle",
       "quantity": 1,
       "unit": "bundle",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -591,10 +548,9 @@
     },
     {
       "id": "g35",
-      "name": "Jalapeños",
+      "name": "Jalape\u00f1os",
       "quantity": 4,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -610,7 +566,6 @@
       "name": "Roma tomatoes",
       "quantity": 6,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -626,7 +581,6 @@
       "name": "Green peppers",
       "quantity": 4,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -644,7 +598,6 @@
       "name": "Cilantro",
       "quantity": 2,
       "unit": "bunches",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -660,7 +613,6 @@
       "name": "Yellow onions",
       "quantity": 4,
       "unit": "pieces",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -675,10 +627,9 @@
     },
     {
       "id": "g40",
-      "name": "Crudités",
+      "name": "Crudit\u00e9s",
       "quantity": 3,
       "unit": "packs",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -694,7 +645,6 @@
       "name": "Butter",
       "quantity": 2,
       "unit": "kg",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -716,7 +666,6 @@
       "name": "Eggs",
       "quantity": 24,
       "unit": "pieces",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -736,7 +685,6 @@
       "name": "Heavy cream",
       "quantity": 2,
       "unit": "L",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -752,7 +700,6 @@
       "name": "Whole milk",
       "quantity": 4,
       "unit": "L",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -768,7 +715,6 @@
       "name": "Greek yogurt",
       "quantity": 1,
       "unit": "L",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -784,7 +730,6 @@
       "name": "Buttermilk",
       "quantity": 1.5,
       "unit": "L",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -800,7 +745,6 @@
       "name": "Cheddar",
       "quantity": 600,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -813,10 +757,9 @@
     },
     {
       "id": "g48",
-      "name": "Gruyère",
+      "name": "Gruy\u00e8re",
       "quantity": 300,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -832,7 +775,6 @@
       "name": "Fontina",
       "quantity": 200,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -848,7 +790,6 @@
       "name": "Parmesan",
       "quantity": 750,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -866,7 +807,6 @@
       "name": "Feta",
       "quantity": 500,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -882,7 +822,6 @@
       "name": "Dark chocolate",
       "quantity": 300,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -898,7 +837,6 @@
       "name": "Panko",
       "quantity": 400,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -914,7 +852,6 @@
       "name": "GF BBQ sauce",
       "quantity": 2,
       "unit": "bottles",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -932,7 +869,6 @@
       "name": "Kalamata olives",
       "quantity": 250,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -948,7 +884,6 @@
       "name": "Anchovy paste",
       "quantity": 1,
       "unit": "tube",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -964,7 +899,6 @@
       "name": "Dill pickles",
       "quantity": 2,
       "unit": "jars",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -982,7 +916,6 @@
       "name": "Apple juice",
       "quantity": 2,
       "unit": "L",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -1000,7 +933,6 @@
       "name": "French's Worcestershire Sauce (GF)",
       "quantity": 1,
       "unit": "bottle",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -1016,7 +948,6 @@
       "name": "Dinner rolls",
       "quantity": 2,
       "unit": "packs",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -1032,7 +963,6 @@
       "name": "Sourdough",
       "quantity": 2,
       "unit": "loaves",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -1050,7 +980,6 @@
       "name": "Pita",
       "quantity": 3,
       "unit": "packs",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -1066,7 +995,6 @@
       "name": "Corn tortillas",
       "quantity": 3,
       "unit": "packs",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -1082,7 +1010,6 @@
       "name": "Flour tortillas",
       "quantity": 2,
       "unit": "packs",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -1098,7 +1025,6 @@
       "name": "GF beef broth",
       "quantity": 2,
       "unit": "cartons",
-      "store": "Sobeys",
       "department": "Dairy / Bakery / Condiments",
       "checked": false,
       "usedIn": [
@@ -1114,7 +1040,6 @@
       "name": "Olive oil",
       "quantity": 2,
       "unit": "L",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1130,7 +1055,6 @@
       "name": "Kosher salt",
       "quantity": 1,
       "unit": "box",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1146,7 +1070,6 @@
       "name": "Black pepper",
       "quantity": 1,
       "unit": "container",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1162,7 +1085,6 @@
       "name": "Smoked paprika",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1178,7 +1100,6 @@
       "name": "Garlic powder",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1194,7 +1115,6 @@
       "name": "Onion powder",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1210,7 +1130,6 @@
       "name": "Dried oregano",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1226,7 +1145,6 @@
       "name": "Cumin",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1242,7 +1160,6 @@
       "name": "Chili powder",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1258,7 +1175,6 @@
       "name": "Cayenne",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1274,7 +1190,6 @@
       "name": "Brown sugar",
       "quantity": 1,
       "unit": "kg",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1290,7 +1205,6 @@
       "name": "Granulated sugar",
       "quantity": 2,
       "unit": "kg",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1306,7 +1220,6 @@
       "name": "All-purpose flour",
       "quantity": 2,
       "unit": "kg",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1322,7 +1235,6 @@
       "name": "Baking powder",
       "quantity": 1,
       "unit": "tin",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1338,7 +1250,6 @@
       "name": "Cocoa powder",
       "quantity": 1,
       "unit": "tin",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1354,7 +1265,6 @@
       "name": "Vanilla extract",
       "quantity": 1,
       "unit": "bottle",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1370,7 +1280,6 @@
       "name": "Icing sugar",
       "quantity": 1,
       "unit": "bag",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1386,7 +1295,6 @@
       "name": "Flaky sea salt",
       "quantity": 1,
       "unit": "box",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1402,7 +1310,6 @@
       "name": "Mayonnaise",
       "quantity": 2,
       "unit": "jars",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1418,7 +1325,6 @@
       "name": "Dijon mustard",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1434,7 +1340,6 @@
       "name": "Yellow mustard",
       "quantity": 1,
       "unit": "bottle",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1450,7 +1355,6 @@
       "name": "Apple cider vinegar",
       "quantity": 1,
       "unit": "L",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1466,7 +1370,6 @@
       "name": "Red wine vinegar",
       "quantity": 1,
       "unit": "bottle",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1482,7 +1385,6 @@
       "name": "Tomato paste",
       "quantity": 2,
       "unit": "cans",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1498,7 +1400,6 @@
       "name": "Honey",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1514,7 +1415,6 @@
       "name": "Celery seed",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1530,7 +1430,6 @@
       "name": "Dry mustard",
       "quantity": 1,
       "unit": "jar",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1546,7 +1445,6 @@
       "name": "Avocado oil",
       "quantity": 1,
       "unit": "bottle",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1562,7 +1460,6 @@
       "name": "Hummus",
       "quantity": 2,
       "unit": "containers",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -1578,7 +1475,6 @@
       "name": "Red wine",
       "quantity": 6,
       "unit": "bottles",
-      "store": "Liquor",
       "department": "Drinks",
       "checked": false,
       "usedIn": [
@@ -1594,7 +1490,6 @@
       "name": "White wine",
       "quantity": 6,
       "unit": "bottles",
-      "store": "Liquor",
       "department": "Drinks",
       "checked": false,
       "usedIn": [
@@ -1610,7 +1505,6 @@
       "name": "Beer",
       "quantity": 4,
       "unit": "24-packs",
-      "store": "Liquor",
       "department": "Drinks",
       "checked": false,
       "usedIn": [
@@ -1626,7 +1520,6 @@
       "name": "Spirits",
       "quantity": 3,
       "unit": "bottles",
-      "store": "Liquor",
       "department": "Drinks",
       "checked": false,
       "usedIn": [
@@ -1642,7 +1535,6 @@
       "name": "Mixers",
       "quantity": 1,
       "unit": "assortment",
-      "store": "Liquor",
       "department": "Drinks",
       "checked": false,
       "usedIn": [
@@ -1658,7 +1550,6 @@
       "name": "Heavy foil",
       "quantity": 2,
       "unit": "rolls",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1674,7 +1565,6 @@
       "name": "Pink butcher paper",
       "quantity": 1,
       "unit": "roll",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1690,7 +1580,6 @@
       "name": "Hickory wood chunks",
       "quantity": 1,
       "unit": "bag",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1706,7 +1595,6 @@
       "name": "Oak wood chunks",
       "quantity": 1,
       "unit": "bag",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1722,7 +1610,6 @@
       "name": "Cherry/apple wood chunks",
       "quantity": 1,
       "unit": "bag",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1738,7 +1625,6 @@
       "name": "Parchment paper",
       "quantity": 2,
       "unit": "rolls",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1754,7 +1640,6 @@
       "name": "Lobster crackers",
       "quantity": 17,
       "unit": "sets",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1770,7 +1655,6 @@
       "name": "Plastic wrap",
       "quantity": 1,
       "unit": "roll",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1786,7 +1670,6 @@
       "name": "Gallon zip bags",
       "quantity": 1,
       "unit": "box",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1802,7 +1685,6 @@
       "name": "Paper towels",
       "quantity": 2,
       "unit": "packs",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1818,7 +1700,6 @@
       "name": "Napkins",
       "quantity": 2,
       "unit": "packs",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1834,7 +1715,6 @@
       "name": "Dish soap",
       "quantity": 2,
       "unit": "bottles",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1850,7 +1730,6 @@
       "name": "Garbage bags",
       "quantity": 1,
       "unit": "box",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1866,7 +1745,6 @@
       "name": "Charcoal/propane",
       "quantity": 2,
       "unit": "bags",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1882,7 +1760,6 @@
       "name": "Digital meat thermometer",
       "quantity": 1,
       "unit": "item",
-      "store": "Household",
       "department": "Household",
       "checked": false,
       "usedIn": [
@@ -1898,7 +1775,6 @@
       "name": "Large Italian/ciabatta loaves",
       "quantity": 4,
       "unit": "loaves",
-      "store": "Sobeys",
       "department": "Bakery",
       "checked": false,
       "usedIn": [
@@ -1914,7 +1790,6 @@
       "name": "Provolone",
       "quantity": 900,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Deli",
       "checked": false,
       "usedIn": [
@@ -1930,7 +1805,6 @@
       "name": "Salami",
       "quantity": 750,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Deli",
       "checked": false,
       "usedIn": [
@@ -1946,7 +1820,6 @@
       "name": "Prosciutto",
       "quantity": 500,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Deli",
       "checked": false,
       "usedIn": [
@@ -1962,7 +1835,6 @@
       "name": "Soppressata",
       "quantity": 500,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Deli",
       "checked": false,
       "usedIn": [
@@ -1978,7 +1850,6 @@
       "name": "Roasted red peppers",
       "quantity": 2,
       "unit": "jars",
-      "store": "Sobeys",
       "department": "Condiments",
       "checked": false,
       "usedIn": [
@@ -1994,7 +1865,6 @@
       "name": "Olive salad / muffuletta spread",
       "quantity": 1,
       "unit": "jar",
-      "store": "Sobeys",
       "department": "Condiments",
       "checked": false,
       "usedIn": [
@@ -2010,7 +1880,6 @@
       "name": "GF sandwich rolls",
       "quantity": 1,
       "unit": "pack",
-      "store": "Sobeys",
       "department": "Gluten-Free",
       "checked": false,
       "usedIn": [
@@ -2026,7 +1895,6 @@
       "name": "Cooked peeled shrimp",
       "quantity": 2.5,
       "unit": "kg",
-      "store": "Seafood",
       "department": "Seafood",
       "checked": false,
       "usedIn": [
@@ -2044,7 +1912,6 @@
       "name": "Cocktail sauce GF",
       "quantity": 2,
       "unit": "bottles",
-      "store": "Sobeys",
       "department": "Condiments",
       "checked": false,
       "usedIn": [
@@ -2060,7 +1927,6 @@
       "name": "Broccoli crowns",
       "quantity": 8,
       "unit": "crowns",
-      "store": "Produce",
       "department": "Produce",
       "checked": false,
       "usedIn": [
@@ -2076,7 +1942,6 @@
       "name": "Bacon",
       "quantity": 500,
       "unit": "g",
-      "store": "Sobeys",
       "department": "Meat",
       "checked": false,
       "usedIn": [
@@ -2092,7 +1957,6 @@
       "name": "Sunflower seeds",
       "quantity": 1.5,
       "unit": "cups",
-      "store": "Pantry",
       "department": "Pantry",
       "checked": false,
       "usedIn": [
@@ -2108,7 +1972,6 @@
       "name": "GF crackers",
       "quantity": 2,
       "unit": "boxes",
-      "store": "Sobeys",
       "department": "Gluten-Free",
       "checked": false,
       "usedIn": [
@@ -2124,7 +1987,6 @@
       "name": "Party chips",
       "quantity": 5,
       "unit": "bags",
-      "store": "Costco",
       "department": "Snacks",
       "checked": false,
       "usedIn": [
@@ -2140,7 +2002,6 @@
       "name": "Party dips",
       "quantity": 4,
       "unit": "containers",
-      "store": "Costco",
       "department": "Snacks",
       "checked": false,
       "usedIn": [
@@ -2156,7 +2017,6 @@
       "name": "Maille Dijon mustard",
       "quantity": 1,
       "unit": "jar",
-      "store": "Sobeys",
       "department": "Condiments",
       "checked": false,
       "usedIn": [
@@ -2172,7 +2032,6 @@
       "name": "Hellmann's mayonnaise",
       "quantity": 1,
       "unit": "large jar",
-      "store": "Sobeys",
       "department": "Condiments",
       "checked": false,
       "usedIn": [
@@ -2188,7 +2047,6 @@
       "name": "Regular croutons",
       "quantity": 2,
       "unit": "large bags",
-      "store": "Sobeys",
       "department": "Bakery",
       "checked": false,
       "usedIn": [
@@ -2204,7 +2062,6 @@
       "name": "Gluten-free croutons",
       "quantity": 1,
       "unit": "bag",
-      "store": "Sobeys",
       "department": "Gluten-Free",
       "checked": false,
       "usedIn": [
