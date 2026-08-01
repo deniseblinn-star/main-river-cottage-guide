@@ -1,0 +1,8 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Search, Clock } from 'lucide-react'
+import data from '../data/recipes.json'
+const filters=['all','smoker','grill','gluten-free','side','salad','dessert','seafood']
+const emoji={smoker:'🔥',grill:'🍖','no-cook':'🥗',oven:'🍽️','sous-vide':'🥩',steam:'🦞',stovetop:'🍳'}
+export default function Recipes(){const [q,setQ]=useState(''),[tag,setTag]=useState('all');const list=data.recipes.filter(r=>(tag==='all'||r.tags.includes(tag))&&(r.title+' '+r.description).toLowerCase().includes(q.toLowerCase()))
+return <div className="space-y-4"><h1 className="page-title">Recipe library</h1><div className="card flex gap-2"><Search className="text-stone"/><input className="w-full outline-none" placeholder="Search recipes" value={q} onChange={e=>setQ(e.target.value)}/></div><div className="flex gap-2 overflow-x-auto">{filters.map(f=><button key={f} onClick={()=>setTag(f)} className={`px-3 py-2 rounded-full whitespace-nowrap text-sm font-semibold ${tag===f?'bg-forest text-white':'bg-white'}`}>{f}</button>)}</div><div className="grid sm:grid-cols-2 gap-3">{list.map(r=><Link key={r.id} to={`/recipes/${r.id}`} className="card card-hover"><div className="text-3xl">{emoji[r.method]||'🍽️'}</div><h2 className="font-extrabold text-navy mt-2">{r.title}</h2><p className="text-sm text-stone mt-1">{r.description}</p><div className="flex gap-2 mt-3">{r.glutenFree&&<span className="badge-gf">GF</span>}<span className="badge-navy"><Clock size={12}/>{r.cookTime}</span><span className="badge-forest">{r.servings} serves</span></div></Link>)}</div></div>}

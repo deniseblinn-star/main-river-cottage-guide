@@ -1,0 +1,11 @@
+import { useState } from 'react'
+import { Check, RotateCcw } from 'lucide-react'
+import data from '../data/groceries.json'
+export default function Groceries(){const [store,setStore]=useState(data.stores[0]);const [checked,setChecked]=useState(()=>JSON.parse(localStorage.getItem('cottage-groceries-checked')||'{}'))
+const toggle=id=>{const n={...checked,[id]:!checked[id]};setChecked(n);localStorage.setItem('cottage-groceries-checked',JSON.stringify(n))}
+const reset=()=>{setChecked({});localStorage.removeItem('cottage-groceries-checked')}
+const all=data.items, done=all.filter(i=>checked[i.id]).length, list=all.filter(i=>i.store===store), groups=Object.groupBy?Object.groupBy(list,i=>i.department):list.reduce((a,i)=>((a[i.department]??=[]).push(i),a),{})
+return <div className="space-y-4"><div className="flex justify-between"><div><h1 className="page-title">Groceries</h1><p className="text-stone">{done} of {all.length} purchased</p></div><button onClick={reset} className="p-2 bg-white rounded-xl"><RotateCcw/></button></div><div className="h-3 bg-white rounded-full overflow-hidden"><div className="h-full bg-forest" style={{width:`${done/all.length*100}%`}}/></div>
+<div className="flex gap-2 overflow-x-auto">{data.stores.map(s=><button key={s} onClick={()=>setStore(s)} className={`px-4 py-2 rounded-full whitespace-nowrap font-semibold ${s===store?'bg-forest text-white':'bg-white'}`}>{s} ({all.filter(i=>i.store===s).length})</button>)}</div>
+{store==='Sobeys'&&<div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-sm"><b>GF reminder:</b> buy both regular and GF Worcestershire; check bread, tortillas and panko carefully.</div>}
+{Object.entries(groups).map(([g,items])=><section key={g} className="card"><h2 className="section-title mb-2">{g}</h2>{items.map(i=><button key={i.id} onClick={()=>toggle(i.id)} className="w-full flex gap-3 text-left py-3 border-b last:border-0"><span className={`w-6 h-6 rounded-lg border flex items-center justify-center shrink-0 ${checked[i.id]?'bg-forest border-forest text-white':'border-stone/30'}`}>{checked[i.id]&&<Check size={16}/>}</span><div className={checked[i.id]?'line-through text-stone':''}><b>{i.name}</b> — {i.quantity} {i.unit}<p className="text-xs text-stone">{i.usedIn.join(' • ')}{i.notes&&` · ${i.notes}`}</p></div></button>)}</section>)}</div>}

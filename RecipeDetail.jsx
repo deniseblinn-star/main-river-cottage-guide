@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  html { font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+  body { background-color: #F5F0E8; color: #1a3a1a; }
+  * { -webkit-font-smoothing: antialiased; }
+}
+@layer components {
+  .card { @apply bg-white rounded-2xl shadow-card p-4; }
+  .card-hover { @apply transition-shadow duration-200 hover:shadow-card-hover; }
+  .btn-primary { @apply bg-forest text-white font-semibold px-4 py-2.5 rounded-xl active:scale-95 transition-all duration-150 touch-manipulation; }
+  .badge { @apply inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full; }
+  .badge-gf { @apply badge bg-amber-100 text-amber-700 border border-amber-200; }
+  .badge-forest { @apply badge bg-forest/10 text-forest border border-forest/20; }
+  .badge-navy { @apply badge bg-navy/10 text-navy border border-navy/20; }
+  .section-title { @apply text-xs font-bold uppercase tracking-widest text-stone; }
+  .page-title { @apply text-2xl font-extrabold text-navy; }
+  .nav-icon-label { @apply text-[10px] font-semibold mt-0.5; }
+}
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+html { scroll-behavior: smooth; }
+button, a { touch-action: manipulation; }

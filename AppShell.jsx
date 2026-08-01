@@ -1,0 +1,814 @@
+{
+  "recipes": [
+    {
+      "id": "pulled-pork",
+      "title": "Smoked Pulled Pork",
+      "description": "Hickory-smoked pork shoulder for Monday's Smokehouse dinner.",
+      "tags": [
+        "smoker",
+        "gluten-free"
+      ],
+      "method": "smoker",
+      "prepTime": "30 min",
+      "cookTime": "9 hrs",
+      "restTime": "1 hr",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "5 kg pork shoulder",
+        "Kosher salt",
+        "Black pepper",
+        "Paprika",
+        "Brown sugar",
+        "Garlic powder",
+        "Apple cider vinegar + juice for spritz"
+      ],
+      "instructions": [
+        "--- Prep",
+        "Trim and season the pork shoulder.",
+        "--- Smoke",
+        "Smoke at 225°F; spritz every 45 minutes after bark forms.",
+        "--- Wrap",
+        "Wrap at 165°F.",
+        "--- Finish",
+        "Pull at 203°F and rest at least 1 hour."
+      ],
+      "tempMilestones": [
+        {
+          "temp": "165°F",
+          "action": "Wrap"
+        },
+        {
+          "temp": "203°F",
+          "action": "Pull and rest"
+        }
+      ]
+    },
+    {
+      "id": "smoked-brisket",
+      "title": "Smoked Beef Brisket",
+      "description": "Oak-smoked brisket for Wednesday dinner.",
+      "tags": [
+        "smoker",
+        "gluten-free"
+      ],
+      "method": "smoker",
+      "prepTime": "30 min",
+      "cookTime": "13 hrs",
+      "restTime": "2 hrs",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "7 kg brisket",
+        "Kosher salt",
+        "Coarse pepper",
+        "Garlic powder",
+        "Beef tallow",
+        "Pink butcher paper"
+      ],
+      "instructions": [
+        "--- Prep",
+        "Trim and dry rub overnight.",
+        "--- Smoke",
+        "Smoke fat-side down at 225°F.",
+        "--- Wrap",
+        "Wrap at 170°F with beef tallow; raise pit to 250°F if needed.",
+        "--- Finish",
+        "Pull when probe tender near 203°F and rest at least 2 hours."
+      ],
+      "tempMilestones": [
+        {
+          "temp": "170°F",
+          "action": "Wrap"
+        },
+        {
+          "temp": "203°F",
+          "action": "Probe tender; pull"
+        }
+      ]
+    },
+    {
+      "id": "smoked-ribs",
+      "title": "3-2-1 Smoked Ribs",
+      "description": "Cherry-and-apple smoked ribs for Friday dinner.",
+      "tags": [
+        "smoker",
+        "gluten-free"
+      ],
+      "method": "smoker",
+      "prepTime": "30 min",
+      "cookTime": "6 hrs",
+      "restTime": "15 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "6 racks pork spare ribs",
+        "Dry rub",
+        "Butter",
+        "Honey",
+        "Apple juice",
+        "GF BBQ sauce"
+      ],
+      "instructions": [
+        "--- 3 hours",
+        "Smoke bone-side down at 225°F.",
+        "--- 2 hours",
+        "Wrap with butter, honey and apple juice.",
+        "--- 1 hour",
+        "Unwrap, glaze and finish meat-side up.",
+        "Rest 15 minutes before slicing."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "greek-chicken-skewers",
+      "title": "Greek Chicken Skewers",
+      "description": "Lemon, garlic and oregano chicken thighs.",
+      "tags": [
+        "grill",
+        "gluten-free"
+      ],
+      "method": "grill",
+      "prepTime": "25 min + overnight",
+      "cookTime": "15 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "3 kg boneless chicken thighs",
+        "Lemons",
+        "Garlic",
+        "Oregano",
+        "Olive oil",
+        "Salt and pepper"
+      ],
+      "instructions": [
+        "Marinate overnight.",
+        "Thread onto skewers.",
+        "Grill over high heat to 165°F."
+      ],
+      "tempMilestones": [
+        {
+          "temp": "165°F",
+          "action": "Done"
+        }
+      ]
+    },
+    {
+      "id": "greek-beef-skewers",
+      "title": "Greek Beef Skewers",
+      "description": "Sirloin marinated with red wine, lemon and herbs.",
+      "tags": [
+        "grill",
+        "gluten-free"
+      ],
+      "method": "grill",
+      "prepTime": "25 min + overnight",
+      "cookTime": "10 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "2.5 kg sirloin",
+        "Red wine",
+        "Lemon",
+        "Oregano",
+        "Rosemary",
+        "Olive oil"
+      ],
+      "instructions": [
+        "Marinate overnight.",
+        "Thread onto skewers.",
+        "Grill to desired doneness."
+      ],
+      "tempMilestones": [
+        {
+          "temp": "130°F",
+          "action": "Medium-rare"
+        }
+      ]
+    },
+    {
+      "id": "tzatziki",
+      "title": "Tzatziki",
+      "description": "Greek yogurt, cucumber and dill dip.",
+      "tags": [
+        "side",
+        "gluten-free"
+      ],
+      "method": "no-cook",
+      "prepTime": "20 min",
+      "cookTime": "0",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "Full-fat Greek yogurt",
+        "English cucumber",
+        "Garlic",
+        "Fresh dill",
+        "Lemon",
+        "Salt"
+      ],
+      "instructions": [
+        "Grate and squeeze cucumber dry.",
+        "Combine ingredients.",
+        "Rest 1 hour."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "greek-salad",
+      "title": "Greek Salad (Horiatiki)",
+      "description": "Tomatoes, cucumber, feta and olives.",
+      "tags": [
+        "salad",
+        "side",
+        "gluten-free"
+      ],
+      "method": "no-cook",
+      "prepTime": "20 min",
+      "cookTime": "0",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "Tomatoes",
+        "Cucumber",
+        "Red onion",
+        "Kalamata olives",
+        "Feta",
+        "Green pepper",
+        "Olive oil",
+        "Red wine vinegar",
+        "Oregano"
+      ],
+      "instructions": [
+        "Chop vegetables.",
+        "Dress shortly before serving.",
+        "Top with feta and oregano."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "roasted-potatoes",
+      "title": "Crispy Roasted Potatoes",
+      "description": "Parboiled Yukon Gold potatoes roasted crisp.",
+      "tags": [
+        "side",
+        "gluten-free"
+      ],
+      "method": "oven",
+      "prepTime": "20 min",
+      "cookTime": "40 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "4 kg Yukon Gold potatoes",
+        "Olive oil",
+        "Salt",
+        "Pepper"
+      ],
+      "instructions": [
+        "Parboil potatoes.",
+        "Drain and shake to roughen edges.",
+        "Roast at 425°F for 35–40 minutes."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "caesar-salad",
+      "title": "Classic Caesar Salad",
+      "description": "Main River Feast Caesar salad with a make-ahead gluten-free dressing.",
+      "tags": [
+        "salad",
+        "side",
+        "gluten-free-option"
+      ],
+      "method": "no-cook",
+      "prepTime": "30 min + chilling",
+      "cookTime": "0",
+      "servings": 19,
+      "glutenFree": false,
+      "gfOption": "The dressing is gluten-free when made with French's Worcestershire Sauce. Prepare Steve and Adele's salad first with a separate clean bowl, tongs and GF croutons.",
+      "ingredients": [
+        "8 large romaine hearts, washed, thoroughly dried and chopped",
+        "3 small cloves garlic, minced",
+        "1½ teaspoons anchovy paste",
+        "3 tablespoons freshly squeezed lemon juice",
+        "1½ teaspoons Dijon mustard (Maille preferred)",
+        "1½ teaspoons French's Worcestershire Sauce (gluten-free)",
+        "1½ cups best-quality mayonnaise (Hellmann's or Duke's)",
+        "¾ cup freshly grated Parmigiano-Reggiano for the dressing",
+        "2¼ cups shaved or grated Parmigiano-Reggiano for serving",
+        "¼ teaspoon salt, then adjust to taste",
+        "Generous ¼ teaspoon freshly ground black pepper",
+        "Regular croutons for the main salad",
+        "Gluten-free croutons for Steve and Adele"
+      ],
+      "instructions": [
+        "--- Make the dressing 1–2 days ahead",
+        "Whisk garlic, anchovy paste, lemon juice, Dijon and French's Worcestershire together.",
+        "Whisk in the mayonnaise until smooth.",
+        "Stir in ¾ cup grated Parmigiano-Reggiano, salt and pepper.",
+        "Cover and refrigerate.",
+        "--- Sunday morning",
+        "Wash and spin the romaine completely dry.",
+        "Store the lettuce chilled with paper towels.",
+        "Shave the remaining Parmesan and keep refrigerated.",
+        "--- Just before serving",
+        "Prepare Steve and Adele's salad first in a clean separate bowl using GF croutons.",
+        "Toss the remaining romaine with dressing a little at a time.",
+        "Finish with Parmesan and regular croutons, then serve immediately."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "coleslaw",
+      "title": "Creamy Coleslaw",
+      "description": "Make-ahead cabbage and carrot slaw.",
+      "tags": [
+        "salad",
+        "side",
+        "gluten-free"
+      ],
+      "method": "no-cook",
+      "prepTime": "25 min",
+      "cookTime": "0",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "Green cabbage",
+        "Red cabbage",
+        "Carrots",
+        "Mayonnaise",
+        "Apple cider vinegar",
+        "Sugar",
+        "Celery seed"
+      ],
+      "instructions": [
+        "Shred vegetables.",
+        "Whisk dressing.",
+        "Combine and refrigerate at least 1 hour."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "mimis-potato-salad",
+      "title": "Mimi's Potato Salad",
+      "description": "Classic yellow-potato and egg salad.",
+      "tags": [
+        "salad",
+        "side",
+        "gluten-free"
+      ],
+      "method": "stovetop",
+      "prepTime": "40 min",
+      "cookTime": "25 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "5 kg yellow potatoes",
+        "8 eggs",
+        "Celery",
+        "Red onion",
+        "Dill pickles",
+        "Mayonnaise",
+        "Yellow mustard",
+        "Pickle juice",
+        "Paprika"
+      ],
+      "instructions": [
+        "Boil potatoes and eggs.",
+        "Cool completely.",
+        "Combine with dressing and vegetables.",
+        "Refrigerate at least 2 hours."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "mac-and-cheese",
+      "title": "Baked Mac & Cheese",
+      "description": "Four-cheese baked macaroni.",
+      "tags": [
+        "side"
+      ],
+      "method": "oven",
+      "prepTime": "30 min",
+      "cookTime": "30 min",
+      "servings": 17,
+      "glutenFree": false,
+      "gfOption": "Use GF pasta, GF flour and GF breadcrumbs.",
+      "ingredients": [
+        "Pasta",
+        "Butter",
+        "Flour",
+        "Milk",
+        "Cheddar",
+        "Gruyère",
+        "Fontina",
+        "Parmesan",
+        "Dijon",
+        "Panko"
+      ],
+      "instructions": [
+        "Cook pasta.",
+        "Make béchamel and melt cheeses.",
+        "Combine, top with panko and bake at 375°F."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "bbq-chicken",
+      "title": "BBQ Grilled Chicken",
+      "description": "Bone-in chicken with dry rub and GF BBQ sauce.",
+      "tags": [
+        "grill",
+        "gluten-free"
+      ],
+      "method": "grill",
+      "prepTime": "20 min",
+      "cookTime": "45 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "5 kg bone-in chicken",
+        "Dry rub",
+        "Olive oil",
+        "GF BBQ sauce"
+      ],
+      "instructions": [
+        "Season chicken.",
+        "Grill over medium heat.",
+        "Brush sauce near the end and cook to 165°F."
+      ],
+      "tempMilestones": [
+        {
+          "temp": "160°F",
+          "action": "Brush with sauce"
+        },
+        {
+          "temp": "165°F",
+          "action": "Done"
+        }
+      ]
+    },
+    {
+      "id": "sous-vide-filet",
+      "title": "Sous Vide Filet Mignon",
+      "description": "Medium-rare filet with cast-iron finish.",
+      "tags": [
+        "beef",
+        "gluten-free"
+      ],
+      "method": "sous-vide",
+      "prepTime": "20 min",
+      "cookTime": "2 hrs",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "17 beef tenderloin filets",
+        "Salt",
+        "Pepper",
+        "Butter",
+        "Garlic",
+        "Thyme",
+        "Rosemary"
+      ],
+      "instructions": [
+        "Season and bag filets.",
+        "Sous vide at 130°F.",
+        "Dry well and sear in cast iron.",
+        "Baste with butter and herbs."
+      ],
+      "tempMilestones": [
+        {
+          "temp": "130°F",
+          "action": "Medium-rare bath"
+        }
+      ]
+    },
+    {
+      "id": "whole-lobster",
+      "title": "Steamed Whole Lobster",
+      "description": "Maritime lobster with drawn butter and lemon.",
+      "tags": [
+        "seafood",
+        "gluten-free"
+      ],
+      "method": "steam",
+      "prepTime": "15 min",
+      "cookTime": "By weight",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "10 live Maritime lobsters (confirm final count/size)",
+        "Salt water",
+        "Drawn butter",
+        "Lemons"
+      ],
+      "instructions": [
+        "Bring salted water to a strong boil/steam.",
+        "Cook lobsters according to weight.",
+        "Serve with drawn butter and lemon."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "strawberry-shortcake",
+      "title": "Strawberry Shortcake",
+      "description": "Macerated strawberries, biscuits and whipped cream.",
+      "tags": [
+        "dessert"
+      ],
+      "method": "oven",
+      "prepTime": "35 min",
+      "cookTime": "15 min",
+      "servings": 17,
+      "glutenFree": false,
+      "gfOption": "Bake a separate batch with GF biscuit mix.",
+      "ingredients": [
+        "3 kg strawberries",
+        "Sugar",
+        "Buttermilk biscuits",
+        "Heavy cream",
+        "Vanilla",
+        "Icing sugar"
+      ],
+      "instructions": [
+        "Macerate strawberries.",
+        "Bake biscuits.",
+        "Whip cream.",
+        "Assemble at serving time."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "brownies",
+      "title": "Fudgy Dark Chocolate Brownies",
+      "description": "Dark chocolate brownies with flaky salt.",
+      "tags": [
+        "dessert"
+      ],
+      "method": "oven",
+      "prepTime": "20 min",
+      "cookTime": "30 min",
+      "servings": 24,
+      "glutenFree": false,
+      "gfOption": "Use a GF 1:1 flour blend.",
+      "ingredients": [
+        "300 g dark chocolate",
+        "Butter",
+        "Sugar",
+        "4 eggs",
+        "Vanilla",
+        "Flour",
+        "Cocoa",
+        "Flaky salt"
+      ],
+      "instructions": [
+        "Melt chocolate and butter.",
+        "Whisk eggs and sugar.",
+        "Combine and bake at 350°F for 28–32 minutes."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "guacamole",
+      "title": "Fresh Guacamole",
+      "description": "Large-batch lime and cilantro guacamole.",
+      "tags": [
+        "side",
+        "gluten-free"
+      ],
+      "method": "no-cook",
+      "prepTime": "20 min",
+      "cookTime": "0",
+      "servings": 12,
+      "glutenFree": true,
+      "ingredients": [
+        "10 avocados",
+        "Limes",
+        "Red onion",
+        "Jalapeño",
+        "Cilantro",
+        "Roma tomatoes",
+        "Salt"
+      ],
+      "instructions": [
+        "Mash avocados.",
+        "Fold in remaining ingredients.",
+        "Serve immediately with GF tortilla chips."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "taco-chicken",
+      "title": "Taco Fiesta Spiced Chicken",
+      "description": "Grilled chicken thighs for taco night.",
+      "tags": [
+        "grill",
+        "gluten-free"
+      ],
+      "method": "grill",
+      "prepTime": "20 min",
+      "cookTime": "20 min",
+      "servings": 12,
+      "glutenFree": true,
+      "ingredients": [
+        "3 kg chicken thighs",
+        "Cumin",
+        "Chili powder",
+        "Paprika",
+        "Garlic powder",
+        "Onion powder",
+        "Oregano",
+        "Lime"
+      ],
+      "instructions": [
+        "Season chicken.",
+        "Grill to 165°F.",
+        "Rest and slice for tacos."
+      ],
+      "tempMilestones": [
+        {
+          "temp": "165°F",
+          "action": "Done"
+        }
+      ]
+    },
+    {
+      "id": "taco-beef",
+      "title": "Taco Fiesta Ground Beef",
+      "description": "Seasoned ground beef for taco night.",
+      "tags": [
+        "gluten-free"
+      ],
+      "method": "stovetop",
+      "prepTime": "15 min",
+      "cookTime": "25 min",
+      "servings": 12,
+      "glutenFree": true,
+      "ingredients": [
+        "3 kg ground beef",
+        "Yellow onion",
+        "Garlic",
+        "Taco spices",
+        "Tomato paste",
+        "GF beef broth"
+      ],
+      "instructions": [
+        "Brown onion and beef.",
+        "Add spices and tomato paste.",
+        "Simmer with GF broth."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "pressed-italian-sandwiches",
+      "title": "Pressed Italian Sandwiches",
+      "description": "Large oven-warmed pressed Italian sandwiches for the Yacht Rock dock party.",
+      "tags": [
+        "lunch"
+      ],
+      "method": "oven",
+      "prepTime": "25 min",
+      "cookTime": "20 min",
+      "servings": 12,
+      "glutenFree": false,
+      "gfOption": "Make two separate GF sandwiches using GF rolls and a clean board/knife.",
+      "ingredients": [
+        "4 large Italian or ciabatta loaves",
+        "750 g salami",
+        "500 g prosciutto",
+        "500 g soppressata",
+        "900 g provolone",
+        "2 jars roasted red peppers",
+        "1 jar olive salad or muffuletta spread",
+        "Dijon or Italian dressing",
+        "GF rolls for Steve and Adele"
+      ],
+      "instructions": [
+        "Split loaves and layer meats, provolone, peppers and olive spread.",
+        "Wrap tightly in foil and warm at 350°F until cheese melts.",
+        "Press under a sheet pan for 10 minutes, then slice into portions.",
+        "Prepare GF sandwiches first and wrap separately."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "broccoli-salad",
+      "title": "Broccoli Salad",
+      "description": "Make-ahead broccoli, bacon and cheddar salad for the Main River Feast.",
+      "tags": [
+        "salad",
+        "side",
+        "gluten-free"
+      ],
+      "method": "no-cook",
+      "prepTime": "25 min",
+      "cookTime": "0",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "8 broccoli crowns, chopped small",
+        "500 g cooked bacon, crumbled",
+        "500 g cheddar, cubed or shredded",
+        "2 red onions, finely diced",
+        "1.5 cups sunflower seeds",
+        "2 cups mayonnaise",
+        "1/3 cup apple cider vinegar",
+        "1/3 cup sugar",
+        "Salt and pepper"
+      ],
+      "instructions": [
+        "Whisk mayonnaise, vinegar, sugar, salt and pepper.",
+        "Combine broccoli, bacon, cheddar, onion and sunflower seeds.",
+        "Fold in dressing and refrigerate at least 2 hours."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "garlic-mussels",
+      "title": "Garlic White Wine Mussels",
+      "description": "Mussels steamed with garlic, butter, herbs and white wine.",
+      "tags": [
+        "seafood",
+        "gluten-free"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "10 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "4 kg fresh mussels",
+        "250 g butter",
+        "2 heads garlic, minced",
+        "750 ml dry white wine",
+        "Fresh parsley",
+        "2 lemons",
+        "Salt and pepper"
+      ],
+      "instructions": [
+        "Scrub and debeard mussels; discard cracked or open shells that do not close.",
+        "Sauté garlic in butter in large pots.",
+        "Add wine, bring to a boil, add mussels and cover.",
+        "Steam until opened, 5–8 minutes; discard unopened mussels.",
+        "Finish with parsley and lemon."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "shrimp-cocktail",
+      "title": "Shrimp Cocktail Platter",
+      "description": "Simple make-ahead party platter for Saturday and Sunday happy hour.",
+      "tags": [
+        "seafood",
+        "gluten-free"
+      ],
+      "method": "no-cook",
+      "prepTime": "15 min",
+      "cookTime": "0",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        "2.5 kg cooked peeled shrimp",
+        "2 bottles cocktail sauce (check GF)",
+        "4 lemons",
+        "Ice for serving"
+      ],
+      "instructions": [
+        "Thaw and dry shrimp thoroughly.",
+        "Arrange over ice with lemon wedges.",
+        "Serve cocktail sauce separately and keep cold."
+      ],
+      "tempMilestones": []
+    },
+    {
+      "id": "charcuterie-board",
+      "title": "Charcuterie & Cheese Board",
+      "description": "Dock-party grazing board that also supplies Sunday's light lunch.",
+      "tags": [
+        "side"
+      ],
+      "method": "no-cook",
+      "prepTime": "25 min",
+      "cookTime": "0",
+      "servings": 17,
+      "glutenFree": false,
+      "gfOption": "Use a separate board area and sealed GF crackers for Steve and Adele.",
+      "ingredients": [
+        "2 kg Italian meats",
+        "2 kg mixed cheeses",
+        "Olives and pickles",
+        "Grapes and berries",
+        "3 boxes crackers",
+        "2 boxes GF crackers",
+        "Mustard and preserves"
+      ],
+      "instructions": [
+        "Arrange cheeses and meats in groups.",
+        "Add fruit, olives, pickles and condiments.",
+        "Keep GF crackers sealed and separate until serving."
+      ],
+      "tempMilestones": []
+    }
+  ]
+}
