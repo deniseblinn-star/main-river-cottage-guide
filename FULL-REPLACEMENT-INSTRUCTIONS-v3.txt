@@ -1,0 +1,26 @@
+MAIN RIVER COTTAGE PLANNER v3.0.0 FOUNDATION
+
+This is a full project replacement package built from the project ZIP uploaded on August 1, 2026.
+
+SAFE INSTALL
+1. Keep your current .git folder.
+2. Make a quick backup copy of the current project folder.
+3. Delete the existing src and public folders plus root project files except .git.
+4. Extract this ZIP directly into main-river-cottage-guide.
+5. Confirm package.json and src are directly inside main-river-cottage-guide.
+6. Confirm there is no "src - Copy" folder.
+7. Open GitKraken, stage all changes, commit and push.
+
+Suggested commit:
+Add Version 3 event, meals and accommodation foundation
+
+FIRST TEST
+1. Gathering: confirm Main River Cottage Week 2026.
+2. People & Stay: edit one arrival/departure and Save.
+3. Meal Planner: open Monday Aug 24 Dinner. Greek Beef Skewers is preassigned.
+4. Groceries: confirm Sirloin, red wine, lemon, oregano, rosemary and olive oil are recipe-generated from Monday Dinner.
+5. Meal Planner: remove Greek Beef Skewers, Save, reopen Groceries and confirm those generated items disappear.
+6. Beds: confirm Denise/Steve and Danielle/Kevin default master assignments; activate trailers if needed.
+
+NOTE
+Browser-local storage remains in this phase. Shared cloud storage is deferred.

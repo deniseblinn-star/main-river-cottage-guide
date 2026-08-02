@@ -1,5 +1,6 @@
 import ingredientsData from '../data/ingredients.json'
 import data from '../data/recipeEngine.json'
+import { v3GeneratedGroceries } from './v3Store'
 
 const ingredientMap=Object.fromEntries(ingredientsData.ingredients.map(i=>[i.id,i]))
 const recipeMap=Object.fromEntries(data.recipes.map(r=>[r.id,r]))
@@ -36,31 +37,5 @@ export function getRecipeContextByDetailId(detailId){
 export function getRecipeEngineData(){return data}
 
 export function getGeneratedGroceries(){
-  const merged={}
-  for(const assignment of data.mealAssignments){
-    const scaled=getScaledRecipe(assignment)
-    if(!scaled) continue
-    for(const row of scaled.ingredients){
-      if(!row.shopping) continue
-      const ingredient=row.ingredient
-      const key=`${row.ingredientId}|${row.unit}`
-      const source={recipe:scaled.recipe.name,meal:assignment.mealName,attendance:assignment.attendance,yield:scaled.recipe.yield.quantity,quantity:row.scaledQuantity}
-      if(!merged[key]) merged[key]={
-        id:`generated-${row.ingredientId}-${row.unit}`,
-        ingredientId:row.ingredientId,
-        name:ingredient.name,
-        quantity:row.scaledQuantity,
-        unit:row.unit,
-        department:ingredient.category,
-        source:'recipe',
-        notes:ingredient.purchaseNote||'',
-        sources:[source]
-      }
-      else {
-        merged[key].quantity=roundQuantity(merged[key].quantity+row.scaledQuantity,row.rounding)
-        merged[key].sources.push(source)
-      }
-    }
-  }
-  return Object.values(merged)
+  return v3GeneratedGroceries()
 }

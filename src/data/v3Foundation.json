@@ -1,0 +1,351 @@
+{
+  "overallEvent": {
+    "id": "main-river-2026",
+    "name": "Main River Cottage Week 2026",
+    "location": "Main River, New Brunswick",
+    "start": "2026-08-22",
+    "end": "2026-08-30"
+  },
+  "mealTypes": [
+    {
+      "id": "breakfast",
+      "label": "Breakfast",
+      "defaultTime": "09:00",
+      "automatic": false
+    },
+    {
+      "id": "brunch",
+      "label": "Brunch",
+      "defaultTime": "11:00",
+      "automatic": false
+    },
+    {
+      "id": "lunch",
+      "label": "Lunch",
+      "defaultTime": "13:00",
+      "automatic": true
+    },
+    {
+      "id": "early-snack",
+      "label": "Early Snack",
+      "defaultTime": "15:00",
+      "automatic": true
+    },
+    {
+      "id": "dinner",
+      "label": "Dinner",
+      "defaultTime": "18:30",
+      "automatic": true
+    },
+    {
+      "id": "late-snack",
+      "label": "Late Snack",
+      "defaultTime": "20:00",
+      "automatic": true
+    }
+  ],
+  "accommodations": [
+    {
+      "id": "denise-cottage",
+      "name": "Denise & Steve's Cottage",
+      "type": "Cottage",
+      "active": true,
+      "rooms": [
+        {
+          "id": "denise-master",
+          "name": "Master Bedroom",
+          "spaces": [
+            {
+              "id": "denise-master-queen",
+              "name": "Queen Bed",
+              "capacity": 2,
+              "defaultOccupants": [
+                "denise",
+                "steve"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "denise-bedroom-2",
+          "name": "Bedroom 2",
+          "spaces": [
+            {
+              "id": "denise-bedroom-2-queen",
+              "name": "Queen Bed",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        },
+        {
+          "id": "denise-bedroom-3",
+          "name": "Bedroom 3",
+          "spaces": [
+            {
+              "id": "denise-bedroom-3-double",
+              "name": "Double Bed",
+              "capacity": 2,
+              "defaultOccupants": []
+            },
+            {
+              "id": "denise-bedroom-3-twin",
+              "name": "Twin Bed",
+              "capacity": 1,
+              "defaultOccupants": []
+            }
+          ]
+        },
+        {
+          "id": "denise-living",
+          "name": "Living Room",
+          "spaces": [
+            {
+              "id": "denise-couch",
+              "name": "Couch",
+              "capacity": 1,
+              "defaultOccupants": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "danielle-cottage",
+      "name": "Danielle & Kevin's Cottage",
+      "type": "Cottage",
+      "active": true,
+      "rooms": [
+        {
+          "id": "danielle-master",
+          "name": "Master Bedroom",
+          "spaces": [
+            {
+              "id": "danielle-master-queen",
+              "name": "Queen Bed",
+              "capacity": 2,
+              "defaultOccupants": [
+                "danielle",
+                "kevin"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "danielle-bedroom-2",
+          "name": "Bedroom 2",
+          "spaces": [
+            {
+              "id": "danielle-bedroom-2-double",
+              "name": "Double Bed",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        },
+        {
+          "id": "danielle-bedroom-3",
+          "name": "Bedroom 3",
+          "spaces": [
+            {
+              "id": "danielle-bedroom-3-double",
+              "name": "Double Bed",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        },
+        {
+          "id": "danielle-living",
+          "name": "Living Room",
+          "spaces": [
+            {
+              "id": "danielle-couch",
+              "name": "Couch",
+              "capacity": 1,
+              "defaultOccupants": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "catherine-cottage",
+      "name": "Catherine's Cottage",
+      "type": "Rental Cottage",
+      "active": true,
+      "rooms": [
+        {
+          "id": "catherine-bedroom-1",
+          "name": "Bedroom 1",
+          "spaces": [
+            {
+              "id": "catherine-bedroom-1-double",
+              "name": "Double Bed",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        },
+        {
+          "id": "catherine-bedroom-2",
+          "name": "Bedroom 2",
+          "spaces": [
+            {
+              "id": "catherine-bedroom-2-double",
+              "name": "Double Bed",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        },
+        {
+          "id": "catherine-bedroom-3",
+          "name": "Bedroom 3",
+          "spaces": [
+            {
+              "id": "catherine-bedroom-3-double",
+              "name": "Double Bed",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        },
+        {
+          "id": "catherine-bedroom-4",
+          "name": "Bedroom 4",
+          "spaces": [
+            {
+              "id": "catherine-bedroom-4-double",
+              "name": "Double Bed",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trailer-1",
+      "name": "Trailer 1",
+      "type": "Trailer",
+      "active": false,
+      "rooms": [
+        {
+          "id": "trailer-1-main",
+          "name": "Main Area",
+          "spaces": [
+            {
+              "id": "trailer-1-double-1",
+              "name": "Double Bed 1",
+              "capacity": 2,
+              "defaultOccupants": []
+            },
+            {
+              "id": "trailer-1-double-2",
+              "name": "Double Bed 2",
+              "capacity": 2,
+              "defaultOccupants": []
+            },
+            {
+              "id": "trailer-1-double-3",
+              "name": "Double Bed 3",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "trailer-2",
+      "name": "Trailer 2",
+      "type": "Trailer",
+      "active": false,
+      "rooms": [
+        {
+          "id": "trailer-2-main",
+          "name": "Main Area",
+          "spaces": [
+            {
+              "id": "trailer-2-double-1",
+              "name": "Double Bed 1",
+              "capacity": 2,
+              "defaultOccupants": []
+            },
+            {
+              "id": "trailer-2-double-2",
+              "name": "Double Bed 2",
+              "capacity": 2,
+              "defaultOccupants": []
+            },
+            {
+              "id": "trailer-2-double-3",
+              "name": "Double Bed 3",
+              "capacity": 2,
+              "defaultOccupants": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "structuredRecipes": [
+    {
+      "id": "greek-beef-skewers",
+      "name": "Greek Beef Skewers",
+      "yield": 17,
+      "type": "Main",
+      "ingredients": [
+        {
+          "id": "sirloin",
+          "name": "Sirloin",
+          "quantity": 2.5,
+          "unit": "kg",
+          "category": "Meat",
+          "shopping": true
+        },
+        {
+          "id": "red-wine",
+          "name": "Red wine",
+          "quantity": 1,
+          "unit": "bottle",
+          "category": "Drinks",
+          "shopping": true
+        },
+        {
+          "id": "lemon",
+          "name": "Lemon",
+          "quantity": 4,
+          "unit": "each",
+          "category": "Produce",
+          "shopping": true
+        },
+        {
+          "id": "oregano",
+          "name": "Oregano",
+          "quantity": 2,
+          "unit": "tbsp",
+          "category": "Pantry",
+          "shopping": true
+        },
+        {
+          "id": "rosemary",
+          "name": "Rosemary",
+          "quantity": 1,
+          "unit": "bunch",
+          "category": "Produce",
+          "shopping": true
+        },
+        {
+          "id": "olive-oil",
+          "name": "Olive oil",
+          "quantity": 1,
+          "unit": "bottle",
+          "category": "Pantry",
+          "shopping": true
+        }
+      ]
+    }
+  ]
+}
