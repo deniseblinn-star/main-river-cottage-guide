@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Check, Home, ListChecks, Pencil, Plus, RotateCcw, Save, Trash2, X } from 'lucide-react'
-import plannedData from '../data/groceries.json'
 import baseData from '../data/baseGroceries.json'
-import guestData from '../data/guests.json'
-import { getGeneratedGroceries } from '../utils/recipeEngine'
+import { getEventGeneratedGroceries } from '../utils/eventGroceryEngine'
+import { useEvent } from '../context/EventContext'
 
 const stateKey='main-river-trip-grocery-state-v21'
 const manualKey='main-river-manual-groceries-v21'
@@ -29,6 +28,7 @@ const normalizeCategory=value=>{
 }
 
 export default function Groceries(){
+ const {activeEvent,profiles}=useEvent()
  const [mode,setMode]=useState('trip')
  const [view,setView]=useState('all')
  const [personFilter,setPersonFilter]=useState('')
@@ -40,7 +40,7 @@ export default function Groceries(){
  const [manualItems,setManualItems]=useState(()=>JSON.parse(localStorage.getItem(manualKey)||'[]'))
  const [itemState,setItemState]=useState(()=>JSON.parse(localStorage.getItem(stateKey)||'{}'))
 
- const guests=guestData.guests.map(g=>({id:g.id,name:g.name}))
+ const guests=(activeEvent?.attendance||[]).map(row=>profiles.find(profile=>profile.id===row.profileId)).filter(Boolean).map(profile=>({id:profile.id,name:profile.name}))
  const saveState=next=>{setItemState(next);localStorage.setItem(stateKey,JSON.stringify(next))}
  const patchState=(id,patch)=>saveState({...itemState,[id]:{...(itemState[id]||{}),...patch}})
  const saveManual=next=>{setManualItems(next);localStorage.setItem(manualKey,JSON.stringify(next))}
@@ -49,17 +49,13 @@ export default function Groceries(){
   setBaseEdits(next);localStorage.setItem(baseEditsKey,JSON.stringify(next))
  }
 
- const generated=getGeneratedGroceries().map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Recipe generated'}))
- const generatedNames=new Set(generated.map(item=>item.name.toLowerCase()))
- const planned=plannedData.items
-  .filter(item=>!generatedNames.has(item.name.toLowerCase())&&item.id!=='g1')
-  .map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Planned recipe item'}))
+ const generated=getEventGeneratedGroceries(activeEvent).map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Recipe generated'}))
  const baseItems=useMemo(()=>baseData.categories.flatMap(category=>category.items.map(item=>{
   const edit=baseEdits[item.id]||{}
   return {...item,id:`base-${item.id}`,originalId:item.id,quantity:edit.quantity??item.quantity,unit:edit.unit??item.unit,notes:edit.notes??item.notes,category:normalizeCategory(category.name),sourceType:'base',sourceLabel:'Base Cottage List'}
  })),[baseEdits])
  const manual=manualItems.map(item=>({...item,category:normalizeCategory(item.category),sourceType:'manual',sourceLabel:'Added grocery item'}))
- const allItems=[...generated,...planned,...baseItems,...manual].map(item=>({...item,...(itemState[item.id]||{})}))
+ const allItems=[...generated,...baseItems,...manual].map(item=>({...item,...(itemState[item.id]||{})}))
  const purchasedCount=allItems.filter(item=>item.purchased).length
  const remainingCount=allItems.length-purchasedCount
 
@@ -97,7 +93,7 @@ export default function Groceries(){
 
   {mode==='trip'?<>
    <div className="h-3 bg-white rounded-full overflow-hidden"><div className="h-full bg-forest" style={{width:`${allItems.length?purchasedCount/allItems.length*100:0}%`}}/></div>
-   <div className="bg-forest/5 border border-forest/15 rounded-2xl p-4 text-sm"><b>One shared running list</b><p className="text-stone mt-1">Recipes, the Base Cottage List and added items all appear here. Stores and shopping runs have been removed.</p></div>
+   <div className="bg-forest/5 border border-forest/15 rounded-2xl p-4 text-sm"><b>One shared running list</b><p className="text-stone mt-1">Only recipes assigned to date-specific Meal Slots generate groceries. The Base Cottage List and added items appear here too.</p></div>
 
    <div className="flex gap-2 overflow-x-auto">{[['all','All'],['outstanding','Outstanding'],['purchased','Purchased'],['unassigned','Unassigned'],['person','By Person']].map(([id,label])=><button key={id} onClick={()=>setView(id)} className={`px-4 py-2 rounded-full whitespace-nowrap font-semibold ${view===id?'bg-forest text-white':'bg-white'}`}>{label}</button>)}</div>
    {view==='person'&&<select value={personFilter} onChange={e=>setPersonFilter(e.target.value)} className="w-full sm:w-72 bg-white border rounded-xl p-3"><option value="">Choose a guest</option>{guests.map(g=><option key={g.id} value={g.id}>{g.name}</option>)}</select>}
@@ -112,7 +108,7 @@ export default function Groceries(){
        <button onClick={()=>patchState(item.id,{purchased:!item.purchased})} className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 mt-1 ${item.purchased?'bg-forest border-forest text-white':'border-stone/30'}`}>{item.purchased&&<Check size={17}/>}</button>
        <div className="flex-1 min-w-0">
         <div className="flex flex-wrap gap-2 items-center"><b className={`text-lg ${item.purchased?'line-through':''}`}>{item.name}</b><span>{item.quantity} {item.unit}</span><span className={`badge ${item.sourceType==='recipe'?'bg-forest/10 text-forest':item.sourceType==='base'?'bg-navy/10 text-navy':'bg-wood-100 text-wood-600'}`}>{item.sourceLabel}</span>{item.gf&&<span className="badge-gf">GF</span>}</div>
-        <p className="text-xs text-stone mt-1">{item.sourceType==='recipe'&&item.sources?.length?item.sources.map(source=>`${source.recipe} → ${source.meal} (${source.attendance} guests)`).join(' • '):item.sourceType==='recipe'&&item.usedIn?item.usedIn.join(' • '):item.notes||'No notes'}</p>
+        <p className="text-xs text-stone mt-1">{item.sourceType==='recipe'&&item.sources?.length?item.sources.map(source=>`${source.recipe} → ${source.meal} (${source.attendance} guests, ${source.scale}×)`).join(' • '):item.sourceType==='recipe'&&item.usedIn?item.usedIn.join(' • '):item.notes||'No notes'}</p>
         <div className="grid sm:grid-cols-[240px_1fr] gap-2 mt-3">
          <label className="text-xs text-stone">Who’s getting this?<select value={item.assignedTo||''} onChange={e=>patchState(item.id,{assignedTo:e.target.value})} className="block w-full mt-1 bg-white border rounded-xl p-2 text-sm text-forest"><option value="">Unassigned</option>{guests.map(g=><option key={g.id} value={g.id}>{g.name}</option>)}</select></label>
          <label className="text-xs text-stone">Shopping note<input value={item.shoppingNote||''} onChange={e=>patchState(item.id,{shoppingNote:e.target.value})} placeholder="Brand, ripeness, size..." className="block w-full mt-1 bg-white border rounded-xl p-2 text-sm"/></label>

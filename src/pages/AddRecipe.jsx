@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Globe2, Plus, Save, Trash2, X } from 'lucide-react'
-import { getCustomRecipe, saveCustomRecipe } from '../utils/customRecipes'
+import { saveCustomRecipe } from '../utils/customRecipes'
+import { getCatalogueRecipe } from '../utils/recipeCatalogue'
+import { parseLegacyIngredient } from '../utils/eventGroceryEngine'
 
 const equipmentOptions=['Smoker','Grill','BBQ','Oven','Sous Vide','Slow Cooker','Stove Top','No Cook']
 const blankIngredient={name:'',quantity:1,unit:'each',shopping:true}
@@ -29,7 +31,7 @@ export default function AddRecipe(){
  const [url,setUrl]=useState('')
  const [importMessage,setImportMessage]=useState('')
  const [form,setForm]=useState(blankForm)
- useEffect(()=>{if(editing){const found=getCustomRecipe(id);if(found)setForm({...blankForm,...found,equipment:found.equipment||[],ingredients:found.ingredients?.length?found.ingredients:[{...blankIngredient}],instructions:found.instructions?.length?found.instructions:['']})}},[editing,id])
+ useEffect(()=>{if(editing){const found=getCatalogueRecipe(id);if(found){const ingredients=(found.ingredients||[]).map(row=>typeof row==='string'?parseLegacyIngredient(row):row);setForm({...blankForm,...found,category:found.category||found.tags?.find(tag=>['main','side','salad','appetizer','dessert','sauce','drink','bread'].includes(tag))||'Main',equipment:found.equipment||[],ingredients:ingredients.length?ingredients:[{...blankIngredient}],instructions:found.instructions?.length?found.instructions:['']})}}},[editing,id])
  const update=(field,value)=>setForm(current=>({...current,[field]:value}))
  const updateIngredient=(index,field,value)=>setForm(current=>({...current,ingredients:current.ingredients.map((row,i)=>i===index?{...row,[field]:value}:row)}))
  const addIngredient=()=>setForm(current=>({...current,ingredients:[...current.ingredients,{...blankIngredient}]}))
@@ -48,7 +50,7 @@ export default function AddRecipe(){
  const save=()=>{
   if(!canSave)return
   const recipeId=editing?id:`custom-${Date.now()}`
-  saveCustomRecipe({...form,id:recipeId,title:form.title.trim(),description:form.description.trim(),sourceName:form.sourceName.trim(),sourceUrl:form.sourceUrl.trim(),servings:Number(form.servings),prepTime:form.prepTime.trim()||'Not set',cookTime:form.cookTime.trim()||'Not set',tradition:form.tradition.trim(),method:form.equipment.includes('Smoker')?'smoker':form.equipment.includes('Grill')?'grill':'custom',glutenFree:false,tags:['custom',form.category.toLowerCase(),...form.equipment.map(x=>x.toLowerCase())],ingredients:form.ingredients.filter(row=>row.name.trim()).map(row=>({...row,name:row.name.trim(),quantity:Number(row.quantity)||0,unit:row.unit.trim()||'each'})),instructions:form.instructions.filter(step=>step.trim()).map(step=>step.trim()),updatedAt:new Date().toISOString(),createdAt:editing?(getCustomRecipe(id)?.createdAt||new Date().toISOString()):new Date().toISOString()})
+  saveCustomRecipe({...form,id:recipeId,title:form.title.trim(),description:form.description.trim(),sourceName:form.sourceName.trim(),sourceUrl:form.sourceUrl.trim(),servings:Number(form.servings),prepTime:form.prepTime.trim()||'Not set',cookTime:form.cookTime.trim()||'Not set',tradition:form.tradition.trim(),method:form.equipment.includes('Smoker')?'smoker':form.equipment.includes('Grill')?'grill':'custom',glutenFree:false,tags:['custom',form.category.toLowerCase(),...form.equipment.map(x=>x.toLowerCase())],ingredients:form.ingredients.filter(row=>row.name.trim()).map(row=>({...row,name:row.name.trim(),quantity:Number(row.quantity)||0,unit:row.unit.trim()||'each'})),instructions:form.instructions.filter(step=>step.trim()).map(step=>step.trim()),updatedAt:new Date().toISOString(),createdAt:editing?(getCatalogueRecipe(id)?.createdAt||new Date().toISOString()):new Date().toISOString()})
   navigate(`/recipes/${recipeId}`)
  }
  if(mode==='choose')return <div className="space-y-5"><div><h1 className="page-title">Add Recipe</h1><p className="text-stone">Create one yourself or use a website for the initial prefill.</p></div><div className="grid sm:grid-cols-2 gap-4"><button onClick={()=>setMode('form')} className="card card-hover text-left"><Plus className="text-forest"/><h2 className="text-xl font-extrabold text-navy mt-3">Create manually</h2><p className="text-sm text-stone mt-1">No source URL required.</p></button><button onClick={()=>setMode('url')} className="card card-hover text-left"><Globe2 className="text-forest"/><h2 className="text-xl font-extrabold text-navy mt-3">Import from URL</h2><p className="text-sm text-stone mt-1">Prefill, review and edit before saving.</p></button></div></div>

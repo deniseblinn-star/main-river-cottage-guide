@@ -1,26 +1,27 @@
-MAIN RIVER COTTAGE PLANNER v3.2.0 — PHASE 3
+MAIN RIVER COTTAGE PLANNER v3.3.0 — PHASE 4
 
 Copy every included file into the matching location in the real project.
 
 GitKraken:
-1. Confirm mealPlanner.js is shown as a new file.
-2. Stage all files.
-3. Commit: Add date-specific meal planner
+1. Confirm eventGroceryEngine.js appears as a new file.
+2. Stage all.
+3. Commit: Connect meal assignments to groceries
 4. Push.
-5. Watch the Netlify deploy until it says Published.
+5. Wait for Netlify to publish.
 
 TEST
-1. Open Meal Planner.
-2. Confirm every active-event date has six meal slots.
-3. Open Daily Meals.
-4. Change the time of one Dinner.
-5. Confirm attendance changes when the time crosses a guest's arrival/departure.
-6. Confirm Breakfast and Brunch start at zero attendees.
-7. Manually add people to Breakfast.
-8. Choose Recipes and assign more than one recipe.
-9. Use the same recipe on another date.
-10. Try Restaurant and Simple plan modes.
+1. Open Daily Meals.
+2. Assign Greek Beef Skewers to a Dinner.
+3. Open Groceries and confirm its ingredients appear as Recipe generated.
+4. Confirm each source shows the date, meal, attendance and scale factor.
+5. Remove Greek Beef Skewers from that Dinner.
+6. Confirm its grocery contribution disappears.
+7. Assign the same recipe to two different Meal Slots.
+8. Confirm both contributions are merged and both sources are listed.
+9. Edit the recipe yield or a structured ingredient quantity.
+10. Confirm the active grocery quantities recalculate.
+11. Confirm Base Cottage List items and manually added groceries remain.
 
-IMPORTANT
-Phase 3 stores recipe assignments correctly but does not yet replace the existing
-grocery-scaling engine. Dynamic Meal Slot -> Grocery scaling is Phase 4.
+LEGACY NOTE
+Some older recipes still have ingredient names without structured quantities.
+Those items display an amount unit and a warning until edited.
