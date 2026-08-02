@@ -10,7 +10,6 @@ import AddRecipe from './pages/AddRecipe'
 import Groceries from './pages/Groceries'
 import Guests from './pages/Guests'
 import SmokerHQ from './pages/SmokerHQ'
-import Hosting from './pages/Hosting'
 import Settings from './pages/Settings'
 import Events from './pages/Events'
 import Photos from './pages/Photos'
@@ -36,7 +35,6 @@ export default function App(){
   <Route path="/groceries" element={<Groceries/>}/>
   <Route path="/guests" element={<Guests/>}/>
   <Route path="/smoker" element={<SmokerHQ/>}/>
-  <Route path="/hosting" element={<Hosting/>}/>
   <Route path="/events" element={<Events/>}/>
   <Route path="/photos" element={<Photos/>}/>
   <Route path="/settings" element={<Settings/>}/>

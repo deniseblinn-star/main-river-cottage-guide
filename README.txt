@@ -1,21 +1,19 @@
-MAIN RIVER v3.5.0 — PHASE 6
+MAIN RIVER v3.6.0 — OPERATIONAL POLISH
 
-Copy all included files into matching locations.
+Copy every included file into the matching project location.
 
 GitKraken:
-1. Confirm src/utils/activities.js appears as a new file.
-2. Stage all.
-3. Commit: Add reusable activities engine
-4. Push.
-5. Confirm Netlify publishes.
+1. Stage all.
+2. Commit: Add dashboard activities and base grocery fixes
+3. Push.
+4. Confirm Netlify publishes.
 
 TEST
-1. Open Activities.
-2. Confirm Yacht Rock Party, Main River Feast and Golf Day appear.
-3. Open Yacht Rock Party and confirm linked meal slots appear.
-4. Confirm linked meals show their current recipes.
-5. Change participants and complete a checklist item.
-6. Open Activity Catalog.
-7. Create or copy an activity.
-8. Schedule it on an Overall Event date.
-9. Confirm a scheduled template cannot be deleted.
+1. Confirm Hosting is gone from desktop and mobile navigation.
+2. Confirm Activities appear on the Dashboard.
+3. Set Cereal to quantity 0 in Edit Base List.
+4. Confirm Cereal disappears from the Trip Grocery List.
+5. Change Cereal to quantity 2.
+6. Confirm it reappears immediately.
+7. Confirm every Base List row is directly editable with no pencil.
+8. Add a new Base List item and confirm it appears when quantity is above zero.
