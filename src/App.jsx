@@ -16,6 +16,7 @@ import Events from './pages/Events'
 import Photos from './pages/Photos'
 import OverallEvents from './pages/OverallEvents'
 import PeopleAttendance from './pages/PeopleAttendance'
+import Accommodations from './pages/Accommodations'
 import { EventProvider } from './context/EventContext'
 
 export default function App(){
@@ -23,6 +24,7 @@ export default function App(){
   <Route path="/" element={<Dashboard/>}/>
   <Route path="/overall-events" element={<OverallEvents/>}/>
   <Route path="/people" element={<PeopleAttendance/>}/>
+  <Route path="/accommodations" element={<Accommodations/>}/>
   <Route path="/planner" element={<WeeklyPlanner/>}/>
   <Route path="/daily" element={<DailyPlanner/>}/>
   <Route path="/daily/:dayId" element={<DailyPlanner/>}/>
