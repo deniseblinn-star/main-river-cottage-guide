@@ -5,10 +5,71 @@ import { accommodationSeed } from '../utils/accommodations'
 import { activityTemplateSeed, ensureActivityTemplates, ensureEventActivities } from '../utils/activities'
 
 const STORAGE_KEY='main-river-v3-event-engine'
+
+const DEFAULT_ROLES=[
+  'Chief Planning Officer',
+  'Event Coordinator',
+  'Travel Coordinator',
+  'Activities Coordinator',
+  'Pitmaster',
+  'Sous Chef',
+  'Breakfast Captain',
+  'Grill Master',
+  'Seafood Captain',
+  'Dessert Coordinator',
+  'Costco Captain',
+  'Grocery Runner',
+  'Ice Runner',
+  'Beverage Manager',
+  'DJ',
+  'Campfire Host',
+  'Games Coordinator',
+  'Photographer',
+  'Dock Captain',
+  'Boat Captain',
+  'Safety Lead',
+  'Cleanup Crew',
+  'Recycling Captain',
+  'Fun Aunt',
+  'Kids Activities',
+  'Swim Watch'
+]
+
+const PROFILE_DIETARY_SEED={
+  adele:['Gluten Free'],
+  alex:['Gluten Free'],
+  kevin:['Lactose']
+}
+
+function normalizeProfile(profile){
+  const legacyRoles=Array.isArray(profile.roles)
+    ? profile.roles
+    : profile.role
+      ? [profile.role]
+      : []
+  const seededDietary=PROFILE_DIETARY_SEED[profile.id]||[]
+  const dietary=[...new Set([...(Array.isArray(profile.dietary)?profile.dietary:[]),...seededDietary])]
+  return {
+    ...profile,
+    roles:[...new Set(legacyRoles.filter(Boolean))],
+    role:legacyRoles[0]||'',
+    dietary,
+    favouriteLunch:profile.favouriteLunch||'',
+    favouriteDinner:profile.favouriteDinner||'',
+    notes:profile.notes||''
+  }
+}
 const dateTime=(date,time='12:00')=>`${date}T${time}`
 
-const profilesSeed=guestData.guests.map(guest=>({
-  id:guest.id,name:guest.name,role:guest.role||'',dietary:Array.isArray(guest.dietary)?guest.dietary:[],favouriteLunch:'',favouriteDinner:'',notes:guest.notes||''
+const profilesSeed=guestData.guests.map(guest=>normalizeProfile({
+  id:guest.id,
+  name:guest.name,
+  role:guest.role||'',
+  roles:guest.role?[guest.role]:[],
+  dietary:Array.isArray(guest.dietary)?guest.dietary:[],
+  favouriteLunch:'',
+  favouriteDinner:'',
+  notes:guest.notes||''
 }))
 
 const mainRiverAttendance=guestData.guests.map(guest=>({
@@ -22,18 +83,21 @@ const mainRiverEvent={id:'main-river-2026',name:'Main River Cottage Week 2026',l
 mainRiverEvent.mealSlots=ensureMealSlots(mainRiverEvent)
 mainRiverEvent.activityInstances=ensureEventActivities(mainRiverEvent)
 
-const seed={activeEventId:'main-river-2026',profiles:profilesSeed,accommodations:accommodationSeed,activityTemplates:activityTemplateSeed,events:[mainRiverEvent]}
+const seed={activeEventId:'main-river-2026',profiles:profilesSeed,roleLibrary:DEFAULT_ROLES,accommodations:accommodationSeed,activityTemplates:activityTemplateSeed,events:[mainRiverEvent]}
 
 function normalizeState(candidate){
   const base=candidate&&Array.isArray(candidate.events)&&Array.isArray(candidate.profiles)?candidate:seed
   const accommodations=Array.isArray(base.accommodations)&&base.accommodations.length?base.accommodations:accommodationSeed
   const activityTemplates=ensureActivityTemplates(base.activityTemplates)
+  const profiles=(base.profiles||[]).map(normalizeProfile)
+  const profileRoles=profiles.flatMap(profile=>profile.roles||[])
+  const roleLibrary=[...new Set([...(Array.isArray(base.roleLibrary)?base.roleLibrary:[]),...DEFAULT_ROLES,...profileRoles])].filter(Boolean)
   const events=base.events.map(event=>{
     const isMainRiver=event.id==='main-river-2026'
     return {...event,attendance:Array.isArray(event.attendance)?event.attendance:[],mealSlots:ensureMealSlots(event),activeAccommodationIds:Array.isArray(event.activeAccommodationIds)?event.activeAccommodationIds:(isMainRiver?['denise-cottage','danielle-cottage','catherine-cottage']:['denise-cottage','danielle-cottage']),defaultBedAssignments:event.defaultBedAssignments||(isMainRiver?{denise:'denise-master-queen',steve:'denise-master-queen',danielle:'danielle-master-queen',kevin:'danielle-master-queen'}:{}),nightlyBedOverrides:event.nightlyBedOverrides||{},activityInstances:ensureEventActivities(event)}
   })
   const activeEventId=events.some(event=>event.id===base.activeEventId)?base.activeEventId:events[0]?.id
-  return {...base,accommodations,activityTemplates,events,activeEventId}
+  return {...base,profiles,roleLibrary,accommodations,activityTemplates,events,activeEventId}
 }
 
 function loadState(){
@@ -69,8 +133,23 @@ export function EventProvider({children}){
       const events=state.events.filter(event=>event.id!==id)
       persist({...state,events,activeEventId:state.activeEventId===id?events[0].id:state.activeEventId});return true
     },
-    addProfile:profile=>{const id=`profile-${Date.now()}`;persist({...state,profiles:[...state.profiles,{id,dietary:[],favouriteLunch:'',favouriteDinner:'',notes:'',role:'',...profile}]});return id},
-    updateProfile:(id,patch)=>persist({...state,profiles:state.profiles.map(profile=>profile.id===id?{...profile,...patch}:profile)}),
+    addProfile:profile=>{
+      const id=`profile-${Date.now()}`
+      const normalized=normalizeProfile({id,dietary:[],roles:[],favouriteLunch:'',favouriteDinner:'',notes:'',...profile})
+      persist({...state,profiles:[...state.profiles,normalized]})
+      return id
+    },
+    updateProfile:(id,patch)=>persist({...state,profiles:state.profiles.map(profile=>{
+      if(profile.id!==id)return profile
+      const updated={...profile,...patch}
+      if(Array.isArray(patch.roles))updated.role=patch.roles[0]||''
+      return normalizeProfile(updated)
+    })}),
+    addRole:role=>{
+      const clean=role.trim()
+      if(!clean)return
+      persist({...state,roleLibrary:[...new Set([...(state.roleLibrary||[]),clean])]})
+    },
     addAttendee:profileId=>{
       if(!activeEvent||activeEvent.attendance.some(row=>row.profileId===profileId))return
       replaceActiveEvent({...activeEvent,attendance:[...activeEvent.attendance,{profileId,arrival:`${activeEvent.startDate}T12:00`,departure:`${activeEvent.endDate}T10:00`,needsAccommodation:true,notes:''}]})
