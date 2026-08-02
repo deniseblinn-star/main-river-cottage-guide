@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo, useState } from 'react'
 import guestData from '../data/guests.json'
 import { attendeeStatus, ensureMealSlots, finalAttendeeIds } from '../utils/mealPlanner'
 import { accommodationSeed } from '../utils/accommodations'
+import { activityTemplateSeed, ensureActivityTemplates, ensureEventActivities } from '../utils/activities'
 
 const STORAGE_KEY='main-river-v3-event-engine'
 const dateTime=(date,time='12:00')=>`${date}T${time}`
@@ -19,18 +20,20 @@ const mainRiverAttendance=guestData.guests.map(guest=>({
 
 const mainRiverEvent={id:'main-river-2026',name:'Main River Cottage Week 2026',location:'Main River, New Brunswick',startDate:'2026-08-22',endDate:'2026-08-30',notes:'Annual Main River cottage gathering.',attendance:mainRiverAttendance,activeAccommodationIds:['denise-cottage','danielle-cottage','catherine-cottage'],defaultBedAssignments:{denise:'denise-master-queen',steve:'denise-master-queen',danielle:'danielle-master-queen',kevin:'danielle-master-queen'},nightlyBedOverrides:{}}
 mainRiverEvent.mealSlots=ensureMealSlots(mainRiverEvent)
+mainRiverEvent.activityInstances=ensureEventActivities(mainRiverEvent)
 
-const seed={activeEventId:'main-river-2026',profiles:profilesSeed,accommodations:accommodationSeed,events:[mainRiverEvent]}
+const seed={activeEventId:'main-river-2026',profiles:profilesSeed,accommodations:accommodationSeed,activityTemplates:activityTemplateSeed,events:[mainRiverEvent]}
 
 function normalizeState(candidate){
   const base=candidate&&Array.isArray(candidate.events)&&Array.isArray(candidate.profiles)?candidate:seed
   const accommodations=Array.isArray(base.accommodations)&&base.accommodations.length?base.accommodations:accommodationSeed
+  const activityTemplates=ensureActivityTemplates(base.activityTemplates)
   const events=base.events.map(event=>{
     const isMainRiver=event.id==='main-river-2026'
-    return {...event,attendance:Array.isArray(event.attendance)?event.attendance:[],mealSlots:ensureMealSlots(event),activeAccommodationIds:Array.isArray(event.activeAccommodationIds)?event.activeAccommodationIds:(isMainRiver?['denise-cottage','danielle-cottage','catherine-cottage']:['denise-cottage','danielle-cottage']),defaultBedAssignments:event.defaultBedAssignments||(isMainRiver?{denise:'denise-master-queen',steve:'denise-master-queen',danielle:'danielle-master-queen',kevin:'danielle-master-queen'}:{}),nightlyBedOverrides:event.nightlyBedOverrides||{}}
+    return {...event,attendance:Array.isArray(event.attendance)?event.attendance:[],mealSlots:ensureMealSlots(event),activeAccommodationIds:Array.isArray(event.activeAccommodationIds)?event.activeAccommodationIds:(isMainRiver?['denise-cottage','danielle-cottage','catherine-cottage']:['denise-cottage','danielle-cottage']),defaultBedAssignments:event.defaultBedAssignments||(isMainRiver?{denise:'denise-master-queen',steve:'denise-master-queen',danielle:'danielle-master-queen',kevin:'danielle-master-queen'}:{}),nightlyBedOverrides:event.nightlyBedOverrides||{},activityInstances:ensureEventActivities(event)}
   })
   const activeEventId=events.some(event=>event.id===base.activeEventId)?base.activeEventId:events[0]?.id
-  return {...base,accommodations,events,activeEventId}
+  return {...base,accommodations,activityTemplates,events,activeEventId}
 }
 
 function loadState(){
@@ -52,7 +55,7 @@ export function EventProvider({children}){
     createEvent:({name,location,startDate,endDate,copyAttendance})=>{
       const id=`event-${Date.now()}`
       const attendance=copyAttendance&&activeEvent?activeEvent.attendance.map(row=>({...row,arrival:`${startDate}T12:00`,departure:`${endDate}T10:00`})):[]
-      const event={id,name,location,startDate,endDate,notes:'',attendance,activeAccommodationIds:['denise-cottage','danielle-cottage'],defaultBedAssignments:{},nightlyBedOverrides:{}}
+      const event={id,name,location,startDate,endDate,notes:'',attendance,activeAccommodationIds:['denise-cottage','danielle-cottage'],defaultBedAssignments:{},nightlyBedOverrides:{},activityInstances:[]}
       event.mealSlots=ensureMealSlots(event)
       persist({...state,events:[...state.events,event],activeEventId:id});return id
     },
@@ -72,7 +75,7 @@ export function EventProvider({children}){
       if(!activeEvent||activeEvent.attendance.some(row=>row.profileId===profileId))return
       replaceActiveEvent({...activeEvent,attendance:[...activeEvent.attendance,{profileId,arrival:`${activeEvent.startDate}T12:00`,departure:`${activeEvent.endDate}T10:00`,needsAccommodation:true,notes:''}]})
     },
-    removeAttendee:profileId=>replaceActiveEvent({...activeEvent,attendance:activeEvent.attendance.filter(row=>row.profileId!==profileId),mealSlots:activeEvent.mealSlots.map(slot=>({...slot,manualIncludes:(slot.manualIncludes||[]).filter(id=>id!==profileId),manualExcludes:(slot.manualExcludes||[]).filter(id=>id!==profileId)}))}),
+    removeAttendee:profileId=>replaceActiveEvent({...activeEvent,attendance:activeEvent.attendance.filter(row=>row.profileId!==profileId),mealSlots:activeEvent.mealSlots.map(slot=>({...slot,manualIncludes:(slot.manualIncludes||[]).filter(id=>id!==profileId),manualExcludes:(slot.manualExcludes||[]).filter(id=>id!==profileId)})),activityInstances:(activeEvent.activityInstances||[]).map(item=>({...item,attendeeIds:(item.attendeeIds||[]).filter(id=>id!==profileId)}))}),
     updateAttendance:(profileId,patch)=>replaceActiveEvent({...activeEvent,attendance:activeEvent.attendance.map(row=>row.profileId===profileId?{...row,...patch}:row)}),
     updateMealSlot:(slotId,patch)=>replaceActiveEvent({...activeEvent,mealSlots:activeEvent.mealSlots.map(slot=>slot.id===slotId?{...slot,...patch}:slot)}),
     addRecipeToMeal:(slotId,recipeId)=>replaceActiveEvent({...activeEvent,mealSlots:activeEvent.mealSlots.map(slot=>slot.id===slotId&&!slot.recipeIds.includes(recipeId)?{...slot,planType:'recipes',recipeIds:[...slot.recipeIds,recipeId]}:slot)}),
@@ -116,6 +119,53 @@ export function EventProvider({children}){
       persist({...state,accommodations:[...(state.accommodations||[]),accommodation],events:state.events.map(event=>event.id===activeEvent.id?{...event,activeAccommodationIds:[...(event.activeAccommodationIds||[]),id]}:event)})
       return id
     },
+
+createActivityTemplate:template=>{
+  const id=`activity-template-${Date.now()}`
+  persist({...state,activityTemplates:[...state.activityTemplates,{id,name:'New Activity',category:'Other',description:'',typicalDurationMinutes:120,defaultHostProfileId:'',equipment:[],checklist:[],music:[],suggestedMealTypes:[],notes:'',...template}]})
+  return id
+},
+updateActivityTemplate:(id,patch)=>persist({...state,activityTemplates:state.activityTemplates.map(item=>item.id===id?{...item,...patch}:item)}),
+copyActivityTemplate:id=>{
+  const source=state.activityTemplates.find(item=>item.id===id)
+  if(!source)return null
+  const copy={...source,id:`activity-template-${Date.now()}`,name:`${source.name} Copy`}
+  persist({...state,activityTemplates:[...state.activityTemplates,copy]})
+  return copy.id
+},
+deleteActivityTemplate:id=>{
+  const used=state.events.some(event=>(event.activityInstances||[]).some(item=>item.templateId===id))
+  if(used)return false
+  persist({...state,activityTemplates:state.activityTemplates.filter(item=>item.id!==id)})
+  return true
+},
+scheduleActivity:(templateId,details={})=>{
+  if(!activeEvent)return null
+  const id=`${activeEvent.id}-activity-${Date.now()}`
+  const instance={id,templateId,date:details.date||activeEvent.startDate,startTime:details.startTime||'15:00',endTime:details.endTime||'17:00',location:'',hostProfileId:'',attendeeIds:activeEvent.attendance.map(row=>row.profileId),externalGuests:[],linkedMealSlotIds:[],checklistCompleted:{},notes:''}
+  replaceActiveEvent({...activeEvent,activityInstances:[...(activeEvent.activityInstances||[]),instance]})
+  return id
+},
+updateActivityInstance:(id,patch)=>replaceActiveEvent({...activeEvent,activityInstances:(activeEvent.activityInstances||[]).map(item=>item.id===id?{...item,...patch}:item)}),
+deleteActivityInstance:id=>replaceActiveEvent({...activeEvent,activityInstances:(activeEvent.activityInstances||[]).filter(item=>item.id!==id)}),
+toggleActivityAttendee:(instanceId,profileId)=>{
+  const instance=(activeEvent.activityInstances||[]).find(item=>item.id===instanceId)
+  if(!instance)return
+  const attendeeIds=(instance.attendeeIds||[]).includes(profileId)?instance.attendeeIds.filter(id=>id!==profileId):[...(instance.attendeeIds||[]),profileId]
+  replaceActiveEvent({...activeEvent,activityInstances:activeEvent.activityInstances.map(item=>item.id===instanceId?{...item,attendeeIds}:item)})
+},
+toggleActivityMealSlot:(instanceId,slotId)=>{
+  const instance=(activeEvent.activityInstances||[]).find(item=>item.id===instanceId)
+  if(!instance)return
+  const linkedMealSlotIds=(instance.linkedMealSlotIds||[]).includes(slotId)?instance.linkedMealSlotIds.filter(id=>id!==slotId):[...(instance.linkedMealSlotIds||[]),slotId]
+  replaceActiveEvent({...activeEvent,activityInstances:activeEvent.activityInstances.map(item=>item.id===instanceId?{...item,linkedMealSlotIds}:item)})
+},
+toggleActivityChecklist:(instanceId,index)=>{
+  const instance=(activeEvent.activityInstances||[]).find(item=>item.id===instanceId)
+  if(!instance)return
+  const checklistCompleted={...(instance.checklistCompleted||{}),[index]:!instance.checklistCompleted?.[index]}
+  replaceActiveEvent({...activeEvent,activityInstances:activeEvent.activityInstances.map(item=>item.id===instanceId?{...item,checklistCompleted}:item)})
+},
     resetPhase2:()=>persist(seed)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }),[state,activeEvent])
