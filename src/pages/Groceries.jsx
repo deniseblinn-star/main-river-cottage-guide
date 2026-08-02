@@ -50,7 +50,10 @@ export default function Groceries(){
  }
 
  const generated=getGeneratedGroceries().map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Recipe generated'}))
- const planned=[]
+ const generatedNames=new Set(generated.map(item=>item.name.toLowerCase()))
+ const planned=plannedData.items
+  .filter(item=>!generatedNames.has(item.name.toLowerCase())&&item.id!=='g1')
+  .map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Planned recipe item'}))
  const baseItems=useMemo(()=>baseData.categories.flatMap(category=>category.items.map(item=>{
   const edit=baseEdits[item.id]||{}
   return {...item,id:`base-${item.id}`,originalId:item.id,quantity:edit.quantity??item.quantity,unit:edit.unit??item.unit,notes:edit.notes??item.notes,category:normalizeCategory(category.name),sourceType:'base',sourceLabel:'Base Cottage List'}
