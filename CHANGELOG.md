@@ -11,3 +11,6 @@
 - Added reusable accommodations, sleeping spaces and nightly bed assignments.
 - Added seed cottages and trailers with capacities and host defaults.
 - Added product requirements and architecture documentation.
+
+## v3.1.0
+- Added the Phase 2 Overall Event and Profile/Attendance engine.

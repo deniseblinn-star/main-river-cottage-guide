@@ -1,0 +1,26 @@
+import { useState } from 'react'
+import { CalendarDays, Copy, MapPin, Plus, Save, Trash2, Users } from 'lucide-react'
+import { createEvent, deleteEvent, loadV3, saveV3, switchEvent } from '../utils/v3Store'
+
+const blank={name:'',location:'',start:'2026-12-24',end:'2026-12-26',copyAttendance:false}
+export default function OverallEvents(){
+ const [state,setState]=useState(loadV3)
+ const [showAdd,setShowAdd]=useState(false)
+ const [form,setForm]=useState(blank)
+ const update=(field,value)=>setState(current=>({...current,event:{...current.event,[field]:value}}))
+ const save=()=>{saveV3(state);setState(loadV3())}
+ const choose=id=>setState(switchEvent(id))
+ const add=()=>{if(!form.name||!form.start||!form.end)return;setState(createEvent(form));setShowAdd(false);setForm(blank)}
+ const remove=id=>{if(confirm('Delete this Overall Event? Profiles and recipes will remain.'))setState(deleteEvent(id))}
+ return <div className="space-y-5">
+  <div className="flex flex-wrap justify-between gap-3"><div><p className="section-title">Overall Events</p><h1 className="page-title">Gatherings & Trips</h1><p className="text-stone">Choose the active gathering. Planner, attendance, beds and groceries follow that selection.</p></div><button onClick={()=>setShowAdd(!showAdd)} className="btn-primary flex gap-2 items-center"><Plus size={18}/>New Overall Event</button></div>
+  {showAdd&&<section className="card"><h2 className="text-xl font-extrabold text-navy">Create Overall Event</h2><div className="grid sm:grid-cols-2 gap-3 mt-4"><label className="sm:col-span-2 text-xs text-stone">Name<input value={form.name} onChange={e=>setForm({...form,name:e.target.value})} className="block w-full mt-1 p-3 border rounded-xl" placeholder="Christmas at Danielle's 2026"/></label><label className="text-xs text-stone">Start<input type="date" value={form.start} onChange={e=>setForm({...form,start:e.target.value})} className="block w-full mt-1 p-3 border rounded-xl"/></label><label className="text-xs text-stone">End<input type="date" value={form.end} onChange={e=>setForm({...form,end:e.target.value})} className="block w-full mt-1 p-3 border rounded-xl"/></label><label className="sm:col-span-2 text-xs text-stone">Location<input value={form.location} onChange={e=>setForm({...form,location:e.target.value})} className="block w-full mt-1 p-3 border rounded-xl"/></label><label className="sm:col-span-2 bg-cream rounded-xl p-3 flex gap-3 items-center"><input type="checkbox" checked={form.copyAttendance} onChange={e=>setForm({...form,copyAttendance:e.target.checked})}/><span><b>Copy current attendee list</b><p className="text-xs text-stone">Arrival and departure reset to the new event dates.</p></span></label></div><button onClick={add} className="btn-primary mt-4">Create and open</button></section>}
+  <div className="grid lg:grid-cols-[320px_1fr] gap-4 items-start">
+   <div className="space-y-2">{state.events.map(event=><button key={event.id} onClick={()=>choose(event.id)} className={`card card-hover text-left w-full ${event.id===state.event.id?'ring-2 ring-forest':''}`}><div className="flex justify-between gap-2"><b className="text-navy">{event.name}</b>{event.id===state.event.id&&<span className="badge-forest">Active</span>}</div><p className="text-xs text-stone mt-1">{event.start} to {event.end}</p><p className="text-xs text-stone">{event.location||'No location'}</p></button>)}</div>
+   <section className="card"><div className="flex flex-wrap justify-between gap-3"><div><p className="section-title">Active Overall Event</p><h2 className="text-2xl font-extrabold text-navy">{state.event.name}</h2></div>{state.events.length>1&&<button onClick={()=>remove(state.event.id)} className="text-red-700 flex gap-2 items-center"><Trash2 size={17}/>Delete</button>}</div>
+    <div className="grid sm:grid-cols-2 gap-3 mt-5"><label className="sm:col-span-2 text-xs text-stone">Name<input value={state.event.name} onChange={e=>update('name',e.target.value)} className="block w-full mt-1 p-3 border rounded-xl"/></label><label className="text-xs text-stone">Start<input type="date" value={state.event.start} onChange={e=>update('start',e.target.value)} className="block w-full mt-1 p-3 border rounded-xl"/></label><label className="text-xs text-stone">End<input type="date" value={state.event.end} onChange={e=>update('end',e.target.value)} className="block w-full mt-1 p-3 border rounded-xl"/></label><label className="sm:col-span-2 text-xs text-stone">Location<input value={state.event.location||''} onChange={e=>update('location',e.target.value)} className="block w-full mt-1 p-3 border rounded-xl"/></label></div><button onClick={save} className="btn-primary mt-4 flex gap-2 items-center"><Save size={17}/>Save Overall Event</button>
+    <div className="grid sm:grid-cols-3 gap-3 mt-6"><div className="bg-cream rounded-2xl p-4"><Users className="text-forest"/><p className="section-title mt-2">Attendees</p><b className="text-2xl">{state.attendance.length}</b></div><div className="bg-cream rounded-2xl p-4"><CalendarDays className="text-forest"/><p className="section-title mt-2">Days</p><b className="text-2xl">{state.days.length}</b></div><div className="bg-cream rounded-2xl p-4"><MapPin className="text-forest"/><p className="section-title mt-2">Location</p><b>{state.event.location||'TBD'}</b></div></div>
+   </section>
+  </div>
+ </div>
+}

@@ -4,7 +4,7 @@ import Dashboard from './pages/Dashboard'
 import WeeklyPlanner from './pages/WeeklyPlanner'
 import PlannerV3 from './pages/PlannerV3'
 import PeopleV3 from './pages/PeopleV3'
-import Gathering from './pages/Gathering'
+import OverallEvents from './pages/OverallEvents'
 import Accommodations from './pages/Accommodations'
 import DailyPlanner from './pages/DailyPlanner'
 import Recipes from './pages/Recipes'
@@ -33,7 +33,7 @@ export default function App() {
     <Route path="/groceries" element={<Groceries />} />
     <Route path="/guests" element={<PeopleV3 />} />
     <Route path="/people" element={<PeopleV3 />} />
-    <Route path="/gathering" element={<Gathering />} />
+    <Route path="/gathering" element={<OverallEvents />} />
     <Route path="/accommodations" element={<Accommodations />} />
     <Route path="/smoker" element={<SmokerHQ />} />
     <Route path="/hosting" element={<Hosting />} />
