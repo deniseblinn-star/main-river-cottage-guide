@@ -1,9 +1,11 @@
+import recipeData from '../data/recipes.json'
+
 const STORAGE_KEY='main-river-grocery-library-v1'
 
 export const UNIT_GROUPS={
   weight:{g:1,kg:1000,oz:28.3495,lb:453.592},
   volume:{ml:1,l:1000,tsp:4.92892,tbsp:14.7868,cup:236.588},
-  count:{each:1,can:1,bottle:1,box:1,bag:1,package:1,pack:1,bunch:1,head:1,clove:1,rack:1,heart:1}
+  count:{each:1,can:1,bottle:1,box:1,bag:1,jar:1,package:1,pack:1,bunch:1,head:1,clove:1,rack:1,heart:1,stalk:1,dozen:12,stick:1,bulb:1}
 }
 
 export const UNIT_ALIASES={
@@ -21,6 +23,7 @@ export const UNIT_ALIASES={
   bottles:'bottle',bottle:'bottle',
   boxes:'box',box:'box',
   bags:'bag',bag:'bag',
+  jars:'jar',jar:'jar',
   packages:'package',package:'package',
   packs:'pack',pack:'pack',
   bunches:'bunch',bunch:'bunch',
@@ -28,10 +31,14 @@ export const UNIT_ALIASES={
   cloves:'clove',clove:'clove',
   racks:'rack',rack:'rack',
   hearts:'heart',heart:'heart',
+  stalks:'stalk',stalk:'stalk',
+  dozen:'dozen',dozens:'dozen',
+  sticks:'stick',stick:'stick',
+  bulbs:'bulb',bulb:'bulb',
   amount:'amount','to taste':'to taste',dash:'dash'
 }
 
-export const GROCERY_LIBRARY_SEED=[
+const BASE_GROCERY_LIBRARY_SEED=[
   {id:'apple-cider-vinegar',name:'Apple Cider Vinegar',aliases:['ACV','apple cider vinegar','apple cider vinegar + juice for spritz'],category:'Pantry',subcategory:'Oils & Vinegars',defaultPurchaseUnit:'bottle',packageSize:946,packageUnit:'ml',allowedUnits:['tsp','tbsp','cup','ml','l','bottle']},
   {id:'olive-oil',name:'Olive Oil',aliases:['extra virgin olive oil','EVOO'],category:'Pantry',subcategory:'Oils & Vinegars',defaultPurchaseUnit:'bottle',packageSize:1,packageUnit:'l',allowedUnits:['tsp','tbsp','cup','ml','l','bottle']},
   {id:'red-wine-vinegar',name:'Red Wine Vinegar',aliases:[],category:'Pantry',subcategory:'Oils & Vinegars',defaultPurchaseUnit:'bottle',packageSize:500,packageUnit:'ml',allowedUnits:['tsp','tbsp','cup','ml','l','bottle']},
@@ -45,7 +52,7 @@ export const GROCERY_LIBRARY_SEED=[
   {id:'butter',name:'Butter',aliases:['unsalted butter','salted butter'],category:'Dairy',subcategory:'Butter',defaultPurchaseUnit:'package',packageSize:454,packageUnit:'g',allowedUnits:['g','kg','oz','lb','tbsp','cup','package']},
   {id:'eggs',name:'Eggs',aliases:['egg','large eggs','large egg'],category:'Dairy',subcategory:'Eggs',defaultPurchaseUnit:'package',packageSize:12,packageUnit:'each',allowedUnits:['each','package']},
   {id:'parmesan-cheese',name:'Parmesan Cheese',aliases:['parmesan','parmigiano reggiano','parmigiano-reggiano'],category:'Dairy',subcategory:'Cheese',defaultPurchaseUnit:'package',packageSize:200,packageUnit:'g',allowedUnits:['g','kg','oz','lb','cup','package']},
-  {id:'sirloin',name:'Sirloin',aliases:['beef sirloin','sirloin steak'],category:'Meat',subcategory:'Beef',defaultPurchaseUnit:'kg',packageSize:1,packageUnit:'kg',allowedUnits:['g','kg','oz','lb']},
+  {id:'beef-sirloin',name:'Beef Sirloin',aliases:['sirloin','sirloin steak','top sirloin'],category:'Meat',subcategory:'Beef',defaultPurchaseUnit:'kg',packageSize:1,packageUnit:'kg',allowedUnits:['g','kg','oz','lb']},
   {id:'chicken-breast',name:'Chicken Breast',aliases:['chicken breasts'],category:'Meat',subcategory:'Chicken',defaultPurchaseUnit:'kg',packageSize:1,packageUnit:'kg',allowedUnits:['g','kg','oz','lb','each']},
   {id:'cereal',name:'Cereal',aliases:['breakfast cereal'],category:'Pantry',subcategory:'Breakfast',defaultPurchaseUnit:'box',packageSize:1,packageUnit:'box',allowedUnits:['box','each']},
   {id:'crackers',name:'Crackers',aliases:['cracker'],category:'Pantry',subcategory:'Snacks & Crackers',defaultPurchaseUnit:'box',packageSize:1,packageUnit:'box',allowedUnits:['box','package']},
@@ -53,6 +60,46 @@ export const GROCERY_LIBRARY_SEED=[
   {id:'mustard',name:'Mustard',aliases:['yellow mustard'],category:'Pantry',subcategory:'Condiments',defaultPurchaseUnit:'bottle',packageSize:1,packageUnit:'bottle',allowedUnits:['tsp','tbsp','cup','ml','bottle']},
   {id:'mayonnaise',name:'Mayonnaise',aliases:['mayo'],category:'Pantry',subcategory:'Condiments',defaultPurchaseUnit:'jar',packageSize:890,packageUnit:'ml',allowedUnits:['tsp','tbsp','cup','ml','l']}
 ]
+
+function inferredCategory(name){
+ const text=name.toLowerCase()
+ if(/beef|brisket|pork|rib|chicken|bacon|salami|prosciutto|soppressata|meat/.test(text))return ['Meat','Meat']
+ if(/lobster|mussel|shrimp|seafood/.test(text))return ['Seafood','Seafood']
+ if(/lettuce|cabbage|broccoli|greens|avocado|lime|lemon|onion|garlic|dill|thyme|rosemary|parsley|cilantro|jalapeno|tomato|pepper|potato|cucumber|carrot|celery|grape|berr|strawber/.test(text))return ['Produce','Produce']
+ if(/milk|butter|cream|cheese|yogurt|egg/.test(text))return ['Dairy','Dairy']
+ if(/bread|bun|roll|biscuit|tortilla|crouton/.test(text))return ['Bakery','Bread & Wraps']
+ if(/wine|juice|ice/.test(text))return ['Drinks','Beverages']
+ if(/cracker|chip|popcorn/.test(text))return ['Snacks','Snacks']
+ if(/paper/.test(text))return ['Household','Cooking Supplies']
+ return ['Pantry','Other']
+}
+
+function inferredPackage(name,unit){
+ const text=name.toLowerCase(),normalized=normalizeUnit(unit)
+ if(/beef|brisket|pork|rib|chicken|bacon|salami|prosciutto|soppressata|lobster meat|mussel|shrimp|italian meats|cheese$|berries|strawberries|grapes/.test(text))return {defaultPurchaseUnit:'kg',packageSize:1,packageUnit:'kg',allowedUnits:['g','kg','oz','lb']}
+ if(normalized==='bunch')return {defaultPurchaseUnit:'bunch',packageSize:1,packageUnit:'bunch',allowedUnits:['bunch']}
+ if(normalized==='clove'||normalized==='head'||normalized==='bulb')return {defaultPurchaseUnit:'bulb',packageSize:10,packageUnit:'clove',allowedUnits:['clove','head','bulb']}
+ if(['each','head','heart','stalk','rack'].includes(normalized))return {defaultPurchaseUnit:'each',packageSize:1,packageUnit:normalized,allowedUnits:[normalized,'each']}
+ if(['can','jar','bottle','box','bag','package','pack'].includes(normalized))return {defaultPurchaseUnit:normalized,packageSize:1,packageUnit:normalized,allowedUnits:[normalized]}
+ if(/oil|vinegar|juice|sauce|dressing|mayonnaise|mustard|wine|broth|cream|milk|yogurt|honey|extract|horseradish|salsa|preserves/.test(text))return {defaultPurchaseUnit:'bottle',packageSize:500,packageUnit:'ml',allowedUnits:['tsp','tbsp','cup','ml','l','bottle','jar']}
+ if(['g','kg','oz','lb'].includes(normalized))return {defaultPurchaseUnit:'package',packageSize:454,packageUnit:'g',allowedUnits:['g','kg','oz','lb','package']}
+ return {defaultPurchaseUnit:'package',packageSize:1,packageUnit:'package',allowedUnits:[...new Set([normalized,'tsp','tbsp','cup','g'])]}
+}
+
+function recipeLibrarySeeds(){
+ const seen=new Set(BASE_GROCERY_LIBRARY_SEED.map(item=>item.id)),items=[]
+ for(const recipe of recipeData.recipes)for(const ingredient of recipe.ingredients||[]){
+  if(typeof ingredient==='string')continue
+  const id=ingredient.groceryItemId||slug(ingredient.name)
+  if(!id||seen.has(id))continue
+  seen.add(id)
+  const [category,subcategory]=inferredCategory(ingredient.name)
+  items.push({id,name:ingredient.name,aliases:[],category,subcategory,...inferredPackage(ingredient.name,ingredient.unit)})
+ }
+ return items
+}
+
+export const GROCERY_LIBRARY_SEED=[...BASE_GROCERY_LIBRARY_SEED,...recipeLibrarySeeds()]
 
 function slug(value){
   return String(value||'').toLowerCase().trim().replace(/&/g,'and').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')

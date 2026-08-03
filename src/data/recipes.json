@@ -15,13 +15,70 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "5 kg pork shoulder",
-        "Kosher salt",
-        "Black pepper",
-        "Paprika",
-        "Brown sugar",
-        "Garlic powder",
-        "Apple cider vinegar + juice for spritz"
+        {
+          "name": "Pork Shoulder",
+          "quantity": 5,
+          "unit": "kg",
+          "preparation": "boneless",
+          "shopping": true,
+          "groceryItemId": "pork-shoulder"
+        },
+        {
+          "name": "Salt",
+          "quantity": 5,
+          "unit": "tbsp",
+          "preparation": "kosher",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 3,
+          "unit": "tbsp",
+          "preparation": "coarsely ground",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        },
+        {
+          "name": "Paprika",
+          "quantity": 3,
+          "unit": "tbsp",
+          "preparation": "sweet",
+          "shopping": true,
+          "groceryItemId": "paprika"
+        },
+        {
+          "name": "Brown Sugar",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "packed",
+          "shopping": true,
+          "groceryItemId": "brown-sugar"
+        },
+        {
+          "name": "Garlic Powder",
+          "quantity": 2,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "garlic-powder"
+        },
+        {
+          "name": "Apple Cider Vinegar",
+          "quantity": 2,
+          "unit": "cup",
+          "preparation": "for spritz",
+          "shopping": true,
+          "groceryItemId": "apple-cider-vinegar"
+        },
+        {
+          "name": "Apple Juice",
+          "quantity": 2,
+          "unit": "cup",
+          "preparation": "for spritz",
+          "shopping": true,
+          "groceryItemId": "apple-juice"
+        }
       ],
       "instructions": [
         "--- Prep",
@@ -59,12 +116,54 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "7 kg brisket",
-        "Kosher salt",
-        "Coarse pepper",
-        "Garlic powder",
-        "Beef tallow",
-        "Pink butcher paper"
+        {
+          "name": "Beef Brisket",
+          "quantity": 7,
+          "unit": "kg",
+          "preparation": "whole packer, trimmed",
+          "shopping": true,
+          "groceryItemId": "beef-brisket"
+        },
+        {
+          "name": "Salt",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "kosher",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "coarsely ground",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        },
+        {
+          "name": "Garlic Powder",
+          "quantity": 3,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "garlic-powder"
+        },
+        {
+          "name": "Beef Tallow",
+          "quantity": 250,
+          "unit": "g",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "beef-tallow"
+        },
+        {
+          "name": "Butcher Paper",
+          "quantity": 1,
+          "unit": "package",
+          "preparation": "pink, unwaxed",
+          "shopping": true,
+          "groceryItemId": "butcher-paper"
+        }
       ],
       "instructions": [
         "--- Prep",
@@ -102,12 +201,54 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "6 racks pork spare ribs",
-        "Dry rub",
-        "Butter",
-        "Honey",
-        "Apple juice",
-        "GF BBQ sauce"
+        {
+          "name": "Pork Ribs",
+          "quantity": 6,
+          "unit": "rack",
+          "preparation": "spare ribs",
+          "shopping": true,
+          "groceryItemId": "pork-ribs"
+        },
+        {
+          "name": "BBQ Dry Rub",
+          "quantity": 1.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "bbq-dry-rub"
+        },
+        {
+          "name": "Butter",
+          "quantity": 340,
+          "unit": "g",
+          "preparation": "cut into pats",
+          "shopping": true,
+          "groceryItemId": "butter"
+        },
+        {
+          "name": "Honey",
+          "quantity": 1,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "honey"
+        },
+        {
+          "name": "Apple Juice",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "apple-juice"
+        },
+        {
+          "name": "BBQ Sauce",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "gluten-free",
+          "shopping": true,
+          "groceryItemId": "bbq-sauce"
+        }
       ],
       "instructions": [
         "--- 3 hours",
@@ -134,12 +275,62 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "3 kg boneless chicken thighs",
-        "Lemons",
-        "Garlic",
-        "Oregano",
-        "Olive oil",
-        "Salt and pepper"
+        {
+          "name": "Chicken Thighs",
+          "quantity": 3,
+          "unit": "kg",
+          "preparation": "boneless and skinless; cubed",
+          "shopping": true,
+          "groceryItemId": "chicken-thighs"
+        },
+        {
+          "name": "Olive Oil",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "olive-oil"
+        },
+        {
+          "name": "Lemon Juice",
+          "quantity": 1,
+          "unit": "cup",
+          "preparation": "freshly squeezed",
+          "shopping": true,
+          "groceryItemId": "lemon-juice"
+        },
+        {
+          "name": "Garlic",
+          "quantity": 12,
+          "unit": "clove",
+          "preparation": "minced",
+          "shopping": true,
+          "groceryItemId": "garlic"
+        },
+        {
+          "name": "Oregano",
+          "quantity": 0.33,
+          "unit": "cup",
+          "preparation": "dried",
+          "shopping": true,
+          "groceryItemId": "oregano"
+        },
+        {
+          "name": "Salt",
+          "quantity": 4,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        }
       ],
       "instructions": [
         "Marinate overnight.",
@@ -167,12 +358,94 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "2.5 kg sirloin",
-        "Red wine",
-        "Lemon",
-        "Oregano",
-        "Rosemary",
-        "Olive oil"
+        {
+          "name": "Beef Sirloin",
+          "quantity": 2.5,
+          "unit": "kg",
+          "preparation": "top sirloin; cubed",
+          "shopping": true,
+          "groceryItemId": "beef-sirloin"
+        },
+        {
+          "name": "Bell Pepper",
+          "quantity": 5,
+          "unit": "each",
+          "preparation": "mixed colours; cubed",
+          "shopping": true,
+          "groceryItemId": "bell-pepper"
+        },
+        {
+          "name": "Red Onion",
+          "quantity": 3,
+          "unit": "each",
+          "preparation": "cubed",
+          "shopping": true,
+          "groceryItemId": "red-onion"
+        },
+        {
+          "name": "Olive Oil",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "olive-oil"
+        },
+        {
+          "name": "Lemon Juice",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "freshly squeezed",
+          "shopping": true,
+          "groceryItemId": "lemon-juice"
+        },
+        {
+          "name": "Red Wine Vinegar",
+          "quantity": 0.33,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "red-wine-vinegar"
+        },
+        {
+          "name": "Garlic",
+          "quantity": 8,
+          "unit": "clove",
+          "preparation": "minced",
+          "shopping": true,
+          "groceryItemId": "garlic"
+        },
+        {
+          "name": "Oregano",
+          "quantity": 3,
+          "unit": "tbsp",
+          "preparation": "dried",
+          "shopping": true,
+          "groceryItemId": "oregano"
+        },
+        {
+          "name": "Paprika",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "sweet",
+          "shopping": true,
+          "groceryItemId": "paprika"
+        },
+        {
+          "name": "Salt",
+          "quantity": 3,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        }
       ],
       "instructions": [
         "Marinate overnight.",
@@ -200,12 +473,62 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "Full-fat Greek yogurt",
-        "English cucumber",
-        "Garlic",
-        "Fresh dill",
-        "Lemon",
-        "Salt"
+        {
+          "name": "Greek Yogurt",
+          "quantity": 1.5,
+          "unit": "kg",
+          "preparation": "full-fat",
+          "shopping": true,
+          "groceryItemId": "greek-yogurt"
+        },
+        {
+          "name": "Cucumber",
+          "quantity": 3,
+          "unit": "each",
+          "preparation": "English; grated and drained",
+          "shopping": true,
+          "groceryItemId": "cucumber"
+        },
+        {
+          "name": "Garlic",
+          "quantity": 5,
+          "unit": "clove",
+          "preparation": "minced",
+          "shopping": true,
+          "groceryItemId": "garlic"
+        },
+        {
+          "name": "Dill",
+          "quantity": 1,
+          "unit": "bunch",
+          "preparation": "chopped",
+          "shopping": true,
+          "groceryItemId": "dill"
+        },
+        {
+          "name": "Lemon Juice",
+          "quantity": 0.33,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "lemon-juice"
+        },
+        {
+          "name": "Olive Oil",
+          "quantity": 0.25,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "olive-oil"
+        },
+        {
+          "name": "Salt",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        }
       ],
       "instructions": [
         "Grate and squeeze cucumber dry.",
@@ -229,15 +552,86 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "Tomatoes",
-        "Cucumber",
-        "Red onion",
-        "Kalamata olives",
-        "Feta",
-        "Green pepper",
-        "Olive oil",
-        "Red wine vinegar",
-        "Oregano"
+        {
+          "name": "Tomato",
+          "quantity": 12,
+          "unit": "each",
+          "preparation": "cut into wedges",
+          "shopping": true,
+          "groceryItemId": "tomato"
+        },
+        {
+          "name": "Cucumber",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "English; sliced",
+          "shopping": true,
+          "groceryItemId": "cucumber"
+        },
+        {
+          "name": "Red Onion",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "thinly sliced",
+          "shopping": true,
+          "groceryItemId": "red-onion"
+        },
+        {
+          "name": "Kalamata Olives",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "drained",
+          "shopping": true,
+          "groceryItemId": "kalamata-olives"
+        },
+        {
+          "name": "Feta Cheese",
+          "quantity": 1.2,
+          "unit": "kg",
+          "preparation": "cut into slabs",
+          "shopping": true,
+          "groceryItemId": "feta-cheese"
+        },
+        {
+          "name": "Bell Pepper",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "green; sliced",
+          "shopping": true,
+          "groceryItemId": "bell-pepper"
+        },
+        {
+          "name": "Olive Oil",
+          "quantity": 1,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "olive-oil"
+        },
+        {
+          "name": "Red Wine Vinegar",
+          "quantity": 0.33,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "red-wine-vinegar"
+        },
+        {
+          "name": "Oregano",
+          "quantity": 2,
+          "unit": "tbsp",
+          "preparation": "dried",
+          "shopping": true,
+          "groceryItemId": "oregano"
+        },
+        {
+          "name": "Salt",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        }
       ],
       "instructions": [
         "Chop vegetables.",
@@ -260,10 +654,38 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "4 kg Yukon Gold potatoes",
-        "Olive oil",
-        "Salt",
-        "Pepper"
+        {
+          "name": "Potatoes",
+          "quantity": 4,
+          "unit": "kg",
+          "preparation": "Yukon Gold; cut into chunks",
+          "shopping": true,
+          "groceryItemId": "potatoes"
+        },
+        {
+          "name": "Olive Oil",
+          "quantity": 1,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "olive-oil"
+        },
+        {
+          "name": "Salt",
+          "quantity": 1.5,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        }
       ],
       "instructions": [
         "Parboil potatoes.",
@@ -288,19 +710,110 @@
       "glutenFree": false,
       "gfOption": "The dressing is gluten-free when made with French's Worcestershire Sauce. Prepare Steve and Adele's salad first with a separate clean bowl, tongs and GF croutons.",
       "ingredients": [
-        "8 large romaine hearts, washed, thoroughly dried and chopped",
-        "3 small cloves garlic, minced",
-        "1½ teaspoons anchovy paste",
-        "3 tablespoons freshly squeezed lemon juice",
-        "1½ teaspoons Dijon mustard (Maille preferred)",
-        "1½ teaspoons French's Worcestershire Sauce (gluten-free)",
-        "1½ cups best-quality mayonnaise (Hellmann's or Duke's)",
-        "¾ cup freshly grated Parmigiano-Reggiano for the dressing",
-        "2¼ cups shaved or grated Parmigiano-Reggiano for serving",
-        "¼ teaspoon salt, then adjust to taste",
-        "Generous ¼ teaspoon freshly ground black pepper",
-        "Regular croutons for the main salad",
-        "Gluten-free croutons for Steve and Adele"
+        {
+          "name": "Romaine Lettuce",
+          "quantity": 8,
+          "unit": "heart",
+          "preparation": "washed, dried and chopped",
+          "shopping": true,
+          "groceryItemId": "romaine-lettuce"
+        },
+        {
+          "name": "Garlic",
+          "quantity": 3,
+          "unit": "clove",
+          "preparation": "minced",
+          "shopping": true,
+          "groceryItemId": "garlic"
+        },
+        {
+          "name": "Anchovy Paste",
+          "quantity": 1.5,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "anchovy-paste"
+        },
+        {
+          "name": "Lemon Juice",
+          "quantity": 3,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "lemon-juice"
+        },
+        {
+          "name": "Dijon Mustard",
+          "quantity": 1.5,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "dijon-mustard"
+        },
+        {
+          "name": "Worcestershire Sauce",
+          "quantity": 1.5,
+          "unit": "tsp",
+          "preparation": "gluten-free",
+          "shopping": true,
+          "groceryItemId": "worcestershire-sauce"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 1.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "mayonnaise"
+        },
+        {
+          "name": "Parmesan Cheese",
+          "quantity": 0.75,
+          "unit": "cup",
+          "preparation": "finely grated for dressing",
+          "shopping": true,
+          "groceryItemId": "parmesan-cheese"
+        },
+        {
+          "name": "Parmesan Cheese",
+          "quantity": 2.25,
+          "unit": "cup",
+          "preparation": "shaved for serving",
+          "shopping": true,
+          "groceryItemId": "parmesan-cheese"
+        },
+        {
+          "name": "Salt",
+          "quantity": 0.25,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 0.25,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        },
+        {
+          "name": "Croutons",
+          "quantity": 3,
+          "unit": "package",
+          "preparation": "regular",
+          "shopping": true,
+          "groceryItemId": "croutons"
+        },
+        {
+          "name": "Gluten-Free Croutons",
+          "quantity": 1,
+          "unit": "package",
+          "preparation": "for Steve and Adele",
+          "shopping": true,
+          "groceryItemId": "gluten-free-croutons"
+        }
       ],
       "instructions": [
         "--- Make the dressing 1–2 days ahead",
@@ -334,13 +847,78 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "Green cabbage",
-        "Red cabbage",
-        "Carrots",
-        "Mayonnaise",
-        "Apple cider vinegar",
-        "Sugar",
-        "Celery seed"
+        {
+          "name": "Green Cabbage",
+          "quantity": 2,
+          "unit": "head",
+          "preparation": "shredded",
+          "shopping": true,
+          "groceryItemId": "green-cabbage"
+        },
+        {
+          "name": "Red Cabbage",
+          "quantity": 1,
+          "unit": "head",
+          "preparation": "shredded",
+          "shopping": true,
+          "groceryItemId": "red-cabbage"
+        },
+        {
+          "name": "Carrots",
+          "quantity": 8,
+          "unit": "each",
+          "preparation": "shredded",
+          "shopping": true,
+          "groceryItemId": "carrots"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 2.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "mayonnaise"
+        },
+        {
+          "name": "Apple Cider Vinegar",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "apple-cider-vinegar"
+        },
+        {
+          "name": "Sugar",
+          "quantity": 0.33,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sugar"
+        },
+        {
+          "name": "Celery Seed",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "celery-seed"
+        },
+        {
+          "name": "Salt",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 1,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        }
       ],
       "instructions": [
         "Shred vegetables.",
@@ -364,15 +942,94 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "5 kg yellow potatoes",
-        "8 eggs",
-        "Celery",
-        "Red onion",
-        "Dill pickles",
-        "Mayonnaise",
-        "Yellow mustard",
-        "Pickle juice",
-        "Paprika"
+        {
+          "name": "Potatoes",
+          "quantity": 5,
+          "unit": "kg",
+          "preparation": "yellow; cubed",
+          "shopping": true,
+          "groceryItemId": "potatoes"
+        },
+        {
+          "name": "Eggs",
+          "quantity": 8,
+          "unit": "each",
+          "preparation": "hard-boiled",
+          "shopping": true,
+          "groceryItemId": "eggs"
+        },
+        {
+          "name": "Celery",
+          "quantity": 6,
+          "unit": "stalk",
+          "preparation": "diced",
+          "shopping": true,
+          "groceryItemId": "celery"
+        },
+        {
+          "name": "Red Onion",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "diced",
+          "shopping": true,
+          "groceryItemId": "red-onion"
+        },
+        {
+          "name": "Dill Pickles",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "diced",
+          "shopping": true,
+          "groceryItemId": "dill-pickles"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "mayonnaise"
+        },
+        {
+          "name": "Mustard",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "yellow",
+          "shopping": true,
+          "groceryItemId": "mustard"
+        },
+        {
+          "name": "Pickle Juice",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "pickle-juice"
+        },
+        {
+          "name": "Paprika",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "paprika"
+        },
+        {
+          "name": "Salt",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        }
       ],
       "instructions": [
         "Boil potatoes and eggs.",
@@ -396,16 +1053,102 @@
       "glutenFree": false,
       "gfOption": "Use GF pasta, GF flour and GF breadcrumbs.",
       "ingredients": [
-        "Pasta",
-        "Butter",
-        "Flour",
-        "Milk",
-        "Cheddar",
-        "Gruyère",
-        "Fontina",
-        "Parmesan",
-        "Dijon",
-        "Panko"
+        {
+          "name": "Pasta",
+          "quantity": 2,
+          "unit": "kg",
+          "preparation": "elbow macaroni",
+          "shopping": true,
+          "groceryItemId": "pasta"
+        },
+        {
+          "name": "Butter",
+          "quantity": 340,
+          "unit": "g",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "butter"
+        },
+        {
+          "name": "Flour",
+          "quantity": 1.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "flour"
+        },
+        {
+          "name": "Milk",
+          "quantity": 3,
+          "unit": "L",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "milk"
+        },
+        {
+          "name": "Cheddar Cheese",
+          "quantity": 1.2,
+          "unit": "kg",
+          "preparation": "shredded",
+          "shopping": true,
+          "groceryItemId": "cheddar-cheese"
+        },
+        {
+          "name": "Gruyere Cheese",
+          "quantity": 600,
+          "unit": "g",
+          "preparation": "shredded",
+          "shopping": true,
+          "groceryItemId": "gruyere-cheese"
+        },
+        {
+          "name": "Fontina Cheese",
+          "quantity": 500,
+          "unit": "g",
+          "preparation": "shredded",
+          "shopping": true,
+          "groceryItemId": "fontina-cheese"
+        },
+        {
+          "name": "Parmesan Cheese",
+          "quantity": 300,
+          "unit": "g",
+          "preparation": "grated",
+          "shopping": true,
+          "groceryItemId": "parmesan-cheese"
+        },
+        {
+          "name": "Dijon Mustard",
+          "quantity": 3,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "dijon-mustard"
+        },
+        {
+          "name": "Panko Breadcrumbs",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "panko-breadcrumbs"
+        },
+        {
+          "name": "Salt",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        }
       ],
       "instructions": [
         "Cook pasta.",
@@ -428,10 +1171,38 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "5 kg bone-in chicken",
-        "Dry rub",
-        "Olive oil",
-        "GF BBQ sauce"
+        {
+          "name": "Chicken Pieces",
+          "quantity": 5,
+          "unit": "kg",
+          "preparation": "bone-in thighs and drumsticks",
+          "shopping": true,
+          "groceryItemId": "chicken-pieces"
+        },
+        {
+          "name": "BBQ Dry Rub",
+          "quantity": 1.25,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "bbq-dry-rub"
+        },
+        {
+          "name": "Olive Oil",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "olive-oil"
+        },
+        {
+          "name": "BBQ Sauce",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "gluten-free",
+          "shopping": true,
+          "groceryItemId": "bbq-sauce"
+        }
       ],
       "instructions": [
         "Season chicken.",
@@ -463,13 +1234,62 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "17 beef tenderloin filets",
-        "Salt",
-        "Pepper",
-        "Butter",
-        "Garlic",
-        "Thyme",
-        "Rosemary"
+        {
+          "name": "Beef Tenderloin",
+          "quantity": 17,
+          "unit": "each",
+          "preparation": "170–225 g centre-cut filets",
+          "shopping": true,
+          "groceryItemId": "beef-tenderloin"
+        },
+        {
+          "name": "Salt",
+          "quantity": 5,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 3,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        },
+        {
+          "name": "Butter",
+          "quantity": 340,
+          "unit": "g",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "butter"
+        },
+        {
+          "name": "Garlic",
+          "quantity": 12,
+          "unit": "clove",
+          "preparation": "crushed",
+          "shopping": true,
+          "groceryItemId": "garlic"
+        },
+        {
+          "name": "Thyme",
+          "quantity": 2,
+          "unit": "bunch",
+          "preparation": "fresh",
+          "shopping": true,
+          "groceryItemId": "thyme"
+        },
+        {
+          "name": "Rosemary",
+          "quantity": 1,
+          "unit": "bunch",
+          "preparation": "fresh",
+          "shopping": true,
+          "groceryItemId": "rosemary"
+        }
       ],
       "instructions": [
         "Season and bag filets.",
@@ -498,10 +1318,38 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "10 live Maritime lobsters (confirm final count/size)",
-        "Salt water",
-        "Drawn butter",
-        "Lemons"
+        {
+          "name": "Lobster",
+          "quantity": 10,
+          "unit": "each",
+          "preparation": "live Maritime lobster; 680–900 g each",
+          "shopping": true,
+          "groceryItemId": "lobster"
+        },
+        {
+          "name": "Salt",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "for steaming water",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Butter",
+          "quantity": 680,
+          "unit": "g",
+          "preparation": "melted for serving",
+          "shopping": true,
+          "groceryItemId": "butter"
+        },
+        {
+          "name": "Lemon",
+          "quantity": 6,
+          "unit": "each",
+          "preparation": "cut into wedges",
+          "shopping": true,
+          "groceryItemId": "lemon"
+        }
       ],
       "instructions": [
         "Bring salted water to a strong boil/steam.",
@@ -524,12 +1372,54 @@
       "glutenFree": false,
       "gfOption": "Bake a separate batch with GF biscuit mix.",
       "ingredients": [
-        "3 kg strawberries",
-        "Sugar",
-        "Buttermilk biscuits",
-        "Heavy cream",
-        "Vanilla",
-        "Icing sugar"
+        {
+          "name": "Strawberries",
+          "quantity": 3,
+          "unit": "kg",
+          "preparation": "hulled and sliced",
+          "shopping": true,
+          "groceryItemId": "strawberries"
+        },
+        {
+          "name": "Sugar",
+          "quantity": 1.25,
+          "unit": "cup",
+          "preparation": "divided",
+          "shopping": true,
+          "groceryItemId": "sugar"
+        },
+        {
+          "name": "Buttermilk Biscuits",
+          "quantity": 18,
+          "unit": "each",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "buttermilk-biscuits"
+        },
+        {
+          "name": "Cream",
+          "quantity": 1.5,
+          "unit": "L",
+          "preparation": "35% whipping cream",
+          "shopping": true,
+          "groceryItemId": "cream"
+        },
+        {
+          "name": "Vanilla Extract",
+          "quantity": 2,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "vanilla-extract"
+        },
+        {
+          "name": "Icing Sugar",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "icing-sugar"
+        }
       ],
       "instructions": [
         "Macerate strawberries.",
@@ -553,14 +1443,70 @@
       "glutenFree": false,
       "gfOption": "Use a GF 1:1 flour blend.",
       "ingredients": [
-        "300 g dark chocolate",
-        "Butter",
-        "Sugar",
-        "4 eggs",
-        "Vanilla",
-        "Flour",
-        "Cocoa",
-        "Flaky salt"
+        {
+          "name": "Dark Chocolate",
+          "quantity": 300,
+          "unit": "g",
+          "preparation": "chopped",
+          "shopping": true,
+          "groceryItemId": "dark-chocolate"
+        },
+        {
+          "name": "Butter",
+          "quantity": 340,
+          "unit": "g",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "butter"
+        },
+        {
+          "name": "Sugar",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sugar"
+        },
+        {
+          "name": "Eggs",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "eggs"
+        },
+        {
+          "name": "Vanilla Extract",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "vanilla-extract"
+        },
+        {
+          "name": "Flour",
+          "quantity": 1.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "flour"
+        },
+        {
+          "name": "Cocoa Powder",
+          "quantity": 0.75,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "cocoa-powder"
+        },
+        {
+          "name": "Salt",
+          "quantity": 1,
+          "unit": "tsp",
+          "preparation": "flaky",
+          "shopping": true,
+          "groceryItemId": "salt"
+        }
       ],
       "instructions": [
         "Melt chocolate and butter.",
@@ -583,13 +1529,62 @@
       "servings": 12,
       "glutenFree": true,
       "ingredients": [
-        "10 avocados",
-        "Limes",
-        "Red onion",
-        "Jalapeño",
-        "Cilantro",
-        "Roma tomatoes",
-        "Salt"
+        {
+          "name": "Avocado",
+          "quantity": 10,
+          "unit": "each",
+          "preparation": "ripe",
+          "shopping": true,
+          "groceryItemId": "avocado"
+        },
+        {
+          "name": "Lime",
+          "quantity": 5,
+          "unit": "each",
+          "preparation": "juiced",
+          "shopping": true,
+          "groceryItemId": "lime"
+        },
+        {
+          "name": "Red Onion",
+          "quantity": 1,
+          "unit": "each",
+          "preparation": "finely diced",
+          "shopping": true,
+          "groceryItemId": "red-onion"
+        },
+        {
+          "name": "Jalapeno",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "seeded and minced",
+          "shopping": true,
+          "groceryItemId": "jalapeno"
+        },
+        {
+          "name": "Cilantro",
+          "quantity": 1,
+          "unit": "bunch",
+          "preparation": "chopped",
+          "shopping": true,
+          "groceryItemId": "cilantro"
+        },
+        {
+          "name": "Tomato",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "Roma; seeded and diced",
+          "shopping": true,
+          "groceryItemId": "tomato"
+        },
+        {
+          "name": "Salt",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        }
       ],
       "instructions": [
         "Mash avocados.",
@@ -612,14 +1607,78 @@
       "servings": 12,
       "glutenFree": true,
       "ingredients": [
-        "3 kg chicken thighs",
-        "Cumin",
-        "Chili powder",
-        "Paprika",
-        "Garlic powder",
-        "Onion powder",
-        "Oregano",
-        "Lime"
+        {
+          "name": "Chicken Thighs",
+          "quantity": 3,
+          "unit": "kg",
+          "preparation": "boneless and skinless",
+          "shopping": true,
+          "groceryItemId": "chicken-thighs"
+        },
+        {
+          "name": "Cumin",
+          "quantity": 2,
+          "unit": "tbsp",
+          "preparation": "ground",
+          "shopping": true,
+          "groceryItemId": "cumin"
+        },
+        {
+          "name": "Chili Powder",
+          "quantity": 2,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "chili-powder"
+        },
+        {
+          "name": "Paprika",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "paprika"
+        },
+        {
+          "name": "Garlic Powder",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "garlic-powder"
+        },
+        {
+          "name": "Onion Powder",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "onion-powder"
+        },
+        {
+          "name": "Oregano",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "dried",
+          "shopping": true,
+          "groceryItemId": "oregano"
+        },
+        {
+          "name": "Lime",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "juiced",
+          "shopping": true,
+          "groceryItemId": "lime"
+        },
+        {
+          "name": "Salt",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        }
       ],
       "instructions": [
         "Season chicken.",
@@ -646,12 +1705,86 @@
       "servings": 12,
       "glutenFree": true,
       "ingredients": [
-        "3 kg ground beef",
-        "Yellow onion",
-        "Garlic",
-        "Taco spices",
-        "Tomato paste",
-        "GF beef broth"
+        {
+          "name": "Ground Beef",
+          "quantity": 3,
+          "unit": "kg",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "ground-beef"
+        },
+        {
+          "name": "Yellow Onion",
+          "quantity": 3,
+          "unit": "each",
+          "preparation": "diced",
+          "shopping": true,
+          "groceryItemId": "yellow-onion"
+        },
+        {
+          "name": "Garlic",
+          "quantity": 8,
+          "unit": "clove",
+          "preparation": "minced",
+          "shopping": true,
+          "groceryItemId": "garlic"
+        },
+        {
+          "name": "Chili Powder",
+          "quantity": 3,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "chili-powder"
+        },
+        {
+          "name": "Cumin",
+          "quantity": 2,
+          "unit": "tbsp",
+          "preparation": "ground",
+          "shopping": true,
+          "groceryItemId": "cumin"
+        },
+        {
+          "name": "Paprika",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "paprika"
+        },
+        {
+          "name": "Oregano",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "dried",
+          "shopping": true,
+          "groceryItemId": "oregano"
+        },
+        {
+          "name": "Tomato Paste",
+          "quantity": 2,
+          "unit": "can",
+          "preparation": "156 mL each",
+          "shopping": true,
+          "groceryItemId": "tomato-paste"
+        },
+        {
+          "name": "Beef Broth",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "gluten-free",
+          "shopping": true,
+          "groceryItemId": "beef-broth"
+        },
+        {
+          "name": "Salt",
+          "quantity": 1,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        }
       ],
       "instructions": [
         "Brown onion and beef.",
@@ -674,15 +1807,78 @@
       "glutenFree": false,
       "gfOption": "Make two separate GF sandwiches using GF rolls and a clean board/knife.",
       "ingredients": [
-        "4 large Italian or ciabatta loaves",
-        "750 g salami",
-        "500 g prosciutto",
-        "500 g soppressata",
-        "900 g provolone",
-        "2 jars roasted red peppers",
-        "1 jar olive salad or muffuletta spread",
-        "Dijon or Italian dressing",
-        "GF rolls for Steve and Adele"
+        {
+          "name": "Italian Bread",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "large ciabatta loaves",
+          "shopping": true,
+          "groceryItemId": "italian-bread"
+        },
+        {
+          "name": "Salami",
+          "quantity": 750,
+          "unit": "g",
+          "preparation": "thinly sliced",
+          "shopping": true,
+          "groceryItemId": "salami"
+        },
+        {
+          "name": "Prosciutto",
+          "quantity": 500,
+          "unit": "g",
+          "preparation": "thinly sliced",
+          "shopping": true,
+          "groceryItemId": "prosciutto"
+        },
+        {
+          "name": "Soppressata",
+          "quantity": 500,
+          "unit": "g",
+          "preparation": "thinly sliced",
+          "shopping": true,
+          "groceryItemId": "soppressata"
+        },
+        {
+          "name": "Provolone Cheese",
+          "quantity": 900,
+          "unit": "g",
+          "preparation": "sliced",
+          "shopping": true,
+          "groceryItemId": "provolone-cheese"
+        },
+        {
+          "name": "Roasted Red Peppers",
+          "quantity": 2,
+          "unit": "jar",
+          "preparation": "500 mL each; drained",
+          "shopping": true,
+          "groceryItemId": "roasted-red-peppers"
+        },
+        {
+          "name": "Olive Salad",
+          "quantity": 1,
+          "unit": "jar",
+          "preparation": "500 mL muffuletta spread",
+          "shopping": true,
+          "groceryItemId": "olive-salad"
+        },
+        {
+          "name": "Italian Dressing",
+          "quantity": 1,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "italian-dressing"
+        },
+        {
+          "name": "Gluten-Free Rolls",
+          "quantity": 1,
+          "unit": "package",
+          "preparation": "for Steve and Adele",
+          "shopping": true,
+          "groceryItemId": "gluten-free-rolls"
+        }
       ],
       "instructions": [
         "Split loaves and layer meats, provolone, peppers and olive spread.",
@@ -707,15 +1903,86 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "8 broccoli crowns, chopped small",
-        "500 g cooked bacon, crumbled",
-        "500 g cheddar, cubed or shredded",
-        "2 red onions, finely diced",
-        "1.5 cups sunflower seeds",
-        "2 cups mayonnaise",
-        "1/3 cup apple cider vinegar",
-        "1/3 cup sugar",
-        "Salt and pepper"
+        {
+          "name": "Broccoli",
+          "quantity": 8,
+          "unit": "head",
+          "preparation": "crowns; chopped small",
+          "shopping": true,
+          "groceryItemId": "broccoli"
+        },
+        {
+          "name": "Bacon",
+          "quantity": 500,
+          "unit": "g",
+          "preparation": "cooked and crumbled",
+          "shopping": true,
+          "groceryItemId": "bacon"
+        },
+        {
+          "name": "Cheddar Cheese",
+          "quantity": 500,
+          "unit": "g",
+          "preparation": "cubed or shredded",
+          "shopping": true,
+          "groceryItemId": "cheddar-cheese"
+        },
+        {
+          "name": "Red Onion",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "finely diced",
+          "shopping": true,
+          "groceryItemId": "red-onion"
+        },
+        {
+          "name": "Sunflower Seeds",
+          "quantity": 1.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sunflower-seeds"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 2,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "mayonnaise"
+        },
+        {
+          "name": "Apple Cider Vinegar",
+          "quantity": 0.33,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "apple-cider-vinegar"
+        },
+        {
+          "name": "Sugar",
+          "quantity": 0.33,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sugar"
+        },
+        {
+          "name": "Salt",
+          "quantity": 1,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 0.5,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        }
       ],
       "instructions": [
         "Whisk mayonnaise, vinegar, sugar, salt and pepper.",
@@ -738,13 +2005,70 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "4 kg fresh mussels",
-        "250 g butter",
-        "2 heads garlic, minced",
-        "750 ml dry white wine",
-        "Fresh parsley",
-        "2 lemons",
-        "Salt and pepper"
+        {
+          "name": "Mussels",
+          "quantity": 4,
+          "unit": "kg",
+          "preparation": "fresh; scrubbed and debearded",
+          "shopping": true,
+          "groceryItemId": "mussels"
+        },
+        {
+          "name": "Butter",
+          "quantity": 250,
+          "unit": "g",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "butter"
+        },
+        {
+          "name": "Garlic",
+          "quantity": 2,
+          "unit": "head",
+          "preparation": "minced",
+          "shopping": true,
+          "groceryItemId": "garlic"
+        },
+        {
+          "name": "White Wine",
+          "quantity": 750,
+          "unit": "mL",
+          "preparation": "dry",
+          "shopping": true,
+          "groceryItemId": "white-wine"
+        },
+        {
+          "name": "Parsley",
+          "quantity": 2,
+          "unit": "bunch",
+          "preparation": "chopped",
+          "shopping": true,
+          "groceryItemId": "parsley"
+        },
+        {
+          "name": "Lemon",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "cut into wedges",
+          "shopping": true,
+          "groceryItemId": "lemon"
+        },
+        {
+          "name": "Salt",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Black Pepper",
+          "quantity": 1,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "black-pepper"
+        }
       ],
       "instructions": [
         "Scrub and debeard mussels; discard cracked or open shells that do not close.",
@@ -769,10 +2093,38 @@
       "servings": 17,
       "glutenFree": true,
       "ingredients": [
-        "2.5 kg cooked peeled shrimp",
-        "2 bottles cocktail sauce (check GF)",
-        "4 lemons",
-        "Ice for serving"
+        {
+          "name": "Shrimp",
+          "quantity": 2.5,
+          "unit": "kg",
+          "preparation": "cooked and peeled",
+          "shopping": true,
+          "groceryItemId": "shrimp"
+        },
+        {
+          "name": "Cocktail Sauce",
+          "quantity": 2,
+          "unit": "bottle",
+          "preparation": "gluten-free; 455 mL each",
+          "shopping": true,
+          "groceryItemId": "cocktail-sauce"
+        },
+        {
+          "name": "Lemon",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "cut into wedges",
+          "shopping": true,
+          "groceryItemId": "lemon"
+        },
+        {
+          "name": "Ice",
+          "quantity": 2,
+          "unit": "bag",
+          "preparation": "for serving",
+          "shopping": true,
+          "groceryItemId": "ice"
+        }
       ],
       "instructions": [
         "Thaw and dry shrimp thoroughly.",
@@ -795,13 +2147,86 @@
       "glutenFree": false,
       "gfOption": "Use a separate board area and sealed GF crackers for Steve and Adele.",
       "ingredients": [
-        "2 kg Italian meats",
-        "2 kg mixed cheeses",
-        "Olives and pickles",
-        "Grapes and berries",
-        "3 boxes crackers",
-        "2 boxes GF crackers",
-        "Mustard and preserves"
+        {
+          "name": "Italian Meats",
+          "quantity": 2,
+          "unit": "kg",
+          "preparation": "assorted",
+          "shopping": true,
+          "groceryItemId": "italian-meats"
+        },
+        {
+          "name": "Cheese",
+          "quantity": 2,
+          "unit": "kg",
+          "preparation": "assorted",
+          "shopping": true,
+          "groceryItemId": "cheese"
+        },
+        {
+          "name": "Olives",
+          "quantity": 3,
+          "unit": "jar",
+          "preparation": "assorted",
+          "shopping": true,
+          "groceryItemId": "olives"
+        },
+        {
+          "name": "Dill Pickles",
+          "quantity": 2,
+          "unit": "jar",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "dill-pickles"
+        },
+        {
+          "name": "Grapes",
+          "quantity": 2,
+          "unit": "kg",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "grapes"
+        },
+        {
+          "name": "Berries",
+          "quantity": 1,
+          "unit": "kg",
+          "preparation": "assorted",
+          "shopping": true,
+          "groceryItemId": "berries"
+        },
+        {
+          "name": "Crackers",
+          "quantity": 3,
+          "unit": "box",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "crackers"
+        },
+        {
+          "name": "Gluten-Free Crackers",
+          "quantity": 2,
+          "unit": "box",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "gluten-free-crackers"
+        },
+        {
+          "name": "Mustard",
+          "quantity": 2,
+          "unit": "jar",
+          "preparation": "assorted",
+          "shopping": true,
+          "groceryItemId": "mustard"
+        },
+        {
+          "name": "Preserves",
+          "quantity": 2,
+          "unit": "jar",
+          "preparation": "assorted",
+          "shopping": true,
+          "groceryItemId": "preserves"
+        }
       ],
       "instructions": [
         "Arrange cheeses and meats in groups.",
@@ -809,6 +2234,702 @@
         "Keep GF crackers sealed and separate until serving."
       ],
       "tempMilestones": []
+    },
+    {
+      "id": "chicken-caesar-wraps",
+      "title": "Chicken Caesar Wraps",
+      "description": "Grilled chicken, romaine and Caesar dressing in regular and gluten-free wraps.",
+      "tags": [
+        "lunch"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 17,
+      "glutenFree": false,
+      "ingredients": [
+        {
+          "name": "Chicken Breast",
+          "quantity": 2.5,
+          "unit": "kg",
+          "preparation": "grilled and sliced",
+          "shopping": true,
+          "groceryItemId": "chicken-breast"
+        },
+        {
+          "name": "Flour Tortillas",
+          "quantity": 18,
+          "unit": "each",
+          "preparation": "large",
+          "shopping": true,
+          "groceryItemId": "flour-tortillas"
+        },
+        {
+          "name": "Gluten-Free Tortillas",
+          "quantity": 1,
+          "unit": "package",
+          "preparation": "for Steve and Adele",
+          "shopping": true,
+          "groceryItemId": "gluten-free-tortillas"
+        },
+        {
+          "name": "Romaine Lettuce",
+          "quantity": 4,
+          "unit": "heart",
+          "preparation": "chopped",
+          "shopping": true,
+          "groceryItemId": "romaine-lettuce"
+        },
+        {
+          "name": "Caesar Dressing",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "gluten-free",
+          "shopping": true,
+          "groceryItemId": "caesar-dressing"
+        },
+        {
+          "name": "Parmesan Cheese",
+          "quantity": 2,
+          "unit": "cup",
+          "preparation": "grated",
+          "shopping": true,
+          "groceryItemId": "parmesan-cheese"
+        }
+      ],
+      "instructions": [
+        "Grill and slice the chicken.",
+        "Toss romaine lightly with dressing and Parmesan.",
+        "Fill wraps and roll tightly; prepare gluten-free wraps first."
+      ]
+    },
+    {
+      "id": "lobster-rolls",
+      "title": "Lobster Rolls",
+      "description": "Chilled Maritime lobster salad served in buttered rolls.",
+      "tags": [
+        "lunch"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 12,
+      "glutenFree": false,
+      "ingredients": [
+        {
+          "name": "Lobster Meat",
+          "quantity": 1.5,
+          "unit": "kg",
+          "preparation": "cooked and chilled",
+          "shopping": true,
+          "groceryItemId": "lobster-meat"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 1,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "mayonnaise"
+        },
+        {
+          "name": "Celery",
+          "quantity": 3,
+          "unit": "stalk",
+          "preparation": "finely diced",
+          "shopping": true,
+          "groceryItemId": "celery"
+        },
+        {
+          "name": "Green Onion",
+          "quantity": 1,
+          "unit": "bunch",
+          "preparation": "thinly sliced",
+          "shopping": true,
+          "groceryItemId": "green-onion"
+        },
+        {
+          "name": "Lemon Juice",
+          "quantity": 3,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "lemon-juice"
+        },
+        {
+          "name": "Hot Dog Buns",
+          "quantity": 12,
+          "unit": "each",
+          "preparation": "split-top if available",
+          "shopping": true,
+          "groceryItemId": "hot-dog-buns"
+        },
+        {
+          "name": "Gluten-Free Rolls",
+          "quantity": 1,
+          "unit": "package",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "gluten-free-rolls"
+        },
+        {
+          "name": "Butter",
+          "quantity": 113,
+          "unit": "g",
+          "preparation": "melted",
+          "shopping": true,
+          "groceryItemId": "butter"
+        }
+      ],
+      "instructions": [
+        "Combine lobster, mayonnaise, celery, green onion and lemon.",
+        "Butter and toast the rolls.",
+        "Fill immediately before serving."
+      ]
+    },
+    {
+      "id": "steak-sandwiches",
+      "title": "Steak Sandwiches",
+      "description": "Warm leftover filet sandwiches with onions and horseradish mayonnaise.",
+      "tags": [
+        "lunch"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 12,
+      "glutenFree": false,
+      "ingredients": [
+        {
+          "name": "Cooked Beef",
+          "quantity": 1.5,
+          "unit": "kg",
+          "preparation": "leftover filet; thinly sliced",
+          "shopping": false,
+          "groceryItemId": "cooked-beef"
+        },
+        {
+          "name": "Sandwich Rolls",
+          "quantity": 12,
+          "unit": "each",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sandwich-rolls"
+        },
+        {
+          "name": "Gluten-Free Rolls",
+          "quantity": 1,
+          "unit": "package",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "gluten-free-rolls"
+        },
+        {
+          "name": "Yellow Onion",
+          "quantity": 3,
+          "unit": "each",
+          "preparation": "thinly sliced",
+          "shopping": true,
+          "groceryItemId": "yellow-onion"
+        },
+        {
+          "name": "Butter",
+          "quantity": 57,
+          "unit": "g",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "butter"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 1,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "mayonnaise"
+        },
+        {
+          "name": "Horseradish",
+          "quantity": 0.25,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "horseradish"
+        }
+      ],
+      "instructions": [
+        "Caramelize onions in butter.",
+        "Warm the sliced beef gently.",
+        "Mix mayonnaise and horseradish, then assemble sandwiches."
+      ]
+    },
+    {
+      "id": "baked-beans",
+      "title": "Smoky Baked Beans",
+      "description": "Sweet and smoky beans for pulled pork dinner.",
+      "tags": [
+        "side",
+        "gluten-free"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        {
+          "name": "Baked Beans",
+          "quantity": 4,
+          "unit": "can",
+          "preparation": "796 mL each",
+          "shopping": true,
+          "groceryItemId": "baked-beans"
+        },
+        {
+          "name": "Bacon",
+          "quantity": 500,
+          "unit": "g",
+          "preparation": "diced",
+          "shopping": true,
+          "groceryItemId": "bacon"
+        },
+        {
+          "name": "Yellow Onion",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "diced",
+          "shopping": true,
+          "groceryItemId": "yellow-onion"
+        },
+        {
+          "name": "BBQ Sauce",
+          "quantity": 1.5,
+          "unit": "cup",
+          "preparation": "gluten-free",
+          "shopping": true,
+          "groceryItemId": "bbq-sauce"
+        },
+        {
+          "name": "Brown Sugar",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "packed",
+          "shopping": true,
+          "groceryItemId": "brown-sugar"
+        },
+        {
+          "name": "Mustard",
+          "quantity": 0.25,
+          "unit": "cup",
+          "preparation": "yellow",
+          "shopping": true,
+          "groceryItemId": "mustard"
+        }
+      ],
+      "instructions": [
+        "Brown bacon and onion.",
+        "Combine all ingredients in a baking dish.",
+        "Bake at 350°F for 60 minutes."
+      ]
+    },
+    {
+      "id": "pulled-pork-nachos",
+      "title": "Pulled Pork Nachos",
+      "description": "Sheet-pan nachos using leftover smoked pulled pork.",
+      "tags": [
+        "lunch",
+        "gluten-free"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 12,
+      "glutenFree": true,
+      "ingredients": [
+        {
+          "name": "Pulled Pork",
+          "quantity": 1.5,
+          "unit": "kg",
+          "preparation": "leftover",
+          "shopping": false,
+          "groceryItemId": "pulled-pork"
+        },
+        {
+          "name": "Tortilla Chips",
+          "quantity": 3,
+          "unit": "bag",
+          "preparation": "gluten-free; 300 g each",
+          "shopping": true,
+          "groceryItemId": "tortilla-chips"
+        },
+        {
+          "name": "Cheddar Cheese",
+          "quantity": 750,
+          "unit": "g",
+          "preparation": "shredded",
+          "shopping": true,
+          "groceryItemId": "cheddar-cheese"
+        },
+        {
+          "name": "Jalapeno",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "sliced",
+          "shopping": true,
+          "groceryItemId": "jalapeno"
+        },
+        {
+          "name": "Salsa",
+          "quantity": 2,
+          "unit": "jar",
+          "preparation": "650 mL each",
+          "shopping": true,
+          "groceryItemId": "salsa"
+        },
+        {
+          "name": "Sour Cream",
+          "quantity": 750,
+          "unit": "mL",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sour-cream"
+        },
+        {
+          "name": "Green Onion",
+          "quantity": 1,
+          "unit": "bunch",
+          "preparation": "sliced",
+          "shopping": true,
+          "groceryItemId": "green-onion"
+        }
+      ],
+      "instructions": [
+        "Layer chips, pork, cheese and jalapeño.",
+        "Bake at 400°F until hot and melted.",
+        "Top with green onion and serve with salsa and sour cream."
+      ]
+    },
+    {
+      "id": "cornbread",
+      "title": "Gluten-Free Cornbread",
+      "description": "Tender pan cornbread that everyone can share.",
+      "tags": [
+        "bread",
+        "gluten-free"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        {
+          "name": "Cornmeal",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "cornmeal"
+        },
+        {
+          "name": "Gluten-Free Flour",
+          "quantity": 2,
+          "unit": "cup",
+          "preparation": "all-purpose blend",
+          "shopping": true,
+          "groceryItemId": "gluten-free-flour"
+        },
+        {
+          "name": "Sugar",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sugar"
+        },
+        {
+          "name": "Baking Powder",
+          "quantity": 2,
+          "unit": "tbsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "baking-powder"
+        },
+        {
+          "name": "Salt",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Milk",
+          "quantity": 3,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "milk"
+        },
+        {
+          "name": "Eggs",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "eggs"
+        },
+        {
+          "name": "Butter",
+          "quantity": 227,
+          "unit": "g",
+          "preparation": "melted",
+          "shopping": true,
+          "groceryItemId": "butter"
+        }
+      ],
+      "instructions": [
+        "Whisk dry ingredients.",
+        "Whisk milk, eggs and butter separately.",
+        "Combine and bake at 400°F for 22–28 minutes."
+      ]
+    },
+    {
+      "id": "cookies",
+      "title": "Chocolate Chip Cookies",
+      "description": "Large-batch cottage chocolate chip cookies.",
+      "tags": [
+        "dessert"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 24,
+      "glutenFree": false,
+      "ingredients": [
+        {
+          "name": "Butter",
+          "quantity": 227,
+          "unit": "g",
+          "preparation": "softened",
+          "shopping": true,
+          "groceryItemId": "butter"
+        },
+        {
+          "name": "Brown Sugar",
+          "quantity": 1,
+          "unit": "cup",
+          "preparation": "packed",
+          "shopping": true,
+          "groceryItemId": "brown-sugar"
+        },
+        {
+          "name": "Sugar",
+          "quantity": 0.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sugar"
+        },
+        {
+          "name": "Eggs",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "eggs"
+        },
+        {
+          "name": "Vanilla Extract",
+          "quantity": 2,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "vanilla-extract"
+        },
+        {
+          "name": "Flour",
+          "quantity": 2.5,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "flour"
+        },
+        {
+          "name": "Baking Soda",
+          "quantity": 1,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "baking-soda"
+        },
+        {
+          "name": "Salt",
+          "quantity": 1,
+          "unit": "tsp",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "salt"
+        },
+        {
+          "name": "Chocolate Chips",
+          "quantity": 2,
+          "unit": "cup",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "chocolate-chips"
+        }
+      ],
+      "instructions": [
+        "Cream butter and sugars.",
+        "Beat in eggs and vanilla, then add dry ingredients and chocolate chips.",
+        "Bake at 350°F for 10–12 minutes."
+      ]
+    },
+    {
+      "id": "brisket-sandwiches",
+      "title": "Brisket Sandwiches",
+      "description": "Warm leftover brisket sandwiches with pickles and barbecue sauce.",
+      "tags": [
+        "lunch"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 12,
+      "glutenFree": false,
+      "ingredients": [
+        {
+          "name": "Cooked Brisket",
+          "quantity": 1.8,
+          "unit": "kg",
+          "preparation": "leftover; sliced",
+          "shopping": false,
+          "groceryItemId": "cooked-brisket"
+        },
+        {
+          "name": "Sandwich Rolls",
+          "quantity": 12,
+          "unit": "each",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "sandwich-rolls"
+        },
+        {
+          "name": "Gluten-Free Rolls",
+          "quantity": 1,
+          "unit": "package",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "gluten-free-rolls"
+        },
+        {
+          "name": "BBQ Sauce",
+          "quantity": 2,
+          "unit": "cup",
+          "preparation": "gluten-free",
+          "shopping": true,
+          "groceryItemId": "bbq-sauce"
+        },
+        {
+          "name": "Dill Pickles",
+          "quantity": 2,
+          "unit": "jar",
+          "preparation": "sliced",
+          "shopping": true,
+          "groceryItemId": "dill-pickles"
+        }
+      ],
+      "instructions": [
+        "Warm brisket with a small amount of sauce.",
+        "Toast rolls if desired.",
+        "Assemble with pickles and additional sauce."
+      ]
+    },
+    {
+      "id": "garden-salad",
+      "title": "Garden Salad",
+      "description": "Simple mixed garden salad with gluten-free vinaigrette.",
+      "tags": [
+        "salad",
+        "gluten-free"
+      ],
+      "method": "stovetop",
+      "prepTime": "20 min",
+      "cookTime": "15 min",
+      "restTime": "0 min",
+      "servings": 17,
+      "glutenFree": true,
+      "ingredients": [
+        {
+          "name": "Mixed Greens",
+          "quantity": 500,
+          "unit": "g",
+          "preparation": "",
+          "shopping": true,
+          "groceryItemId": "mixed-greens"
+        },
+        {
+          "name": "Cucumber",
+          "quantity": 2,
+          "unit": "each",
+          "preparation": "sliced",
+          "shopping": true,
+          "groceryItemId": "cucumber"
+        },
+        {
+          "name": "Tomato",
+          "quantity": 6,
+          "unit": "each",
+          "preparation": "cut into wedges",
+          "shopping": true,
+          "groceryItemId": "tomato"
+        },
+        {
+          "name": "Bell Pepper",
+          "quantity": 3,
+          "unit": "each",
+          "preparation": "sliced",
+          "shopping": true,
+          "groceryItemId": "bell-pepper"
+        },
+        {
+          "name": "Red Onion",
+          "quantity": 1,
+          "unit": "each",
+          "preparation": "thinly sliced",
+          "shopping": true,
+          "groceryItemId": "red-onion"
+        },
+        {
+          "name": "Carrots",
+          "quantity": 4,
+          "unit": "each",
+          "preparation": "shredded",
+          "shopping": true,
+          "groceryItemId": "carrots"
+        },
+        {
+          "name": "Salad Dressing",
+          "quantity": 2,
+          "unit": "cup",
+          "preparation": "gluten-free vinaigrette",
+          "shopping": true,
+          "groceryItemId": "salad-dressing"
+        }
+      ],
+      "instructions": [
+        "Prepare and chill vegetables.",
+        "Toss with dressing immediately before serving."
+      ]
     }
   ]
 }

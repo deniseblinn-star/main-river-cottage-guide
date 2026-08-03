@@ -14,7 +14,7 @@ export default function RecipeDetail(){
  if(!r)return <div className="card">Recipe not found.</div>
  let num=0
  const ingredients=normalizeRecipeIngredients(r)
- const assignments=(activeEvent?.mealSlots||[]).filter(slot=>slot.recipeIds?.includes(id)).map(slot=>{
+ const assignments=(activeEvent?.mealSlots||[]).filter(slot=>slot.planType==='recipes'&&slot.recipeIds?.includes(id)).map(slot=>{
   const attendance=finalAttendeeIds(activeEvent,slot).length
   const scale=Number(r.servings)>0?attendance/Number(r.servings):0
   return {slot,attendance,scale}

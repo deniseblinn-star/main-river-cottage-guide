@@ -1,0 +1,19 @@
+Files changed by commit a5f4b9b:
+
+.gitignore
+CHANGELOG.md
+README.txt
+RELEASE-NOTES-v3.7.0.md
+package-lock.json
+package.json
+scripts/add-assigned-recipes.mjs
+scripts/audit-release.mjs
+scripts/structure-recipes.mjs
+src/context/EventContext.jsx
+src/data/recipes.json
+src/pages/AddRecipe.jsx
+src/pages/Events.jsx
+src/pages/Groceries.jsx
+src/pages/RecipeDetail.jsx
+src/utils/groceryLibrary.js
+src/utils/mealPlanner.js

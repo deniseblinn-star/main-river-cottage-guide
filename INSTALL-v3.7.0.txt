@@ -1,0 +1,39 @@
+MAIN RIVER COTTAGE PLANNER — v3.7.0 CHANGED FILES
+
+SOURCE COMMIT
+  a5f4b9b Release v3.7.0 recipe and grocery cleanup
+
+INSTALL INTO
+  C:\Users\steve\Documents\Main River Cottage Planner\main-river-cottage-guide
+
+STEPS
+1. Close the local development server if it is running.
+2. Keep the existing .git folder in your project.
+3. Open this changed-files package.
+4. Copy all files and folders into the project root.
+5. Choose Replace when Windows asks about matching files.
+6. In GitKraken, confirm the changed files appear.
+7. Stage all files.
+8. Commit with:
+     Release v3.7.0 recipe and grocery cleanup
+9. Push branch main.
+10. Confirm Netlify deploys successfully.
+
+IMPORTANT
+- This package contains only files added or modified by commit a5f4b9b.
+- It does not contain .git and will not alter repository history.
+- There were no deleted files in this commit.
+- Do not copy this package into src or another subfolder; copy its CONTENTS into the project root.
+
+VALIDATION AFTER COPYING
+  npm install
+  node scripts/audit-release.mjs
+  npm run build
+
+EXPECTED AUDIT
+- 34 structured recipes
+- 263 numeric ingredient rows
+- 133 Grocery Library records
+- Every assigned recipe exists
+- Every shopping ingredient links to the Grocery Library
+- No Base List UI remains

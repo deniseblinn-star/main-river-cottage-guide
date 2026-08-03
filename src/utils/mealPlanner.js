@@ -58,7 +58,21 @@ export function ensureMealSlots(event){
   const existingMap=new Map(existing.map(slot=>[slot.id,slot]))
   return dateRange(event.startDate,event.endDate).flatMap(date=>MEAL_TYPES.map(definition=>{
     const id=mealSlotId(event.id,date,definition.id)
-    return existingMap.get(id)||seedSlot(event,date,definition)
+    const slot=existingMap.get(id)||seedSlot(event,date,definition)
+    const planType=['recipes','simple','restaurant'].includes(slot.planType)?slot.planType:'none'
+    return {
+      ...slot,
+      date,
+      type:definition.id,
+      label:definition.label,
+      time:slot.time||definition.defaultTime,
+      planType,
+      // Meal slots own assignments. A stale legacy recipe link is never active
+      // after the meal has been changed to Unplanned/simple/restaurant.
+      recipeIds:planType==='recipes'?[...new Set((slot.recipeIds||[]).filter(Boolean))]:[],
+      manualIncludes:Array.isArray(slot.manualIncludes)?slot.manualIncludes:[],
+      manualExcludes:Array.isArray(slot.manualExcludes)?slot.manualExcludes:[]
+    }
   }))
 }
 

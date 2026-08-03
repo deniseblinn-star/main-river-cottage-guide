@@ -9,8 +9,7 @@ import { getGroceryLibrary, matchGroceryItem, normalizeUnit, saveGroceryItem } f
 const equipmentOptions=['Smoker','Grill','BBQ','Oven','Sous Vide','Slow Cooker','Stove Top','No Cook']
 const blankIngredient={name:'',quantity:1,unit:'each',shopping:true,groceryItemId:''}
 const blankForm={title:'',description:'',sourceName:'',sourceUrl:'',servings:'',category:'Main',prepTime:'',cookTime:'',tradition:'',equipment:[],ingredients:[{...blankIngredient}],instructions:['']}
-const customBaseKey='cottage-custom-base-groceries'
-const emptyNewGrocery={name:'',aliasesText:'',category:'Pantry',subcategory:'Other',defaultPurchaseUnit:'package',packageSize:1,packageUnit:'each',allowedUnitsText:'each',alsoBase:false}
+const emptyNewGrocery={name:'',aliasesText:'',category:'Pantry',subcategory:'Other',defaultPurchaseUnit:'package',packageSize:1,packageUnit:'each',allowedUnitsText:'each'}
 
 const imports={
  caesar:{
@@ -86,22 +85,6 @@ export default function AddRecipe(){
   })
   setGroceryLibrary(getGroceryLibrary())
   if(newGroceryIngredientIndex!==null)selectGroceryItem(newGroceryIngredientIndex,item)
-  if(newGrocery.alsoBase){
-    const existing=JSON.parse(localStorage.getItem(customBaseKey)||'[]')
-    if(!existing.some(row=>row.groceryItemId===item.id||row.name.toLowerCase()===item.name.toLowerCase())){
-      localStorage.setItem(customBaseKey,JSON.stringify([...existing,{
-        id:`custom-${Date.now()}`,
-        groceryItemId:item.id,
-        name:item.name,
-        quantity:0,
-        unit:item.defaultPurchaseUnit||'each',
-        category:item.category,
-        subcategory:item.subcategory,
-        notes:'Added from Recipe Builder',
-        gf:false
-      }]))
-    }
-  }
   setShowNewGrocery(false)
   setNewGrocery(emptyNewGrocery)
   setNewGroceryIngredientIndex(null)
@@ -163,7 +146,6 @@ export default function AddRecipe(){
    <label><span className="section-title">Purchase unit</span><input value={newGrocery.defaultPurchaseUnit} onChange={e=>setNewGrocery({...newGrocery,defaultPurchaseUnit:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
    <label><span className="section-title">Package size</span><div className="grid grid-cols-2 gap-2 mt-1"><input type="number" min="0" step="0.01" value={newGrocery.packageSize} onChange={e=>setNewGrocery({...newGrocery,packageSize:e.target.value})} className="p-3 border rounded-xl bg-white"/><input value={newGrocery.packageUnit} onChange={e=>setNewGrocery({...newGrocery,packageUnit:e.target.value})} className="p-3 border rounded-xl bg-white"/></div></label>
    <label className="sm:col-span-2"><span className="section-title">Allowed recipe units — comma separated</span><input value={newGrocery.allowedUnitsText} onChange={e=>setNewGrocery({...newGrocery,allowedUnitsText:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
-   <label className="sm:col-span-2 bg-white rounded-2xl p-4 flex gap-3 items-center"><input type="checkbox" checked={newGrocery.alsoBase} onChange={e=>setNewGrocery({...newGrocery,alsoBase:e.target.checked})}/><span><b>Also add to Base List</b><p className="text-xs text-stone">Adds it at quantity zero so it remains optional and does not affect this trip.</p></span></label>
   </div>
   <div className="grid grid-cols-2 gap-2 mt-5"><button onClick={()=>setShowNewGrocery(false)} className="rounded-xl bg-white border px-4 py-3 font-semibold">Cancel</button><button onClick={createGroceryFromRecipe} disabled={!newGrocery.name.trim()} className="btn-primary disabled:opacity-40">Create & Link</button></div>
  </div></div>}

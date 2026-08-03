@@ -1,5 +1,13 @@
 # Changelog
 
+## v3.7.0
+
+- Repaired stale legacy recipe assignments when meals become Unplanned.
+- Structured every current recipe and backfilled all related Grocery Library records.
+- Added the nine recipes referenced by the meal plan but missing from the catalogue.
+- Retired the Base Cottage List in favour of recipe-generated and manually added trip groceries.
+- Rebuilt Add Grocery Item around Grocery Library selection with Create New Item as the fallback.
+
 ## 3.0.0 Foundation
 
 - Added Overall Event / Gathering overview.

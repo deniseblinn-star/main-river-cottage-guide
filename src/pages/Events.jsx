@@ -118,7 +118,7 @@ export default function Events(){
           <div className="flex items-center gap-2"><Utensils className="text-forest"/><div><h3 className="text-lg font-extrabold text-navy">Linked Meal Slots</h3><p className="text-sm text-stone">Activities link to meals; meals own recipes and drive groceries.</p></div></div>
           <div className="grid sm:grid-cols-2 gap-2 mt-4">{linkedSlots.map(slot=>{
             const checked=(selected.linkedMealSlotIds||[]).includes(slot.id)
-            const names=(slot.recipeIds||[]).map(id=>recipeMap[id]?.title).filter(Boolean)
+            const names=(slot.planType==='recipes'?slot.recipeIds||[]:[]).map(id=>recipeMap[id]?.title).filter(Boolean)
             const summary=names.length?names.join(' • '):slot.planType==='restaurant'?(slot.restaurant?.name||'Restaurant'):slot.planType==='simple'?(slot.simpleDescription||'Simple food plan'):'No recipes planned'
             return <button key={slot.id} onClick={()=>toggleActivityMealSlot(selected.id,slot.id)} className={`rounded-2xl border p-4 text-left ${checked?'bg-forest/10 border-forest/30':'bg-white'}`}>
               <div className="flex justify-between gap-2"><b>{slot.label} · {activityTimeLabel(slot.time)}</b>{checked&&<Check className="text-forest" size={18}/>}</div>

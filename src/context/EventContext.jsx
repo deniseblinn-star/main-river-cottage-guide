@@ -156,9 +156,14 @@ export function EventProvider({children}){
     },
     removeAttendee:profileId=>replaceActiveEvent({...activeEvent,attendance:activeEvent.attendance.filter(row=>row.profileId!==profileId),mealSlots:activeEvent.mealSlots.map(slot=>({...slot,manualIncludes:(slot.manualIncludes||[]).filter(id=>id!==profileId),manualExcludes:(slot.manualExcludes||[]).filter(id=>id!==profileId)})),activityInstances:(activeEvent.activityInstances||[]).map(item=>({...item,attendeeIds:(item.attendeeIds||[]).filter(id=>id!==profileId)}))}),
     updateAttendance:(profileId,patch)=>replaceActiveEvent({...activeEvent,attendance:activeEvent.attendance.map(row=>row.profileId===profileId?{...row,...patch}:row)}),
-    updateMealSlot:(slotId,patch)=>replaceActiveEvent({...activeEvent,mealSlots:activeEvent.mealSlots.map(slot=>slot.id===slotId?{...slot,...patch}:slot)}),
+    updateMealSlot:(slotId,patch)=>replaceActiveEvent({...activeEvent,mealSlots:activeEvent.mealSlots.map(slot=>{
+      if(slot.id!==slotId)return slot
+      const updated={...slot,...patch}
+      if(patch.planType&&patch.planType!=='recipes')updated.recipeIds=[]
+      return updated
+    })}),
     addRecipeToMeal:(slotId,recipeId)=>replaceActiveEvent({...activeEvent,mealSlots:activeEvent.mealSlots.map(slot=>slot.id===slotId&&!slot.recipeIds.includes(recipeId)?{...slot,planType:'recipes',recipeIds:[...slot.recipeIds,recipeId]}:slot)}),
-    removeRecipeFromMeal:(slotId,recipeId)=>replaceActiveEvent({...activeEvent,mealSlots:activeEvent.mealSlots.map(slot=>slot.id===slotId?{...slot,recipeIds:slot.recipeIds.filter(id=>id!==recipeId)}:slot)}),
+    removeRecipeFromMeal:(slotId,recipeId)=>replaceActiveEvent({...activeEvent,mealSlots:activeEvent.mealSlots.map(slot=>slot.id===slotId?{...slot,recipeIds:(slot.recipeIds||[]).filter(id=>id!==recipeId)}:slot)}),
     toggleMealAttendee:(slotId,profileId)=>{
       const slot=activeEvent.mealSlots.find(row=>row.id===slotId)
       if(!slot)return
