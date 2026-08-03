@@ -1,20 +1,25 @@
-MAIN RIVER PLANNER 0.9.7 — MODULE 1
+MAIN RIVER PLANNER 0.9.7 — MODULE 2A
 
 Copy every included file into the matching project location.
 
 GitKraken:
-1. Confirm EventContext.jsx and PeopleAttendance.jsx are modified.
+1. Confirm src/utils/groceryLibrary.js appears as a new file.
 2. Stage all.
-3. Commit: Add people roles and dietary profiles
+3. Commit: Add grocery library aliases and unit merging
 4. Push.
 5. Confirm Netlify publishes.
 
 TEST
-1. Open People & Attendance.
-2. Confirm the large “Add people to this event” section is gone.
-3. Use Add Attendee and add/remove a test attendee.
-4. Open Profile Library and edit Adele, Alex and Kevin.
-5. Confirm Adele and Alex show Gluten Free; Kevin shows Lactose.
-6. Select multiple roles for one person.
-7. Add a custom role and confirm it is available on another Profile.
-8. Refresh and confirm roles and dietary selections persist.
+1. Open Groceries → Grocery Library.
+2. Find Apple Cider Vinegar and review its aliases.
+3. Open a recipe containing apple cider vinegar.
+4. Re-save the recipe or leave it unchanged; dynamic alias matching works either way.
+5. Assign the recipe to a Meal Slot.
+6. Confirm duplicate Apple Cider Vinegar lines merge on the Trip Grocery List.
+7. Confirm compatible g/kg or mL/L values merge.
+8. Confirm incompatible count and weight measurements remain separate.
+9. Assign a pasta recipe and confirm a package-size suggestion appears.
+10. Add a new Grocery Library item and use its standard name in a recipe.
+
+NOTE
+The local build command could not run in the packaging environment because Vite dependencies were not installed. All relative source imports were verified; Netlify is the compile check.

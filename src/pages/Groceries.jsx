@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react'
-import { Check, Home, ListChecks, Plus, RotateCcw, Trash2, X } from 'lucide-react'
+import { Check, Database, Home, ListChecks, Plus, RotateCcw, Save, Trash2, X } from 'lucide-react'
 import baseData from '../data/baseGroceries.json'
 import { getEventGeneratedGroceries } from '../utils/eventGroceryEngine'
 import { useEvent } from '../context/EventContext'
+import { deleteGroceryItem, getGroceryLibrary, packageSuggestion, saveGroceryItem } from '../utils/groceryLibrary'
 
 const stateKey='main-river-trip-grocery-state-v21'
 const manualKey='main-river-manual-groceries-v21'
@@ -11,6 +12,7 @@ const customBaseKey='cottage-custom-base-groceries'
 
 const categories=['Meat','Seafood','Produce','Dairy','Deli','Bakery','Pantry','Frozen','Drinks','Snacks','Household','Other']
 const emptyForm={name:'',quantity:1,unit:'each',category:'Produce',notes:'',gf:false,assignedTo:''}
+const emptyLibraryForm={id:'',name:'',aliasesText:'',category:'Pantry',subcategory:'Other',defaultPurchaseUnit:'package',packageSize:1,packageUnit:'each',allowedUnitsText:'each'}
 
 const normalizeCategory=value=>{
  const text=(value||'Other').toLowerCase()
@@ -37,6 +39,10 @@ export default function Groceries(){
  const [showAdd,setShowAdd]=useState(false)
  const [addTarget,setAddTarget]=useState('trip')
  const [form,setForm]=useState(emptyForm)
+ const [library,setLibrary]=useState(()=>getGroceryLibrary())
+ const [libraryForm,setLibraryForm]=useState(emptyLibraryForm)
+ const [showLibraryForm,setShowLibraryForm]=useState(false)
+ const [librarySearch,setLibrarySearch]=useState('')
  const [baseEdits,setBaseEdits]=useState(()=>JSON.parse(localStorage.getItem(baseEditsKey)||'{}'))
  const [customBase,setCustomBase]=useState(()=>JSON.parse(localStorage.getItem(customBaseKey)||'[]'))
  const [manualItems,setManualItems]=useState(()=>JSON.parse(localStorage.getItem(manualKey)||'[]'))
@@ -52,7 +58,7 @@ export default function Groceries(){
   setBaseEdits(next);localStorage.setItem(baseEditsKey,JSON.stringify(next))
  }
 
- const generated=getEventGeneratedGroceries(activeEvent).map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Recipe generated'}))
+ const generated=getEventGeneratedGroceries(activeEvent).map(item=>({...item,category:normalizeCategory(item.department),sourceType:'recipe',sourceLabel:'Recipe generated',purchaseSuggestion:packageSuggestion(item)}))
  const builtInBase=useMemo(()=>baseData.categories.flatMap(category=>category.items.map(item=>{
   const edit=baseEdits[item.id]||{}
   return {...item,id:`base-${item.id}`,originalId:item.id,quantity:edit.quantity??item.quantity,unit:edit.unit??item.unit,notes:edit.notes??item.notes,category:normalizeCategory(category.name),baseSection:category.name,sourceType:'base',sourceLabel:'Base Cottage List',custom:false}
@@ -94,6 +100,32 @@ export default function Groceries(){
  }
  const updateCustomBase=(id,field,value)=>saveCustomBase(customBase.map(item=>item.id===id?{...item,[field]:value}:item))
 
+ const editLibraryItem=item=>{
+  setLibraryForm({...item,aliasesText:(item.aliases||[]).join('\n'),allowedUnitsText:(item.allowedUnits||[]).join(', ')})
+  setShowLibraryForm(true)
+ }
+ const saveLibraryRecord=()=>{
+  if(!libraryForm.name.trim())return
+  const saved=saveGroceryItem({
+    ...libraryForm,
+    name:libraryForm.name.trim(),
+    aliases:libraryForm.aliasesText.split('\n').map(value=>value.trim()).filter(Boolean),
+    packageSize:Number(libraryForm.packageSize)||0,
+    allowedUnits:libraryForm.allowedUnitsText.split(',').map(value=>value.trim()).filter(Boolean)
+  })
+  setLibrary(getGroceryLibrary())
+  setLibraryForm(emptyLibraryForm)
+  setShowLibraryForm(false)
+ }
+ const removeLibraryRecord=id=>{
+  if(!confirm('Delete this Grocery Library item? Existing recipes keep their typed ingredient names but lose the standard link.'))return
+  setLibrary(deleteGroceryItem(id))
+ }
+ const filteredLibrary=library.filter(item=>{
+  const q=librarySearch.trim().toLowerCase()
+  return !q||[item.name,item.category,item.subcategory,...(item.aliases||[])].join(' ').toLowerCase().includes(q)
+ })
+
  const baseSections=useMemo(()=>{
   const names=[...baseData.categories.map(category=>category.name)]
   for(const item of customBase) if(!names.includes(item.category)) names.push(item.category)
@@ -102,16 +134,18 @@ export default function Groceries(){
 
  return <div className="space-y-4">
   <div className="flex flex-wrap justify-between gap-3">
-   <div><h1 className="page-title">{mode==='trip'?'Trip Grocery List':'Base Cottage List'}</h1><p className="text-stone">{mode==='trip'?`${purchasedCount} purchased · ${remainingCount} remaining · ${allItems.length} total`:'Edit quantities directly. Zero-quantity items stay in the template but do not appear on the Trip Grocery List.'}</p></div>
+   <div><h1 className="page-title">{mode==='trip'?'Trip Grocery List':mode==='base'?'Base Cottage List':'Grocery Library'}</h1><p className="text-stone">{mode==='trip'?`${purchasedCount} purchased · ${remainingCount} remaining · ${allItems.length} total`:mode==='base'?'Edit quantities directly. Zero-quantity items stay in the template but do not appear on the Trip Grocery List.':'Standard items, aliases, categories, compatible units and common package sizes.'}</p></div>
    <div className="flex gap-2">
-    <button onClick={()=>openAdd(mode==='trip'?'trip':'base')} className="btn-primary flex items-center gap-2"><Plus size={18}/>{mode==='trip'?'Add Grocery Item':'Add Base List Item'}</button>
+    {mode!=='library'&&<button onClick={()=>openAdd(mode==='trip'?'trip':'base')} className="btn-primary flex items-center gap-2"><Plus size={18}/>{mode==='trip'?'Add Grocery Item':'Add Base List Item'}</button>}
+    {mode==='library'&&<button onClick={()=>{setLibraryForm(emptyLibraryForm);setShowLibraryForm(true)}} className="btn-primary flex items-center gap-2"><Plus size={18}/>New Grocery Item</button>}
     {mode==='trip'&&<button onClick={resetPurchased} className="p-2 bg-white rounded-xl" title="Clear purchased checks"><RotateCcw/></button>}
    </div>
   </div>
 
-  <div className="grid grid-cols-2 gap-2 bg-white rounded-2xl p-1 shadow-sm">
-   <button onClick={()=>setMode('trip')} className={`rounded-xl px-4 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='trip'?'bg-forest text-white':'text-stone'}`}><ListChecks size={18}/>Trip Grocery List</button>
-   <button onClick={()=>setMode('base')} className={`rounded-xl px-4 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='base'?'bg-forest text-white':'text-stone'}`}><Home size={18}/>Edit Base List</button>
+  <div className="grid grid-cols-3 gap-2 bg-white rounded-2xl p-1 shadow-sm">
+   <button onClick={()=>setMode('trip')} className={`rounded-xl px-3 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='trip'?'bg-forest text-white':'text-stone'}`}><ListChecks size={18}/><span className="hidden sm:inline">Trip Grocery List</span><span className="sm:hidden">Trip</span></button>
+   <button onClick={()=>setMode('base')} className={`rounded-xl px-3 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='base'?'bg-forest text-white':'text-stone'}`}><Home size={18}/><span className="hidden sm:inline">Edit Base List</span><span className="sm:hidden">Base</span></button>
+   <button onClick={()=>setMode('library')} className={`rounded-xl px-3 py-3 font-semibold flex justify-center items-center gap-2 ${mode==='library'?'bg-forest text-white':'text-stone'}`}><Database size={18}/><span className="hidden sm:inline">Grocery Library</span><span className="sm:hidden">Library</span></button>
   </div>
 
   {mode==='trip'?<>
@@ -131,7 +165,7 @@ export default function Groceries(){
        <button onClick={()=>patchState(item.id,{purchased:!item.purchased})} className={`w-7 h-7 rounded-lg border flex items-center justify-center shrink-0 mt-1 ${item.purchased?'bg-forest border-forest text-white':'border-stone/30'}`}>{item.purchased&&<Check size={17}/>}</button>
        <div className="flex-1 min-w-0">
         <div className="flex flex-wrap gap-2 items-center"><b className={`text-lg ${item.purchased?'line-through':''}`}>{item.name}</b><span>{item.quantity} {item.unit}</span><span className={`badge ${item.sourceType==='recipe'?'bg-forest/10 text-forest':item.sourceType==='base'?'bg-navy/10 text-navy':'bg-wood-100 text-wood-600'}`}>{item.sourceLabel}</span>{item.gf&&<span className="badge-gf">GF</span>}</div>
-        <p className="text-xs text-stone mt-1">{item.sourceType==='recipe'&&item.sources?.length?item.sources.map(source=>`${source.recipe} → ${source.meal} (${source.attendance} guests, ${source.scale}×)`).join(' • '):item.sourceType==='recipe'&&item.usedIn?item.usedIn.join(' • '):item.notes||'No notes'}</p>
+        <p className="text-xs text-stone mt-1">{item.sourceType==='recipe'&&item.sources?.length?item.sources.map(source=>`${source.recipe} → ${source.meal} (${source.attendance} guests, ${source.scale}×)`).join(' • '):item.sourceType==='recipe'&&item.usedIn?item.usedIn.join(' • '):item.notes||'No notes'}</p>{item.purchaseSuggestion&&<p className="text-xs font-semibold text-forest mt-1">{item.purchaseSuggestion.label}</p>}{item.aliasesMerged?.length>0&&<p className="text-[11px] text-stone mt-1">Merged aliases: {item.aliasesMerged.join(' • ')}</p>}
         <div className="grid sm:grid-cols-[240px_1fr] gap-2 mt-3">
          <label className="text-xs text-stone">Who’s getting this?<select value={item.assignedTo||''} onChange={e=>patchState(item.id,{assignedTo:e.target.value})} className="block w-full mt-1 bg-white border rounded-xl p-2 text-sm text-forest"><option value="">Unassigned</option>{guests.map(g=><option key={g.id} value={g.id}>{g.name}</option>)}</select></label>
          <label className="text-xs text-stone">Shopping note<input value={item.shoppingNote||''} onChange={e=>patchState(item.id,{shoppingNote:e.target.value})} placeholder="Brand, ripeness, size..." className="block w-full mt-1 bg-white border rounded-xl p-2 text-sm"/></label>
@@ -144,7 +178,7 @@ export default function Groceries(){
     })}
    </section>)}
    {!visible.length&&<div className="card text-center py-10"><p className="font-semibold text-navy">{view==='person'&&!personFilter?'Choose a guest to view their list.':'No grocery items match this view.'}</p></div>}
-  </>:<>
+  </>:mode==='base'?<>
    <div className="bg-forest/5 border border-forest/15 rounded-2xl p-4 text-sm"><b>Base Cottage List template</b><p className="text-stone mt-1">Edit every row directly. Set quantity to zero to keep an item for later without adding it to this trip.</p></div>
    {baseSections.map(section=><section key={section} className="card">
     <h2 className="section-title mb-2">{section}</h2>
@@ -162,7 +196,27 @@ export default function Groceries(){
      </div>
     })}
    </section>)}
+
+  </>:<>
+   <div className="card">
+    <input value={librarySearch} onChange={e=>setLibrarySearch(e.target.value)} className="w-full p-3 border rounded-xl" placeholder="Search standard items or aliases..."/>
+   </div>
+   <div className="grid md:grid-cols-2 gap-3">
+    {filteredLibrary.map(item=><section key={item.id} className="card">
+      <div className="flex justify-between gap-3 items-start">
+       <div><h2 className="text-lg font-extrabold text-navy">{item.name}</h2><p className="text-sm text-stone">{item.category} → {item.subcategory}</p></div>
+       <div className="flex gap-1"><button onClick={()=>editLibraryItem(item)} className="p-2 bg-cream rounded-xl"><Save size={16}/></button><button onClick={()=>removeLibraryRecord(item.id)} className="p-2 text-red-700"><Trash2 size={16}/></button></div>
+      </div>
+      <div className="mt-3"><span className="section-title">Aliases</span><div className="flex flex-wrap gap-1 mt-1">{(item.aliases||[]).map(alias=><span key={alias} className="badge bg-navy/10 text-navy">{alias}</span>)}{!item.aliases?.length&&<span className="text-xs text-stone">No aliases</span>}</div></div>
+      <div className="grid grid-cols-2 gap-2 mt-4 text-sm">
+       <div className="bg-cream rounded-xl p-3"><b>Package</b><p>{item.packageSize||'—'} {item.packageUnit||''} {item.defaultPurchaseUnit||''}</p></div>
+       <div className="bg-cream rounded-xl p-3"><b>Recipe units</b><p>{(item.allowedUnits||[]).join(', ')||'Not set'}</p></div>
+      </div>
+    </section>)}
+   </div>
+   {!filteredLibrary.length&&<div className="card text-center text-stone">No Grocery Library items match your search.</div>}
   </>}
+
 
   {showAdd&&<div className="fixed inset-0 z-[80] bg-black/40 flex items-end sm:items-center justify-center p-4" onClick={()=>setShowAdd(false)}><div className="bg-cream rounded-3xl w-full max-w-xl p-5 max-h-[90vh] overflow-auto" onClick={e=>e.stopPropagation()}>
    <div className="flex justify-between items-center"><div><h2 className="text-xl font-extrabold text-navy">{addTarget==='base'?'Add Base List Item':'Add Grocery Item'}</h2><p className="text-sm text-stone">{addTarget==='base'?'Add a reusable staple to the Base Cottage List.':'Add anything the current trip needs beyond recipes and the Base Cottage List.'}</p></div><button onClick={()=>setShowAdd(false)} className="p-2"><X/></button></div>
@@ -177,5 +231,19 @@ export default function Groceries(){
    </div>
    <button onClick={addItem} disabled={!form.name.trim()} className="btn-primary w-full mt-5 disabled:opacity-40">{addTarget==='base'?'Add to Base List':'Add to Trip Grocery List'}</button>
   </div></div>}
+  {showLibraryForm&&<div className="fixed inset-0 z-[90] bg-black/40 flex items-end sm:items-center justify-center p-4" onClick={()=>setShowLibraryForm(false)}><div className="bg-cream rounded-3xl w-full max-w-2xl p-5 max-h-[92vh] overflow-auto" onClick={e=>e.stopPropagation()}>
+   <div className="flex justify-between"><div><h2 className="text-xl font-extrabold text-navy">{libraryForm.id?'Edit Grocery Item':'New Grocery Item'}</h2><p className="text-sm text-stone">One standard record can be reused by recipes, Base Lists and manual groceries.</p></div><button onClick={()=>setShowLibraryForm(false)}><X/></button></div>
+   <div className="grid sm:grid-cols-2 gap-3 mt-5">
+    <label className="sm:col-span-2"><span className="section-title">Standard name</span><input value={libraryForm.name} onChange={e=>setLibraryForm({...libraryForm,name:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+    <label><span className="section-title">Category</span><input value={libraryForm.category} onChange={e=>setLibraryForm({...libraryForm,category:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+    <label><span className="section-title">Subcategory</span><input value={libraryForm.subcategory} onChange={e=>setLibraryForm({...libraryForm,subcategory:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+    <label className="sm:col-span-2"><span className="section-title">Aliases — one per line</span><textarea value={libraryForm.aliasesText} onChange={e=>setLibraryForm({...libraryForm,aliasesText:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white min-h-28" placeholder={"ACV\napple cider vinegar + juice for spritz"}/></label>
+    <label><span className="section-title">Purchase unit</span><input value={libraryForm.defaultPurchaseUnit} onChange={e=>setLibraryForm({...libraryForm,defaultPurchaseUnit:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+    <label><span className="section-title">Package size</span><div className="grid grid-cols-2 gap-2 mt-1"><input type="number" min="0" step="0.01" value={libraryForm.packageSize} onChange={e=>setLibraryForm({...libraryForm,packageSize:e.target.value})} className="p-3 border rounded-xl bg-white"/><input value={libraryForm.packageUnit} onChange={e=>setLibraryForm({...libraryForm,packageUnit:e.target.value})} className="p-3 border rounded-xl bg-white"/></div></label>
+    <label className="sm:col-span-2"><span className="section-title">Allowed recipe units — comma separated</span><input value={libraryForm.allowedUnitsText} onChange={e=>setLibraryForm({...libraryForm,allowedUnitsText:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white" placeholder="tsp, tbsp, cup, ml, l, bottle"/></label>
+   </div>
+   <button onClick={saveLibraryRecord} disabled={!libraryForm.name.trim()} className="btn-primary w-full mt-5 disabled:opacity-40">Save Grocery Item</button>
+  </div></div>}
+
  </div>
 }

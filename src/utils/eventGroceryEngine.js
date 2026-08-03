@@ -1,25 +1,9 @@
 import { finalAttendeeIds, formatMealDate } from './mealPlanner'
 import { getRecipeCatalogue } from './recipeCatalogue'
+import { convertQuantity, getGroceryLibrary, normalizeUnit, standardizeIngredient, unitFamily } from './groceryLibrary'
 
 const FRACTIONS={
   '½':0.5,'¼':0.25,'¾':0.75,'⅓':1/3,'⅔':2/3,'⅛':0.125,'⅜':0.375,'⅝':0.625,'⅞':0.875
-}
-
-const unitAliases={
-  kilograms:'kg',kilogram:'kg',kilos:'kg',kilo:'kg',kg:'kg',
-  grams:'g',gram:'g',g:'g',
-  cups:'cup',cup:'cup',
-  tablespoons:'tbsp',tablespoon:'tbsp',tbsp:'tbsp',
-  teaspoons:'tsp',teaspoon:'tsp',tsp:'tsp',
-  cloves:'clove',clove:'clove',
-  heads:'head',head:'head',
-  hearts:'heart',heart:'heart',
-  racks:'rack',rack:'rack',
-  bottles:'bottle',bottle:'bottle',
-  bags:'bag',bag:'bag',
-  bunches:'bunch',bunch:'bunch',
-  packages:'package',package:'package',packs:'pack',pack:'pack',
-  each:'each'
 }
 
 function numberFromToken(token){
@@ -38,9 +22,8 @@ export function parseLegacyIngredient(value){
   const match=text.match(/^(\d+(?:\.\d+)?|\d+\/\d+|\d+[½¼¾⅓⅔⅛⅜⅝⅞]|[½¼¾⅓⅔⅛⅜⅝⅞])\s+([^\s]+)\s+(.+)$/)
   if(match){
     const quantity=numberFromToken(match[1])
-    const rawUnit=match[2].toLowerCase().replace(/[,.]$/,'')
-    const unit=unitAliases[rawUnit]
-    if(quantity!==null&&unit)return {name:match[3].trim(),quantity,unit,shopping:true,legacy:false}
+    const unit=normalizeUnit(match[2].toLowerCase().replace(/[,.]$/,''))
+    if(quantity!==null)return {name:match[3].trim(),quantity,unit,shopping:true,legacy:unit==='amount'}
   }
   const quantityOnly=text.match(/^(\d+(?:\.\d+)?|\d+\/\d+|\d+[½¼¾⅓⅔⅛⅜⅝⅞]|[½¼¾⅓⅔⅛⅜⅝⅞])\s+(.+)$/)
   if(quantityOnly){
@@ -51,40 +34,51 @@ export function parseLegacyIngredient(value){
 }
 
 export function normalizeRecipeIngredients(recipe){
+  const library=getGroceryLibrary()
   return (recipe?.ingredients||[]).map(row=>{
-    if(typeof row==='string')return parseLegacyIngredient(row)
-    return {
+    const parsed=typeof row==='string'?parseLegacyIngredient(row):{
       name:String(row.name||row.ingredient||'Ingredient').trim(),
       quantity:Number(row.quantity)||0,
-      unit:String(row.unit||'each').trim(),
+      unit:normalizeUnit(row.unit||'each'),
       shopping:row.shopping!==false,
+      groceryItemId:row.groceryItemId||'',
       legacy:false
     }
+    return standardizeIngredient(parsed,library)
   }).filter(row=>row.name&&row.shopping)
 }
 
 function round(value,unit){
-  const wholeUnits=['each','clove','head','heart','rack','bottle','bag','bunch','package','pack']
+  const wholeUnits=['each','clove','head','heart','rack','bottle','bag','bunch','package','pack','box','can']
   if(wholeUnits.includes(unit))return Math.ceil(value)
   if(value>=10)return Math.round(value*10)/10
   return Math.round(value*100)/100
 }
 
-function categoryFor(name){
+function fallbackCategory(name){
   const text=name.toLowerCase()
   if(/beef|sirloin|tenderloin|steak|pork|rib|chicken|turkey|sausage|bacon|ham/.test(text))return 'Meat'
   if(/lobster|shrimp|prawn|salmon|fish|scallop|crab|seafood/.test(text))return 'Seafood'
-  if(/lettuce|romaine|avocado|lime|lemon|onion|garlic|cilantro|jalapeno|apple|strawber|tomato|pepper|potato|herb|rosemary|thyme|oregano/.test(text))return 'Produce'
+  if(/lettuce|romaine|avocado|lime|lemon|onion|garlic|cilantro|jalapeno|apple|strawber|tomato|pepper|potato|cucumber/.test(text))return 'Produce'
   if(/milk|butter|cream|cheese|parmesan|yogurt|egg/.test(text))return 'Dairy'
   if(/bread|bun|bagel|muffin|crouton|tortilla/.test(text))return 'Bakery'
   if(/beer|wine|juice|water|pop|soda|coffee|tea/.test(text))return 'Drinks'
-  if(/chip|candy|sour patch|marshmallow|snack/.test(text))return 'Snacks'
-  if(/paper|garbage|foil|wrap|clean|soap|bag/.test(text))return 'Household'
-  if(/frozen|ice cream/.test(text))return 'Frozen'
+  if(/chip|candy|marshmallow|snack|cracker/.test(text))return 'Snacks'
+  if(/paper|garbage|foil|wrap|clean|soap/.test(text))return 'Household'
   return 'Pantry'
 }
 
-function keyFor(name,unit){return `${name.toLowerCase().replace(/[^a-z0-9]+/g,'-')}|${unit.toLowerCase()}`}
+function preferredMergeUnit(unit){
+  const family=unitFamily(unit)
+  if(family==='weight')return 'g'
+  if(family==='volume')return 'ml'
+  return normalizeUnit(unit)
+}
+function keyFor(ingredient,mergeUnit){
+  const id=ingredient.groceryItemId||ingredient.standardName.toLowerCase().replace(/[^a-z0-9]+/g,'-')
+  const family=unitFamily(mergeUnit)||mergeUnit
+  return `${id}|${family}`
+}
 
 export function getEventGeneratedGroceries(event){
   if(!event)return []
@@ -100,9 +94,15 @@ export function getEventGeneratedGroceries(event){
       const recipeYield=Number(recipe?.servings)||0
       if(!recipe||recipeYield<=0||attendance<=0)continue
       const scale=attendance/recipeYield
+
       for(const ingredient of normalizeRecipeIngredients(recipe)){
-        const scaledQuantity=ingredient.legacy?ingredient.quantity:round(ingredient.quantity*scale,ingredient.unit)
-        const key=keyFor(ingredient.name,ingredient.unit)
+        const scaled=ingredient.legacy?ingredient.quantity:Number(ingredient.quantity)*scale
+        const mergeUnit=preferredMergeUnit(ingredient.unit)
+        const converted=convertQuantity(scaled,ingredient.unit,mergeUnit)
+        const mergeQuantity=converted===null?scaled:converted
+        const actualMergeUnit=converted===null?ingredient.unit:mergeUnit
+        const key=keyFor(ingredient,actualMergeUnit)
+
         const source={
           recipeId:recipe.id,
           recipe:recipe.title,
@@ -111,28 +111,43 @@ export function getEventGeneratedGroceries(event){
           attendance,
           yield:recipeYield,
           scale:Number(scale.toFixed(2)),
-          quantity:scaledQuantity,
+          quantity:round(scaled,ingredient.unit),
+          unit:ingredient.unit,
+          originalName:ingredient.name,
           legacy:ingredient.legacy
         }
-        if(!merged[key])merged[key]={
-          id:`event-generated-${event.id}-${key.replace('|','-')}`,
-          name:ingredient.name,
-          quantity:scaledQuantity,
-          unit:ingredient.unit,
-          department:categoryFor(ingredient.name),
-          source:'recipe',
-          notes:ingredient.legacy?'Quantity not structured yet—edit this recipe ingredient before final shopping.':'',
-          sources:[source]
-        }
-        else{
-          merged[key].quantity=round(merged[key].quantity+scaledQuantity,ingredient.unit)
+
+        if(!merged[key]){
+          merged[key]={
+            id:`event-generated-${event.id}-${key.replace('|','-')}`,
+            groceryItemId:ingredient.groceryItemId||'',
+            groceryItem:ingredient.groceryItem||null,
+            name:ingredient.standardName,
+            aliasesMerged:ingredient.name!==ingredient.standardName?[ingredient.name]:[],
+            quantity:mergeQuantity,
+            unit:actualMergeUnit,
+            department:ingredient.category||fallbackCategory(ingredient.standardName),
+            subcategory:ingredient.subcategory||'Other',
+            source:'recipe',
+            notes:ingredient.legacy?'Quantity not structured yet—edit this recipe ingredient before final shopping.':'',
+            sources:[source]
+          }
+        }else{
+          merged[key].quantity+=mergeQuantity
           merged[key].sources.push(source)
+          if(ingredient.name!==ingredient.standardName&&!merged[key].aliasesMerged.includes(ingredient.name))merged[key].aliasesMerged.push(ingredient.name)
           if(ingredient.legacy)merged[key].notes='Quantity not structured yet—edit this recipe ingredient before final shopping.'
         }
       }
     }
   }
-  return Object.values(merged).sort((a,b)=>a.department.localeCompare(b.department)||a.name.localeCompare(b.name))
+
+  return Object.values(merged).map(item=>{
+    let quantity=item.quantity,unit=item.unit
+    if(unit==='g'&&quantity>=1000){quantity=quantity/1000;unit='kg'}
+    if(unit==='ml'&&quantity>=1000){quantity=quantity/1000;unit='l'}
+    return {...item,quantity:round(quantity,unit),unit}
+  }).sort((a,b)=>a.department.localeCompare(b.department)||a.name.localeCompare(b.name))
 }
 
 export function recipeAssignmentCount(event,recipeId){
