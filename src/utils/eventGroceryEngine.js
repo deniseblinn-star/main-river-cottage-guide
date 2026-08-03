@@ -151,5 +151,5 @@ export function getEventGeneratedGroceries(event){
 }
 
 export function recipeAssignmentCount(event,recipeId){
-  return (event?.mealSlots||[]).filter(slot=>slot.recipeIds?.includes(recipeId)).length
+  return (event?.mealSlots||[]).filter(slot=>slot.planType==='recipes'&&slot.recipeIds?.includes(recipeId)).length
 }

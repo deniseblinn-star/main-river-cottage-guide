@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Globe2, Plus, Save, Trash2, X } from 'lucide-react'
+import { Check, Globe2, Plus, Save, Search, Trash2, X } from 'lucide-react'
 import { saveCustomRecipe } from '../utils/customRecipes'
 import { getCatalogueRecipe } from '../utils/recipeCatalogue'
 import { parseLegacyIngredient } from '../utils/eventGroceryEngine'
-import { getGroceryLibrary, matchGroceryItem, normalizeUnit } from '../utils/groceryLibrary'
+import { getGroceryLibrary, matchGroceryItem, normalizeUnit, saveGroceryItem } from '../utils/groceryLibrary'
 
 const equipmentOptions=['Smoker','Grill','BBQ','Oven','Sous Vide','Slow Cooker','Stove Top','No Cook']
 const blankIngredient={name:'',quantity:1,unit:'each',shopping:true,groceryItemId:''}
 const blankForm={title:'',description:'',sourceName:'',sourceUrl:'',servings:'',category:'Main',prepTime:'',cookTime:'',tradition:'',equipment:[],ingredients:[{...blankIngredient}],instructions:['']}
+const customBaseKey='cottage-custom-base-groceries'
+const emptyNewGrocery={name:'',aliasesText:'',category:'Pantry',subcategory:'Other',defaultPurchaseUnit:'package',packageSize:1,packageUnit:'each',allowedUnitsText:'each',alsoBase:false}
 
 const imports={
  caesar:{
@@ -32,7 +34,11 @@ export default function AddRecipe(){
  const [url,setUrl]=useState('')
  const [importMessage,setImportMessage]=useState('')
  const [form,setForm]=useState(blankForm)
- const groceryLibrary=getGroceryLibrary()
+ const [groceryLibrary,setGroceryLibrary]=useState(()=>getGroceryLibrary())
+ const [activeIngredient,setActiveIngredient]=useState(null)
+ const [newGrocery,setNewGrocery]=useState(emptyNewGrocery)
+ const [showNewGrocery,setShowNewGrocery]=useState(false)
+ const [newGroceryIngredientIndex,setNewGroceryIngredientIndex]=useState(null)
  useEffect(()=>{if(editing){const found=getCatalogueRecipe(id);if(found){const ingredients=(found.ingredients||[]).map(row=>typeof row==='string'?parseLegacyIngredient(row):row);setForm({...blankForm,...found,category:found.category||found.tags?.find(tag=>['main','side','salad','appetizer','dessert','sauce','drink','bread'].includes(tag))||'Main',equipment:found.equipment||[],ingredients:ingredients.length?ingredients:[{...blankIngredient}],instructions:found.instructions?.length?found.instructions:['']})}}},[editing,id])
  const update=(field,value)=>setForm(current=>({...current,[field]:value}))
  const updateIngredient=(index,field,value)=>setForm(current=>({...current,ingredients:current.ingredients.map((row,i)=>{
@@ -45,6 +51,62 @@ export default function AddRecipe(){
   }
   return updated
  })}))
+
+ const ingredientResults=index=>{
+  const query=String(form.ingredients[index]?.name||'').trim().toLowerCase()
+  if(!query)return groceryLibrary.slice(0,8)
+  return groceryLibrary.filter(item=>[item.name,...(item.aliases||[])].join(' ').toLowerCase().includes(query)).slice(0,8)
+ }
+ const selectGroceryItem=(index,item)=>{
+  setForm(current=>({...current,ingredients:current.ingredients.map((row,i)=>i===index?{
+    ...row,
+    name:item.name,
+    groceryItemId:item.id,
+    unit:item.allowedUnits?.includes(normalizeUnit(row.unit))?normalizeUnit(row.unit):(item.allowedUnits?.[0]||row.unit||'each')
+  }:row)}))
+  setActiveIngredient(null)
+ }
+ const openCreateGrocery=index=>{
+  const typed=form.ingredients[index]?.name?.trim()||''
+  setNewGrocery({...emptyNewGrocery,name:typed})
+  setNewGroceryIngredientIndex(index)
+  setShowNewGrocery(true)
+ }
+ const createGroceryFromRecipe=()=>{
+  if(!newGrocery.name.trim())return
+  const item=saveGroceryItem({
+    name:newGrocery.name.trim(),
+    aliases:newGrocery.aliasesText.split('\n').map(value=>value.trim()).filter(Boolean),
+    category:newGrocery.category.trim()||'Pantry',
+    subcategory:newGrocery.subcategory.trim()||'Other',
+    defaultPurchaseUnit:newGrocery.defaultPurchaseUnit.trim()||'package',
+    packageSize:Number(newGrocery.packageSize)||0,
+    packageUnit:newGrocery.packageUnit.trim()||'each',
+    allowedUnits:newGrocery.allowedUnitsText.split(',').map(value=>value.trim()).filter(Boolean)
+  })
+  setGroceryLibrary(getGroceryLibrary())
+  if(newGroceryIngredientIndex!==null)selectGroceryItem(newGroceryIngredientIndex,item)
+  if(newGrocery.alsoBase){
+    const existing=JSON.parse(localStorage.getItem(customBaseKey)||'[]')
+    if(!existing.some(row=>row.groceryItemId===item.id||row.name.toLowerCase()===item.name.toLowerCase())){
+      localStorage.setItem(customBaseKey,JSON.stringify([...existing,{
+        id:`custom-${Date.now()}`,
+        groceryItemId:item.id,
+        name:item.name,
+        quantity:0,
+        unit:item.defaultPurchaseUnit||'each',
+        category:item.category,
+        subcategory:item.subcategory,
+        notes:'Added from Recipe Builder',
+        gf:false
+      }]))
+    }
+  }
+  setShowNewGrocery(false)
+  setNewGrocery(emptyNewGrocery)
+  setNewGroceryIngredientIndex(null)
+ }
+
  const addIngredient=()=>setForm(current=>({...current,ingredients:[...current.ingredients,{...blankIngredient}]}))
  const removeIngredient=index=>setForm(current=>({...current,ingredients:current.ingredients.filter((_,i)=>i!==index)}))
  const updateInstruction=(index,value)=>setForm(current=>({...current,instructions:current.instructions.map((row,i)=>i===index?value:row)}))
@@ -73,8 +135,37 @@ export default function AddRecipe(){
  <section className="card space-y-4"><div className="grid sm:grid-cols-2 gap-3"><label className="sm:col-span-2"><span className="section-title">Recipe name</span><input value={form.title} onChange={e=>update('title',e.target.value)} className="w-full mt-2 p-3 rounded-xl border"/></label><label><span className="section-title">Serves</span><input type="number" min="1" value={form.servings} onChange={e=>update('servings',e.target.value)} className="w-full mt-2 p-3 rounded-xl border" placeholder="Required"/></label><label><span className="section-title">Category</span><select value={form.category} onChange={e=>update('category',e.target.value)} className="w-full mt-2 p-3 rounded-xl border"><option>Main</option><option>Side</option><option>Salad</option><option>Appetizer</option><option>Dessert</option><option>Sauce</option><option>Drink</option><option>Bread</option></select></label><label><span className="section-title">Prep time</span><input value={form.prepTime} onChange={e=>update('prepTime',e.target.value)} className="w-full mt-2 p-3 rounded-xl border"/></label><label><span className="section-title">Cook time</span><input value={form.cookTime} onChange={e=>update('cookTime',e.target.value)} className="w-full mt-2 p-3 rounded-xl border"/></label><label className="sm:col-span-2"><span className="section-title">Description</span><textarea value={form.description} onChange={e=>update('description',e.target.value)} className="w-full mt-2 p-3 rounded-xl border min-h-24"/></label></div>
  <div><p className="section-title">Equipment / method</p><div className="flex flex-wrap gap-2 mt-2">{equipmentOptions.map(name=><button type="button" key={name} onClick={()=>toggleEquipment(name)} className={`px-3 py-2 rounded-full text-sm font-semibold ${form.equipment.includes(name)?'bg-forest text-white':'bg-cream text-navy'}`}>{name}</button>)}</div><p className="text-xs text-stone mt-2">Recipes tagged Smoker will appear in Smoker HQ once scheduled.</p></div>
  {(form.sourceUrl||form.sourceName)&&<div className="grid sm:grid-cols-2 gap-3 border-t pt-4"><label><span className="section-title">Source name</span><input value={form.sourceName} onChange={e=>update('sourceName',e.target.value)} className="w-full mt-2 p-3 rounded-xl border"/></label><label><span className="section-title">Original URL</span><input value={form.sourceUrl} onChange={e=>update('sourceUrl',e.target.value)} className="w-full mt-2 p-3 rounded-xl border"/></label><p className="sm:col-span-2 text-xs text-stone">The source documents where the recipe came from. Your saved Main River version remains fully editable.</p></div>}</section>
- <datalist id="grocery-library-items">{groceryLibrary.map(item=><option key={item.id} value={item.name}/>)}</datalist>
- <section className="card"><div className="flex justify-between items-center"><div><h2 className="text-xl font-extrabold text-navy">Ingredients</h2><p className="text-sm text-stone">Edit names, quantities, units and grocery inclusion.</p></div><button onClick={addIngredient} className="btn-primary flex gap-2 items-center"><Plus size={17}/>Add</button></div><div className="space-y-3 mt-4">{form.ingredients.map((row,index)=><div key={index} className="grid sm:grid-cols-[minmax(0,1fr)_100px_120px_auto_auto] gap-2 items-center bg-cream rounded-2xl p-3"><div><input list="grocery-library-items" value={row.name} onChange={e=>updateIngredient(index,'name',e.target.value)} className="w-full p-2 rounded-xl border bg-white" placeholder="Ingredient"/>{row.groceryItemId&&<p className="text-[11px] text-forest mt-1">Linked to Grocery Library</p>}</div><input type="number" min="0" step="0.25" value={row.quantity} onChange={e=>updateIngredient(index,'quantity',e.target.value)} className="p-2 rounded-xl border bg-white"/><input value={row.unit} onChange={e=>updateIngredient(index,'unit',e.target.value)} className="p-2 rounded-xl border bg-white"/><label className="text-sm flex gap-2 items-center"><input type="checkbox" checked={row.shopping} onChange={e=>updateIngredient(index,'shopping',e.target.checked)}/> Grocery</label><button onClick={()=>removeIngredient(index)} disabled={form.ingredients.length===1} className="p-2 text-stone disabled:opacity-20"><Trash2 size={17}/></button></div>)}</div></section>
+ <section className="card"><div className="flex justify-between items-center"><div><h2 className="text-xl font-extrabold text-navy">Ingredients</h2><p className="text-sm text-stone">Search and select a Grocery Library item to prevent duplicates.</p></div><button onClick={addIngredient} className="btn-primary flex gap-2 items-center"><Plus size={17}/>Add</button></div>
+ <div className="space-y-3 mt-4">{form.ingredients.map((row,index)=><div key={index} className="grid sm:grid-cols-[minmax(0,1fr)_100px_120px_auto_auto] gap-2 items-start bg-cream rounded-2xl p-3">
+   <div className="relative">
+    <div className="flex items-center bg-white border rounded-xl px-2"><Search size={16} className="text-stone shrink-0"/><input value={row.name} onFocus={()=>setActiveIngredient(index)} onChange={e=>{updateIngredient(index,'name',e.target.value);setActiveIngredient(index)}} className="w-full p-2 outline-none bg-transparent" placeholder="Search Grocery Library..."/></div>
+    {row.groceryItemId&&<p className="text-[11px] text-forest mt-1 flex gap-1 items-center"><Check size={12}/>Linked to Grocery Library</p>}
+    {activeIngredient===index&&<div className="absolute z-30 left-0 right-0 mt-1 bg-white border rounded-xl shadow-xl max-h-64 overflow-auto">
+      {ingredientResults(index).map(item=><button type="button" key={item.id} onMouseDown={e=>e.preventDefault()} onClick={()=>selectGroceryItem(index,item)} className="w-full text-left px-3 py-2 hover:bg-cream border-b last:border-0"><b>{item.name}</b><p className="text-xs text-stone">{item.category} → {item.subcategory}{item.aliases?.length?` · ${item.aliases.slice(0,2).join(', ')}`:''}</p></button>)}
+      {!ingredientResults(index).length&&<div className="p-3 text-sm text-stone">No Grocery Library match.</div>}
+      <button type="button" onMouseDown={e=>e.preventDefault()} onClick={()=>openCreateGrocery(index)} className="w-full text-left px-3 py-3 font-semibold text-forest bg-forest/5">+ Create “{row.name||'new grocery item'}”</button>
+    </div>}
+   </div>
+   <input type="number" min="0" step="0.25" value={row.quantity} onChange={e=>updateIngredient(index,'quantity',e.target.value)} className="p-2 rounded-xl border bg-white"/>
+   <input value={row.unit} onChange={e=>updateIngredient(index,'unit',e.target.value)} className="p-2 rounded-xl border bg-white"/>
+   <label className="text-sm flex gap-2 items-center pt-2"><input type="checkbox" checked={row.shopping} onChange={e=>updateIngredient(index,'shopping',e.target.checked)}/> Grocery</label>
+   <button onClick={()=>removeIngredient(index)} disabled={form.ingredients.length===1} className="p-2 text-stone disabled:opacity-20"><Trash2 size={17}/></button>
+  </div>)}</div></section>
  <section className="card"><div className="flex justify-between items-center"><div><h2 className="text-xl font-extrabold text-navy">Instructions</h2><p className="text-sm text-stone">Imported steps are editable, removable and reorderable by rewriting them.</p></div><button onClick={addInstruction} className="text-forest font-semibold">+ Add step</button></div><div className="space-y-2 mt-4">{form.instructions.map((step,index)=><div key={index} className="flex gap-2 items-start"><span className="w-8 h-8 rounded-full bg-forest text-white grid place-items-center shrink-0">{index+1}</span><textarea value={step} onChange={e=>updateInstruction(index,e.target.value)} className="w-full p-3 rounded-xl border min-h-20"/><button onClick={()=>removeInstruction(index)} className="p-2 text-stone"><Trash2 size={17}/></button></div>)}</div></section>
- <section className="card"><label className="section-title">Tradition or family note</label><textarea value={form.tradition} onChange={e=>update('tradition',e.target.value)} className="w-full mt-2 p-3 rounded-xl border min-h-24" placeholder="Why this recipe matters at Main River..."/></section><button onClick={save} disabled={!canSave} className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-40"><Save size={18}/>{editing?'Save Changes':'Save Recipe'}</button></div>
+ <section className="card"><label className="section-title">Tradition or family note</label><textarea value={form.tradition} onChange={e=>update('tradition',e.target.value)} className="w-full mt-2 p-3 rounded-xl border min-h-24" placeholder="Why this recipe matters at Main River..."/></section><button onClick={save} disabled={!canSave} className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-40"><Save size={18}/>{editing?'Save Changes':'Save Recipe'}</button>
+ {showNewGrocery&&<div className="fixed inset-0 z-[100] bg-black/40 flex items-end sm:items-center justify-center p-4"><div className="bg-cream rounded-3xl w-full max-w-2xl p-5 max-h-[92vh] overflow-auto">
+  <div className="flex justify-between"><div><h2 className="text-xl font-extrabold text-navy">Create Grocery Library Item</h2><p className="text-sm text-stone">Create it once, then link it to this recipe ingredient.</p></div><button onClick={()=>setShowNewGrocery(false)}><X/></button></div>
+  <div className="grid sm:grid-cols-2 gap-3 mt-5">
+   <label className="sm:col-span-2"><span className="section-title">Standard name</span><input value={newGrocery.name} onChange={e=>setNewGrocery({...newGrocery,name:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+   <label><span className="section-title">Category</span><input value={newGrocery.category} onChange={e=>setNewGrocery({...newGrocery,category:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+   <label><span className="section-title">Subcategory</span><input value={newGrocery.subcategory} onChange={e=>setNewGrocery({...newGrocery,subcategory:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+   <label className="sm:col-span-2"><span className="section-title">Aliases — one per line</span><textarea value={newGrocery.aliasesText} onChange={e=>setNewGrocery({...newGrocery,aliasesText:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white min-h-20"/></label>
+   <label><span className="section-title">Purchase unit</span><input value={newGrocery.defaultPurchaseUnit} onChange={e=>setNewGrocery({...newGrocery,defaultPurchaseUnit:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+   <label><span className="section-title">Package size</span><div className="grid grid-cols-2 gap-2 mt-1"><input type="number" min="0" step="0.01" value={newGrocery.packageSize} onChange={e=>setNewGrocery({...newGrocery,packageSize:e.target.value})} className="p-3 border rounded-xl bg-white"/><input value={newGrocery.packageUnit} onChange={e=>setNewGrocery({...newGrocery,packageUnit:e.target.value})} className="p-3 border rounded-xl bg-white"/></div></label>
+   <label className="sm:col-span-2"><span className="section-title">Allowed recipe units — comma separated</span><input value={newGrocery.allowedUnitsText} onChange={e=>setNewGrocery({...newGrocery,allowedUnitsText:e.target.value})} className="w-full mt-1 p-3 border rounded-xl bg-white"/></label>
+   <label className="sm:col-span-2 bg-white rounded-2xl p-4 flex gap-3 items-center"><input type="checkbox" checked={newGrocery.alsoBase} onChange={e=>setNewGrocery({...newGrocery,alsoBase:e.target.checked})}/><span><b>Also add to Base List</b><p className="text-xs text-stone">Adds it at quantity zero so it remains optional and does not affect this trip.</p></span></label>
+  </div>
+  <div className="grid grid-cols-2 gap-2 mt-5"><button onClick={()=>setShowNewGrocery(false)} className="rounded-xl bg-white border px-4 py-3 font-semibold">Cancel</button><button onClick={createGroceryFromRecipe} disabled={!newGrocery.name.trim()} className="btn-primary disabled:opacity-40">Create & Link</button></div>
+ </div></div>}
+</div>
 }
