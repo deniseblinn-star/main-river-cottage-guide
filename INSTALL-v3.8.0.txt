@@ -1,0 +1,40 @@
+MAIN RIVER COTTAGE PLANNER v3.8.0 — SHARED PLANNER DATA
+
+BEFORE INSTALLING
+- Keep main-river-browser-backup-2026-08-05.json safe.
+- Install from the computer/browser containing the correct current planner.
+- Do not clear that browser's site data.
+
+INSTALL
+1. Copy this package into the existing project root and replace matching files.
+2. Keep the existing .git folder.
+3. In GitKraken, stage all changed/new files.
+4. Commit: Add shared Netlify Blob planner
+5. Push main.
+6. Wait for Netlify to deploy.
+
+Netlify will run npm install and add:
+- @netlify/blobs
+- @netlify/identity
+- netlify-identity-widget
+
+FIRST PUBLISH — CRITICAL
+1. On the authoritative computer, open the deployed site.
+2. Open Settings.
+3. Select Owner Sign In and use the Identity account you already accepted.
+4. Confirm Settings shows Owner.
+5. Select Publish First Shared Planner.
+6. Wait for “Published revision 1.”
+7. Refresh and confirm your correct planner remains.
+
+FAMILY TEST
+1. Open the same URL on your phone or another computer.
+2. Refresh the page fully.
+3. Confirm Saturday and Sunday match the authoritative computer.
+4. Confirm the green banner says Published family planner • View only.
+5. Try Add Grocery Item and confirm the app blocks the change with a view-only message.
+
+IMPORTANT
+- Do not invite another person to publish before revision 1 is created.
+- The first successful publisher is permanently recorded as owner.
+- Invited users do not become editors automatically.
