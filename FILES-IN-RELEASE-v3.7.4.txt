@@ -1,0 +1,15 @@
+v3.7.4 FILES IN RELEASE
+
+src/pages/OperationsReport.jsx
+src/pages/Dashboard.jsx
+src/utils/weather.js
+src/App.jsx
+src/index.css
+src/components/layout/Sidebar.jsx
+src/components/layout/MobileMoreMenu.jsx
+src/components/layout/TopBar.jsx
+src/components/layout/AppShell.jsx
+RELEASE-NOTES-v3.7.4.md
+QA-v3.7.4.md
+INSTALL-v3.7.4.txt
+FILES-IN-RELEASE-v3.7.4.txt

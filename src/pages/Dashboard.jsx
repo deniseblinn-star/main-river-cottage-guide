@@ -7,7 +7,7 @@ import { dateRange, finalAttendeeIds, formatMealDate, isPresentAt } from '../uti
 import { getRecipeCatalogue } from '../utils/recipeCatalogue'
 import { getEventGeneratedGroceries } from '../utils/eventGroceryEngine'
 import { getDaysUntil } from '../utils'
-import { getMainRiverForecast, MAIN_RIVER_WEATHER_POINT } from '../utils/weather'
+import { getCachedMainRiverForecast, getMainRiverForecast, MAIN_RIVER_WEATHER_POINT } from '../utils/weather'
 import PhotoRail from '../components/PhotoRail'
 
 const manualKey='main-river-manual-groceries-v21'
@@ -37,8 +37,8 @@ function todayISO(){
 
 export default function Dashboard(){
   const {activeEvent,activityTemplates}=useEvent()
-  const [forecast,setForecast]=useState([])
-  const [weatherStatus,setWeatherStatus]=useState('loading')
+  const [forecast,setForecast]=useState(()=>getCachedMainRiverForecast({allowStale:true}))
+  const [weatherStatus,setWeatherStatus]=useState(()=>getCachedMainRiverForecast({allowStale:true}).length?'cached':'loading')
   const recipes=useMemo(()=>getRecipeCatalogue(),[])
   const recipeMap=useMemo(()=>Object.fromEntries(recipes.map(recipe=>[recipe.id,recipe])),[recipes])
   const templateMap=useMemo(()=>Object.fromEntries((activityTemplates||[]).map(item=>[item.id,item])),[activityTemplates])
@@ -48,15 +48,14 @@ export default function Dashboard(){
 
   useEffect(()=>{
     let cancelled=false
-    setWeatherStatus('loading')
+    if(!forecast.length)setWeatherStatus('loading')
     getMainRiverForecast().then(data=>{
       if(cancelled)return
       setForecast(data)
       setWeatherStatus('ready')
     }).catch(()=>{
       if(cancelled)return
-      setForecast([])
-      setWeatherStatus('error')
+      if(!forecast.length)setWeatherStatus('error')
     })
     return ()=>{cancelled=true}
   },[])
@@ -114,7 +113,7 @@ export default function Dashboard(){
           </div>
           <div className="rounded-2xl bg-white/10 px-4 py-3 min-w-[190px]">
             <p className="text-xs uppercase tracking-wide opacity-70">{MAIN_RIVER_WEATHER_POINT.label}</p>
-            {heroWeather?<><p className="text-2xl font-extrabold mt-1">{heroWeather.icon} {Math.round(heroWeather.high)}° / {Math.round(heroWeather.low)}°</p><p className="text-sm opacity-85">{heroWeather.label} · Rain {heroWeather.rainChance??'—'}%</p></>:weatherStatus==='error'?<p className="mt-2 text-sm">Weather temporarily unavailable.</p>:<p className="mt-2 text-sm">Forecast loading…</p>}
+            {heroWeather?<><p className="text-2xl font-extrabold mt-1">{heroWeather.icon} {Math.round(heroWeather.high)}° / {Math.round(heroWeather.low)}°</p><p className="text-sm opacity-85">{heroWeather.label} · Rain {heroWeather.rainChance??'—'}%</p></>:weatherStatus==='loading'?<p className="mt-2 text-sm">Forecast loading…</p>:weatherStatus==='error'?<p className="mt-2 text-sm">Weather temporarily unavailable.</p>:<p className="mt-2 text-sm">7-day forecast available soon.</p>}
           </div>
         </div>
       </section>

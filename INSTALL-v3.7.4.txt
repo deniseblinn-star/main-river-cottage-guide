@@ -1,0 +1,12 @@
+MAIN RIVER COTTAGE PLANNER v3.7.4
+OPERATIONS REPORT & WEATHER RELIABILITY
+
+1. Copy this release over the current project root.
+2. Keep the existing .git folder.
+3. Stage All in GitKraken.
+4. Commit: Release v3.7.4 operations report and weather reliability
+5. Push main.
+6. Wait for Netlify to show Published.
+7. Run QA-v3.7.4.md.
+
+This release does not reset or migrate planner localStorage.

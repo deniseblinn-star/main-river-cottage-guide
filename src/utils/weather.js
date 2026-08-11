@@ -5,6 +5,10 @@ export const MAIN_RIVER_WEATHER_POINT={
   timezone:'America/Moncton'
 }
 
+const WEATHER_CACHE_KEY='main-river-weather-cache-v1'
+const WEATHER_CACHE_MAX_AGE=6*60*60*1000
+const WEATHER_TIMEOUT_MS=5000
+
 export function weatherCodeMeta(code){
   const value=Number(code)
   if(value===0)return {icon:'☀️',label:'Clear'}
@@ -18,6 +22,19 @@ export function weatherCodeMeta(code){
   return {icon:'🌤️',label:'Forecast'}
 }
 
+export function getCachedMainRiverForecast({allowStale=true}={}){
+  try{
+    const cached=JSON.parse(localStorage.getItem(WEATHER_CACHE_KEY)||'null')
+    if(!cached||!Array.isArray(cached.days))return []
+    if(!allowStale&&Date.now()-Number(cached.savedAt||0)>WEATHER_CACHE_MAX_AGE)return []
+    return cached.days
+  }catch{return []}
+}
+
+function cacheForecast(days){
+  try{localStorage.setItem(WEATHER_CACHE_KEY,JSON.stringify({savedAt:Date.now(),days}))}catch{}
+}
+
 export async function getMainRiverForecast(){
   const {latitude,longitude,timezone}=MAIN_RIVER_WEATHER_POINT
   const params=new URLSearchParams({
@@ -27,17 +44,29 @@ export async function getMainRiverForecast(){
     forecast_days:'7',
     daily:'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max'
   })
-  const response=await fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`)
-  if(!response.ok)throw new Error(`Weather request failed (${response.status})`)
-  const data=await response.json()
-  const daily=data.daily||{}
-  return (daily.time||[]).map((date,index)=>({
-    date,
-    code:daily.weather_code?.[index],
-    high:daily.temperature_2m_max?.[index],
-    low:daily.temperature_2m_min?.[index],
-    rainChance:daily.precipitation_probability_max?.[index],
-    wind:daily.wind_speed_10m_max?.[index],
-    ...weatherCodeMeta(daily.weather_code?.[index])
-  }))
+  const controller=new AbortController()
+  const timer=setTimeout(()=>controller.abort(),WEATHER_TIMEOUT_MS)
+  try{
+    const response=await fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`,{signal:controller.signal})
+    if(!response.ok)throw new Error(`Weather request failed (${response.status})`)
+    const data=await response.json()
+    const daily=data.daily||{}
+    const days=(daily.time||[]).map((date,index)=>({
+      date,
+      code:daily.weather_code?.[index],
+      high:daily.temperature_2m_max?.[index],
+      low:daily.temperature_2m_min?.[index],
+      rainChance:daily.precipitation_probability_max?.[index],
+      wind:daily.wind_speed_10m_max?.[index],
+      ...weatherCodeMeta(daily.weather_code?.[index])
+    }))
+    cacheForecast(days)
+    return days
+  }catch(error){
+    const cached=getCachedMainRiverForecast({allowStale:true})
+    if(cached.length)return cached
+    throw error
+  }finally{
+    clearTimeout(timer)
+  }
 }

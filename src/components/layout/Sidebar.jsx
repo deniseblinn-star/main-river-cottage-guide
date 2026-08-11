@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
-import { Home, CalendarDays, Utensils, BookOpen, ShoppingCart, Users, Flame, Settings, TreePine, CalendarHeart, Images, CalendarRange, BedDouble } from 'lucide-react'
+import { Home, CalendarDays, Utensils, BookOpen, ShoppingCart, Users, Flame, Settings, TreePine, CalendarHeart, Images, CalendarRange, BedDouble, ClipboardList } from 'lucide-react'
 import { useEvent } from '../../context/EventContext'
-const nav=[['/',Home,'Dashboard'],['/overall-events',CalendarRange,'Overall Events'],['/people',Users,'People & Attendance'],['/planner',CalendarDays,'Meal Planner'],['/daily',Utensils,'Daily Meals'],['/recipes',BookOpen,'Recipes'],['/groceries',ShoppingCart,'Groceries'],['/accommodations',BedDouble,'Accommodations'],['/events',CalendarHeart,'Activities'],['/photos',Images,'Photos'],['/smoker',Flame,'Smoker HQ'],['/settings',Settings,'Admin']]
+const nav=[['/',Home,'Dashboard'],['/overall-events',CalendarRange,'Overall Events'],['/people',Users,'People & Attendance'],['/planner',CalendarDays,'Meal Planner'],['/daily',Utensils,'Daily Meals'],['/recipes',BookOpen,'Recipes'],['/groceries',ShoppingCart,'Groceries'],['/accommodations',BedDouble,'Accommodations'],['/events',CalendarHeart,'Activities'],['/photos',Images,'Photos'],['/smoker',Flame,'Smoker HQ'],['/report',ClipboardList,'Operations Report'],['/settings',Settings,'Admin']]
 export default function Sidebar(){
  const {activeEvent}=useEvent()
  return <aside className="hidden lg:flex fixed inset-y-0 left-0 w-64 bg-white border-r border-stone/15 flex-col z-40">

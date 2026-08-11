@@ -16,6 +16,7 @@ import Photos from './pages/Photos'
 import OverallEvents from './pages/OverallEvents'
 import PeopleAttendance from './pages/PeopleAttendance'
 import Accommodations from './pages/Accommodations'
+import OperationsReport from './pages/OperationsReport'
 import { EventProvider } from './context/EventContext'
 
 export default function App(){
@@ -37,6 +38,7 @@ export default function App(){
   <Route path="/smoker" element={<SmokerHQ/>}/>
   <Route path="/events" element={<Events/>}/>
   <Route path="/photos" element={<Photos/>}/>
+  <Route path="/report" element={<OperationsReport/>}/>
   <Route path="/settings" element={<Settings/>}/>
  </Routes></AppShell></EventProvider>
 }
