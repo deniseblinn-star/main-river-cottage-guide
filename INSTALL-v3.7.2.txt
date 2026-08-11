@@ -1,0 +1,19 @@
+MAIN RIVER COTTAGE PLANNER v3.7.2 — NETLIFY BUILD FIX
+
+This patch fixes both build blockers inherited from the incomplete Blob integration:
+1. Removes the top-level await from src/main.jsx while preserving shared-planner bootstrap order.
+2. Adds all Netlify packages already imported by the source:
+   - @netlify/blobs 10.7.10
+   - @netlify/identity 1.2.0
+   - netlify-identity-widget 2.0.3
+
+INSTALL
+1. Copy the contents of this ZIP into your current project root.
+2. Replace matching files.
+3. In GitKraken: Stage All.
+4. Commit: Fix Netlify dependencies and shared planner startup
+5. Push main.
+6. Wait for Netlify. Do NOT trigger an old failed deploy.
+
+DATA SAFETY
+No planner data, recipes, groceries, packages, attendance, activities, or localStorage values are changed by this patch.

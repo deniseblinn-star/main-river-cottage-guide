@@ -14,4 +14,12 @@ async function startApp() {
   )
 }
 
-startApp()
+startApp().catch(error => {
+  console.error('Failed to start Main River Cottage Planner', error)
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <div style={{padding:'2rem',fontFamily:'system-ui,sans-serif'}}>
+      <h1>Main River Cottage Planner</h1>
+      <p>The planner could not finish starting. Refresh the page and try again.</p>
+    </div>
+  )
+})
