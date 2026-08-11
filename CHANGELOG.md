@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.7.1 — Final Planner QA & Week at a Glance
+- Rebuilt Dashboard from live event, meal, attendance, activity and grocery data.
+- Added live Main River-area weather with graceful fallback.
+- Repaired stale generic Cheese Grocery Library links when current recipe ingredient names are specific.
+- Converted Grocery Library to a categorized list view with search and direct Edit/Delete.
+- No planner-data reset or migration.
+
 ## v3.7.0
 
 - Repaired stale legacy recipe assignments when meals become Unplanned.

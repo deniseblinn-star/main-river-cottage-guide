@@ -1,0 +1,13 @@
+v3.7.1 FILES IN RELEASE
+
+package.json
+package-lock.json
+CHANGELOG.md
+src/pages/Dashboard.jsx
+src/pages/Groceries.jsx
+src/utils/groceryLibrary.js
+src/utils/weather.js
+RELEASE-NOTES-v3.7.1.md
+QA-v3.7.1.md
+ROLLBACK-v3.7.1.md
+INSTALL-v3.7.1.txt

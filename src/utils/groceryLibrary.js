@@ -167,8 +167,18 @@ export function matchGroceryItem(name,library=getGroceryLibrary()){
   return null
 }
 
+const GENERIC_GROCERY_IDS=new Set(['cheese'])
+
 export function standardizeIngredient(ingredient,library=getGroceryLibrary()){
-  const groceryItem=ingredient.groceryItemId?library.find(item=>item.id===ingredient.groceryItemId):matchGroceryItem(ingredient.name,library)
+  const linked=ingredient.groceryItemId?library.find(item=>item.id===ingredient.groceryItemId):null
+  const matched=matchGroceryItem(ingredient.name,library)
+  // Older browser data can retain a stale generic groceryItemId even after the
+  // ingredient was made specific (for example Gruyère Cheese -> Cheese).
+  // Prefer a more specific name/alias match so generated groceries rebuild from
+  // the current recipe wording instead of resurrecting the old generic item.
+  const groceryItem=(linked&&GENERIC_GROCERY_IDS.has(linked.id)&&matched&&matched.id!==linked.id)
+    ?matched
+    :(linked||matched)
   return {
     ...ingredient,
     groceryItemId:groceryItem?.id||ingredient.groceryItemId||'',

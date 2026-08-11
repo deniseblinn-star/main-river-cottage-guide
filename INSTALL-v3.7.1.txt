@@ -1,0 +1,32 @@
+MAIN RIVER COTTAGE PLANNER v3.7.1
+FINAL PLANNER QA & WEEK AT A GLANCE
+
+INSTALL
+1. Use your current v3.7.0 project folder.
+2. Keep the existing .git folder.
+3. Copy the contents of this ZIP into the project root.
+4. Choose Replace for matching files.
+5. In GitKraken, Stage All.
+6. Commit:
+   Release v3.7.1 final QA and week at a glance
+7. Push main.
+8. Wait for Netlify to deploy.
+
+IMPORTANT DATA SAFETY
+This is a code/logic release only. It does not reset or migrate planner localStorage.
+Your current browser recipes, Grocery Library package edits, attendance, meals,
+activities and manual groceries remain intact.
+
+FIRST QA
+1. Dashboard -> confirm Week at a Glance matches the Meal Planner.
+2. Confirm Saturday/Sunday current recipe names are correct.
+3. Confirm live weather appears for forecastable dates; later dates say Forecast available soon.
+4. Trip Groceries -> confirm phantom generic Cheese disappears unless an active recipe truly calls for generic Cheese.
+5. If Garlic remains, inspect its displayed recipe sources; the list is now generated only from active recipe-planned meals.
+6. Grocery Library -> confirm categorized list view and Edit works.
+7. Refresh and verify current planner data persists.
+
+VALIDATION
+- node scripts/audit-release.mjs: PASS
+- git diff --check: PASS
+- Full Vite build could not be repeated in the packaging sandbox because the supplied ZIP did not include usable installed Vite binaries and package installation timed out. Netlify is the final compile check.
