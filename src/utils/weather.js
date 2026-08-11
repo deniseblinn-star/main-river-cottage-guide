@@ -24,7 +24,7 @@ export async function getMainRiverForecast(){
     latitude:String(latitude),
     longitude:String(longitude),
     timezone,
-    forecast_days:'16',
+    forecast_days:'7',
     daily:'weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max'
   })
   const response=await fetch(`https://api.open-meteo.com/v1/forecast?${params.toString()}`)

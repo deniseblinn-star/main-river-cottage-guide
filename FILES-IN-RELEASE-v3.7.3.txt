@@ -1,0 +1,15 @@
+v3.7.3 FILES IN RELEASE
+
+package.json
+src/main.jsx
+src/utils/customRecipes.js
+src/utils/groceryLibrary.js
+src/utils/weather.js
+src/pages/Dashboard.jsx
+src/pages/Settings.jsx
+src/components/layout/Sidebar.jsx
+src/components/layout/MobileMoreMenu.jsx
+src/components/layout/TopBar.jsx
+RELEASE-NOTES-v3.7.3.md
+QA-v3.7.3.md
+INSTALL-v3.7.3.txt

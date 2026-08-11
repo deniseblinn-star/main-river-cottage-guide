@@ -132,7 +132,7 @@ export default function Dashboard(){
                 <p className="text-sm text-stone mt-1 flex items-center gap-1"><Users size={14}/>{row.siteCount} people on site</p>
               </div>
               <div className="text-right min-w-[120px]">
-                {row.weather?<><p className="font-bold text-navy">{row.weather.icon} {Math.round(row.weather.high)}° / {Math.round(row.weather.low)}°</p><p className="text-xs text-stone">Rain {row.weather.rainChance??'—'}% · Wind {Math.round(row.weather.wind||0)} km/h</p></>:<p className="text-xs text-stone">Forecast available soon</p>}
+                {row.weather?<><p className="font-bold text-navy">{row.weather.icon} {Math.round(row.weather.high)}° / {Math.round(row.weather.low)}°</p><p className="text-xs text-stone">Rain {row.weather.rainChance??'—'}% · Wind {Math.round(row.weather.wind||0)} km/h</p></>:<p className="text-xs text-stone">7-day forecast available soon</p>}
               </div>
             </div>
             {row.activities.length>0&&<div className="mt-3 flex flex-wrap gap-2">{row.activities.slice(0,2).map(activity=><span key={activity.id} className="badge-navy">{templateMap[activity.templateId]?.name||'Activity'}{activity.startTime?` · ${activityTimeLabel(activity.startTime)}`:''}</span>)}</div>}

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { TreePine, ChevronLeft } from 'lucide-react'
 import { useEvent } from '../../context/EventContext'
-const titles={'/':'Dashboard','/overall-events':'Overall Events','/people':'People & Attendance','/planner':'Weekly Planner','/daily':'Daily Planner','/recipes':'Recipes','/recipe-engine':'Recipe Engine','/groceries':'Groceries','/guests':'Guests','/smoker':'Smoker HQ','/hosting':'Hosting','/events':'Activities','/photos':'Photos','/settings':'Settings'}
+const titles={'/':'Dashboard','/overall-events':'Overall Events','/people':'People & Attendance','/planner':'Weekly Planner','/daily':'Daily Planner','/recipes':'Recipes','/recipe-engine':'Recipe Engine','/groceries':'Groceries','/guests':'Guests','/smoker':'Smoker HQ','/hosting':'Hosting','/events':'Activities','/photos':'Photos','/settings':'Admin'}
 export default function TopBar(){
  const l=useLocation(),n=useNavigate(),{events,activeEventId,setActiveEvent}=useEvent()
  const detail=l.pathname.split('/').length>2

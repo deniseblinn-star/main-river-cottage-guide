@@ -1,0 +1,12 @@
+MAIN RIVER COTTAGE PLANNER v3.7.3
+
+1. Copy these files over the current project folder.
+2. Keep the existing .git folder and browser data.
+3. Stage all changed files in GitKraken.
+4. Commit: Release v3.7.3 legacy grocery cleanup and daily weather
+5. Push main.
+6. Wait for a green Netlify Published deployment before testing.
+
+DATA SAFETY
+This release does not reset planner localStorage or Grocery Library package edits.
+The legacy repair only changes stale groceryItemId links inside saved recipe ingredient rows when the ingredient name exactly identifies a different Grocery Library item.
