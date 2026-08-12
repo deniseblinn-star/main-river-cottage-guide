@@ -77,7 +77,7 @@ export default function OperationsReport(){
         <div><p className="text-sm uppercase tracking-widest opacity-75">Family Operations Package</p><h2 className="text-3xl font-extrabold mt-2">{activeEvent.name}</h2><p className="mt-2 opacity-90">{activeEvent.startDate}–{activeEvent.endDate} · {activeEvent.location}</p></div>
         <div className="rounded-2xl bg-white/10 p-4 min-w-[220px]"><p className="text-xs uppercase tracking-wider opacity-70">Quality & Safety Officer</p><p className="text-2xl font-extrabold mt-1">Lonita</p><p className="text-sm opacity-80 mt-1">Family-use QSMS</p></div>
       </div>
-      <div className="mt-6 grid sm:grid-cols-3 gap-3 text-sm"><div className="rounded-xl bg-white/10 p-3"><b>{profiles?.length||0}</b><br/>Profiles</div><div className="rounded-xl bg-white/10 p-3"><b>{dates.length}</b><br/>Cottage days</div><div className="rounded-xl bg-white/10 p-3"><b>{MAIN_RIVER_WEATHER_POINT.label}</b><br/>{weatherStatus==='error'?'Weather unavailable':'7-day forecast'}</div></div>
+      <div className="mt-6 grid sm:grid-cols-3 gap-3 text-sm"><div className="rounded-xl bg-white/10 p-3"><b>{new Set((activeEvent.attendance||[]).map(row=>row.profileId)).size}</b><br/>Attendees</div><div className="rounded-xl bg-white/10 p-3"><b>{dates.length}</b><br/>Cottage days</div><div className="rounded-xl bg-white/10 p-3"><b>{MAIN_RIVER_WEATHER_POINT.label}</b><br/>{weatherStatus==='error'?'Weather unavailable':'7-day forecast'}</div></div>
     </section>
 
     <section className="card">

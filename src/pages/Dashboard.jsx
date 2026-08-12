@@ -1,11 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AlertTriangle, CalendarHeart, CheckCircle2, Clock, MapPin, ShoppingCart, Users } from 'lucide-react'
+import { Users } from 'lucide-react'
 import { useEvent } from '../context/EventContext'
 import { activityTimeLabel } from '../utils/activities'
 import { dateRange, finalAttendeeIds, formatMealDate, isPresentAt } from '../utils/mealPlanner'
 import { getRecipeCatalogue } from '../utils/recipeCatalogue'
-import { getEventGeneratedGroceries } from '../utils/eventGroceryEngine'
 import { getDaysUntil } from '../utils'
 import { getCachedMainRiverForecast, getMainRiverForecast, MAIN_RIVER_WEATHER_POINT } from '../utils/weather'
 import PhotoRail from '../components/PhotoRail'
@@ -64,38 +63,18 @@ export default function Dashboard(){
 
   const dayRows=dates.map(date=>{
     const slots=activeEvent.mealSlots.filter(slot=>slot.date===date)
+    const breakfast=slots.find(slot=>slot.type==='breakfast')
+    const brunch=slots.find(slot=>slot.type==='brunch')
     const lunch=slots.find(slot=>slot.type==='lunch')
     const earlySnack=slots.find(slot=>slot.type==='early-snack')
     const dinner=slots.find(slot=>slot.type==='dinner')
+    const lateSnack=slots.find(slot=>slot.type==='late-snack')
     const activities=(activeEvent.activityInstances||[])
       .filter(item=>item.date===date)
       .sort((a,b)=>(a.startTime||'').localeCompare(b.startTime||''))
     const siteCount=(activeEvent.attendance||[]).filter(row=>isPresentAt(row,date,'18:30')).length
-    return {date,lunch,earlySnack,dinner,activities,siteCount,weather:weatherMap[date]}
+    return {date,breakfast,brunch,lunch,earlySnack,dinner,lateSnack,activities,siteCount,weather:weatherMap[date]}
   })
-
-  const generated=getEventGeneratedGroceries(activeEvent)
-  const manual=readJson(manualKey,[])
-  const groceryState=readJson(groceryStateKey,{})
-  const groceryIds=[...generated.map(item=>item.id),...manual.map(item=>item.id)]
-  const purchased=groceryIds.filter(id=>groceryState[id]?.purchased).length
-  const remaining=Math.max(0,groceryIds.length-purchased)
-
-  const attention=[]
-  for(const row of dayRows){
-    for(const slot of [row.lunch,row.dinner]){
-      if(!slot)continue
-      if(slot.planType==='none')attention.push(`${formatShortDate(row.date)} ${slot.label} is not planned`)
-      if(slot.planType==='recipes'&&!slot.recipeIds?.length)attention.push(`${formatShortDate(row.date)} ${slot.label} has no recipes selected`)
-    }
-  }
-  const legacyGroceries=generated.filter(item=>item.notes?.includes('structured')||!item.groceryItemId)
-  if(legacyGroceries.length)attention.push(`${legacyGroceries.length} generated grocery item${legacyGroceries.length===1?'':'s'} need review`)
-
-  const upcomingActivities=(activeEvent.activityInstances||[])
-    .slice()
-    .sort((a,b)=>`${a.date}T${a.startTime||''}`.localeCompare(`${b.date}T${b.startTime||''}`))
-    .slice(0,5)
 
   const currentDate=todayISO()
   const currentDay=dayRows.find(row=>row.date===currentDate)
@@ -135,31 +114,13 @@ export default function Dashboard(){
               </div>
             </div>
             {row.activities.length>0&&<div className="mt-3 flex flex-wrap gap-2">{row.activities.slice(0,2).map(activity=><span key={activity.id} className="badge-navy">{templateMap[activity.templateId]?.name||'Activity'}{activity.startTime?` · ${activityTimeLabel(activity.startTime)}`:''}</span>)}</div>}
-            <div className="grid md:grid-cols-3 gap-2 mt-4 text-sm">
-              <div className="bg-cream rounded-xl p-3"><b className="text-navy">Lunch</b><p className="mt-1 text-stone">{mealSummary(row.lunch,recipeMap)}</p></div>
-              <div className="bg-cream rounded-xl p-3"><b className="text-navy">Early Snack</b><p className="mt-1 text-stone">{mealSummary(row.earlySnack,recipeMap)}</p></div>
-              <div className="bg-cream rounded-xl p-3"><b className="text-navy">Dinner</b><p className="mt-1 text-stone">{mealSummary(row.dinner,recipeMap)}</p></div>
+            <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-2 mt-4 text-sm">
+              {[['Breakfast',row.breakfast],['Brunch',row.brunch],['Lunch',row.lunch],['Early Snack',row.earlySnack],['Dinner',row.dinner],['Late Snack',row.lateSnack]].map(([label,slot])=><div key={label} className="bg-cream rounded-xl p-3"><b className="text-navy">{label}</b><p className="mt-1 text-stone">{mealSummary(slot,recipeMap)}</p></div>)}
             </div>
           </Link>)}
         </div>
       </section>
 
-      {attention.length>0&&<section className="card border border-amber-200 bg-amber-50">
-        <div className="flex gap-3 items-start"><AlertTriangle className="text-amber-600 shrink-0"/><div className="flex-1"><h2 className="font-extrabold text-navy">Needs Attention</h2><div className="mt-2 space-y-1 text-sm text-amber-900">{attention.slice(0,8).map(item=><p key={item}>• {item}</p>)}</div>{attention.length>8&&<p className="text-xs text-stone mt-2">+ {attention.length-8} more items</p>}</div></div>
-      </section>}
-
-      <div className="grid lg:grid-cols-2 gap-4">
-        <Link to="/groceries" className="card card-hover">
-          <div className="flex justify-between gap-3"><div><p className="section-title">Shopping</p><p className="text-3xl font-extrabold text-forest mt-1">{remaining} remaining</p><p className="text-sm text-stone mt-1">{purchased} purchased · {groceryIds.length} total</p></div><ShoppingCart className="text-forest"/></div>
-          <div className="h-2 bg-cream rounded-full overflow-hidden mt-4"><div className="h-full bg-forest" style={{width:`${groceryIds.length?purchased/groceryIds.length*100:0}%`}}/></div>
-        </Link>
-        <section className="card">
-          <div className="flex justify-between gap-3"><div><p className="section-title">Upcoming Activities</p><p className="text-sm text-stone mt-1">Next scheduled moments</p></div><CalendarHeart className="text-forest"/></div>
-          <div className="mt-3 space-y-2">{upcomingActivities.map(activity=>{const template=templateMap[activity.templateId];return <Link to="/events" key={activity.id} className="block rounded-xl bg-cream p-3"><div className="flex justify-between gap-2"><b className="text-navy">{template?.name||'Activity'}</b><span className="text-xs text-stone">{formatShortDate(activity.date)}</span></div><div className="flex flex-wrap gap-3 text-xs text-stone mt-1">{activity.startTime&&<span className="flex gap-1 items-center"><Clock size={12}/>{activityTimeLabel(activity.startTime)}</span>}{activity.location&&<span className="flex gap-1 items-center"><MapPin size={12}/>{activity.location}</span>}</div></Link>})}{!upcomingActivities.length&&<p className="text-sm text-stone">No activities scheduled.</p>}</div>
-        </section>
-      </div>
-
-      {attention.length===0&&<div className="bg-forest/5 border border-forest/15 rounded-2xl p-4 flex gap-3"><CheckCircle2 className="text-forest"/><div><b className="text-navy">Planner looks ready</b><p className="text-sm text-stone">No missing lunch or dinner plans and no generated grocery warnings detected.</p></div></div>}
     </div>
     <PhotoRail/>
   </div>

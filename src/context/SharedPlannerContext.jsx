@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import netlifyIdentity from 'netlify-identity-widget'
-import { capturePlannerStorage, OWNER_DEVICE_KEY, SHARED_REVISION_KEY } from '../utils/sharedPlanner'
+import { applyPlannerStorage, capturePlannerStorage, OWNER_DEVICE_KEY, SHARED_CACHE_KEY, SHARED_REVISION_KEY } from '../utils/sharedPlanner'
 
 const SharedPlannerContext=createContext(null)
 
@@ -55,6 +55,23 @@ export function SharedPlannerProvider({children}){
     return()=>{document.removeEventListener('click',block,true);document.removeEventListener('change',block,true)}
   },[access.canEdit])
 
+
+  const updateLatest=async()=>{
+    setBusy(true);setMessage('Checking for latest planner…')
+    try{
+      const response=await fetch('/.netlify/functions/planner-read',{cache:'no-store'})
+      if(!response.ok)throw new Error(`Shared planner read failed (${response.status})`)
+      const data=await response.json()
+      setShared({available:true,online:true,revision:data.revision,publishedAt:data.publishedAt,publishedBy:data.publishedBy})
+      applyPlannerStorage(data.localStorage)
+      localStorage.setItem(SHARED_REVISION_KEY,String(data.revision))
+      localStorage.setItem(SHARED_CACHE_KEY,JSON.stringify(data))
+      setMessage(`Updated to revision ${data.revision}. Reloading…`)
+      setTimeout(()=>window.location.reload(),500)
+    }catch(error){setMessage(error.message||'Could not update planner.')}
+    finally{setBusy(false);setTimeout(()=>setMessage(''),5000)}
+  }
+
   const publish=async()=>{
     setBusy(true);setMessage('Publishing…')
     try{
@@ -73,7 +90,7 @@ export function SharedPlannerProvider({children}){
     finally{setBusy(false);setTimeout(()=>setMessage(''),5000)}
   }
 
-  const value=useMemo(()=>({user,access,shared,message,busy,publish,login:()=>netlifyIdentity.open('login'),logout:()=>netlifyIdentity.logout()}),[user,access,shared,message,busy])
+  const value=useMemo(()=>({user,access,shared,message,busy,publish,updateLatest,login:()=>netlifyIdentity.open('login'),logout:()=>netlifyIdentity.logout()}),[user,access,shared,message,busy])
   return <SharedPlannerContext.Provider value={value}>{children}</SharedPlannerContext.Provider>
 }
 

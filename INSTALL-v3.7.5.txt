@@ -1,0 +1,9 @@
+MAIN RIVER COTTAGE PLANNER v3.7.5
+
+1. Extract this release over the current project.
+2. Stage all changed files in GitKraken.
+3. Commit: Release v3.7.5 navigation and published planner sync
+4. Push main.
+5. Wait for Netlify deploy to publish.
+6. Owner: sign in and click Publish Latest Plan once the current planner is correct.
+7. Family/viewers: click Update to Latest to force-refresh the published planner snapshot.
