@@ -1,0 +1,13 @@
+MAIN RIVER COTTAGE PLANNER v3.7.6
+DASHBOARD WEEK CALENDAR
+
+1. Copy the changed-files ZIP contents over the current project root.
+2. Choose Replace for matching files.
+3. Keep the existing .git folder.
+4. In GitKraken: Stage All.
+5. Commit: Release v3.7.6 dashboard week calendar
+6. Push main.
+7. Wait for Netlify to publish.
+8. Test Dashboard Glance and Calendar views before publishing a new planner revision.
+
+This is a code/UI release. It does not reset planner data.

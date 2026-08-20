@@ -1,21 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Users } from 'lucide-react'
+import { CalendarDays, LayoutList, Users } from 'lucide-react'
 import { useEvent } from '../context/EventContext'
 import { activityTimeLabel } from '../utils/activities'
-import { dateRange, finalAttendeeIds, formatMealDate, isPresentAt } from '../utils/mealPlanner'
+import { dateRange, formatMealDate, MEAL_TYPES, isPresentAt } from '../utils/mealPlanner'
 import { getRecipeCatalogue } from '../utils/recipeCatalogue'
 import { getDaysUntil } from '../utils'
 import { getCachedMainRiverForecast, getMainRiverForecast, MAIN_RIVER_WEATHER_POINT } from '../utils/weather'
 import PhotoRail from '../components/PhotoRail'
-
-const manualKey='main-river-manual-groceries-v21'
-const groceryStateKey='main-river-trip-grocery-state-v21'
-
-function readJson(key,fallback){
-  try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback))}
-  catch{return fallback}
-}
 
 function formatShortDate(date){
   return new Intl.DateTimeFormat('en-CA',{weekday:'short',month:'short',day:'numeric'}).format(new Date(`${date}T12:00:00`))
@@ -34,10 +26,75 @@ function todayISO(){
   return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`
 }
 
+function minutesFromTime(value='00:00'){
+  const [hour,minute]=String(value).split(':').map(Number)
+  return (Number.isFinite(hour)?hour:0)*60+(Number.isFinite(minute)?minute:0)
+}
+
+function timeLabel(value){
+  if(!value)return ''
+  const [hour,minute]=value.split(':').map(Number)
+  return new Date(2026,0,1,hour,minute).toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit'})
+}
+
+function CalendarView({dayRows,recipeMap,templateMap,currentDate}){
+  const timeline=useMemo(()=>{
+    const times=new Set(MEAL_TYPES.map(item=>item.defaultTime))
+    dayRows.forEach(row=>{
+      row.mealSlots.forEach(slot=>times.add(slot.time||MEAL_TYPES.find(item=>item.id===slot.type)?.defaultTime||'12:00'))
+      row.activities.forEach(activity=>{if(activity.startTime)times.add(activity.startTime)})
+    })
+    return [...times].sort((a,b)=>minutesFromTime(a)-minutesFromTime(b))
+  },[dayRows])
+
+  return <div className="rounded-2xl border border-stone-200 bg-white overflow-hidden">
+    <div className="overflow-x-auto">
+      <div className="min-w-[1120px]">
+        <div className="grid border-b border-stone-200 bg-cream" style={{gridTemplateColumns:`90px repeat(${dayRows.length}, minmax(145px,1fr))`}}>
+          <div className="p-3 text-xs font-bold uppercase tracking-wide text-stone">Time</div>
+          {dayRows.map(row=><Link key={row.date} to={`/daily/${row.date}`} className={`p-3 border-l border-stone-200 hover:bg-white/70 ${row.date===currentDate?'bg-forest/10':''}`}>
+            <div className="font-extrabold text-navy">{formatShortDate(row.date)}</div>
+            <div className="mt-1 text-xs text-stone flex items-center gap-1"><Users size={12}/>{row.siteCount} on site</div>
+            <div className="mt-2 text-xs">
+              {row.weather?<span className="font-semibold text-navy">{row.weather.icon} {Math.round(row.weather.high)}°/{Math.round(row.weather.low)}° · {row.weather.rainChance??'—'}% rain</span>:<span className="text-stone">Forecast available soon</span>}
+            </div>
+          </Link>)}
+        </div>
+
+        {timeline.map(time=><div key={time} className="grid border-b border-stone-100 last:border-b-0" style={{gridTemplateColumns:`90px repeat(${dayRows.length}, minmax(145px,1fr))`}}>
+          <div className="p-3 text-sm font-bold text-navy bg-stone-50">{timeLabel(time)}</div>
+          {dayRows.map(row=>{
+            const meals=row.mealSlots.filter(slot=>(slot.time||MEAL_TYPES.find(item=>item.id===slot.type)?.defaultTime)===time)
+            const activities=row.activities.filter(activity=>activity.startTime===time)
+            const hasContent=meals.length||activities.length
+            return <div key={`${row.date}-${time}`} className={`min-h-[92px] p-2 border-l border-stone-100 space-y-2 ${row.date===currentDate?'bg-forest/[0.025]':''}`}>
+              {!hasContent&&<div className="h-full"/>}
+              {activities.map(activity=><Link to="/activities" key={activity.id} className="block rounded-lg bg-navy text-white px-2.5 py-2 text-xs hover:opacity-90">
+                <div className="font-bold">{templateMap[activity.templateId]?.name||'Activity'}</div>
+                {activity.endTime&&<div className="mt-0.5 opacity-75">until {activityTimeLabel(activity.endTime)}</div>}
+              </Link>)}
+              {meals.map(slot=>{
+                const summary=mealSummary(slot,recipeMap)
+                const planned=slot.planType!=='none'
+                return <Link to={`/daily/${row.date}`} key={slot.id} className={`block rounded-lg px-2.5 py-2 text-xs ${planned?'bg-cream text-navy':'bg-stone-50 text-stone'}`}>
+                  <div className="font-bold">{slot.label}</div>
+                  <div className="mt-1 line-clamp-4">{summary}</div>
+                </Link>
+              })}
+            </div>
+          })}
+        </div>)}
+      </div>
+    </div>
+    <div className="sm:hidden px-3 py-2 text-xs text-stone border-t border-stone-100">Swipe sideways to see the full calendar.</div>
+  </div>
+}
+
 export default function Dashboard(){
   const {activeEvent,activityTemplates}=useEvent()
   const [forecast,setForecast]=useState(()=>getCachedMainRiverForecast({allowStale:true}))
   const [weatherStatus,setWeatherStatus]=useState(()=>getCachedMainRiverForecast({allowStale:true}).length?'cached':'loading')
+  const [view,setView]=useState(()=>localStorage.getItem('main-river-dashboard-view')||'glance')
   const recipes=useMemo(()=>getRecipeCatalogue(),[])
   const recipeMap=useMemo(()=>Object.fromEntries(recipes.map(recipe=>[recipe.id,recipe])),[recipes])
   const templateMap=useMemo(()=>Object.fromEntries((activityTemplates||[]).map(item=>[item.id,item])),[activityTemplates])
@@ -59,21 +116,33 @@ export default function Dashboard(){
     return ()=>{cancelled=true}
   },[])
 
+  function changeView(next){
+    setView(next)
+    try{localStorage.setItem('main-river-dashboard-view',next)}catch{}
+  }
+
   if(!activeEvent)return <div className="card">Create an Overall Event first.</div>
 
   const dayRows=dates.map(date=>{
-    const slots=activeEvent.mealSlots.filter(slot=>slot.date===date)
-    const breakfast=slots.find(slot=>slot.type==='breakfast')
-    const brunch=slots.find(slot=>slot.type==='brunch')
-    const lunch=slots.find(slot=>slot.type==='lunch')
-    const earlySnack=slots.find(slot=>slot.type==='early-snack')
-    const dinner=slots.find(slot=>slot.type==='dinner')
-    const lateSnack=slots.find(slot=>slot.type==='late-snack')
+    const mealSlots=activeEvent.mealSlots.filter(slot=>slot.date===date)
+    const slotsByType=Object.fromEntries(mealSlots.map(slot=>[slot.type,slot]))
     const activities=(activeEvent.activityInstances||[])
       .filter(item=>item.date===date)
       .sort((a,b)=>(a.startTime||'').localeCompare(b.startTime||''))
     const siteCount=(activeEvent.attendance||[]).filter(row=>isPresentAt(row,date,'18:30')).length
-    return {date,breakfast,brunch,lunch,earlySnack,dinner,lateSnack,activities,siteCount,weather:weatherMap[date]}
+    return {
+      date,
+      mealSlots,
+      breakfast:slotsByType.breakfast,
+      brunch:slotsByType.brunch,
+      lunch:slotsByType.lunch,
+      earlySnack:slotsByType['early-snack'],
+      dinner:slotsByType.dinner,
+      lateSnack:slotsByType['late-snack'],
+      activities,
+      siteCount,
+      weather:weatherMap[date]
+    }
   })
 
   const currentDate=todayISO()
@@ -98,11 +167,21 @@ export default function Dashboard(){
       </section>
 
       <section>
-        <div className="flex flex-wrap justify-between gap-2 items-end mb-3">
-          <div><h2 className="text-2xl font-extrabold text-navy">Week at a Glance</h2><p className="text-sm text-stone">Live meals, attendance, activities and weather — nothing is maintained separately here.</p></div>
-          <Link to="/planner" className="text-sm font-semibold text-forest">Open Meal Planner</Link>
+        <div className="flex flex-wrap justify-between gap-3 items-end mb-3">
+          <div>
+            <h2 className="text-2xl font-extrabold text-navy">{view==='calendar'?'Week Calendar':'Week at a Glance'}</h2>
+            <p className="text-sm text-stone">Live meals, attendance, activities and weather — nothing is maintained separately here.</p>
+          </div>
+          <div className="flex flex-wrap gap-2 items-center">
+            <div className="inline-flex rounded-xl border border-stone-200 bg-white p-1">
+              <button type="button" onClick={()=>changeView('glance')} className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${view==='glance'?'bg-forest text-white':'text-navy hover:bg-cream'}`}><LayoutList size={16}/>Glance</button>
+              <button type="button" onClick={()=>changeView('calendar')} className={`flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold ${view==='calendar'?'bg-forest text-white':'text-navy hover:bg-cream'}`}><CalendarDays size={16}/>Calendar</button>
+            </div>
+            <Link to="/planner" className="text-sm font-semibold text-forest">Open Meal Planner</Link>
+          </div>
         </div>
-        <div className="space-y-3">
+
+        {view==='calendar'?<CalendarView dayRows={dayRows} recipeMap={recipeMap} templateMap={templateMap} currentDate={currentDate}/>:<div className="space-y-3">
           {dayRows.map(row=><Link to={`/daily/${row.date}`} key={row.date} className={`card card-hover block ${row.date===currentDate?'ring-2 ring-forest/30':''}`}>
             <div className="flex flex-wrap justify-between gap-3 items-start">
               <div>
@@ -113,14 +192,13 @@ export default function Dashboard(){
                 {row.weather?<><p className="font-bold text-navy">{row.weather.icon} {Math.round(row.weather.high)}° / {Math.round(row.weather.low)}°</p><p className="text-xs text-stone">Rain {row.weather.rainChance??'—'}% · Wind {Math.round(row.weather.wind||0)} km/h</p></>:<p className="text-xs text-stone">7-day forecast available soon</p>}
               </div>
             </div>
-            {row.activities.length>0&&<div className="mt-3 flex flex-wrap gap-2">{row.activities.slice(0,2).map(activity=><span key={activity.id} className="badge-navy">{templateMap[activity.templateId]?.name||'Activity'}{activity.startTime?` · ${activityTimeLabel(activity.startTime)}`:''}</span>)}</div>}
+            {row.activities.length>0&&<div className="mt-3 flex flex-wrap gap-2">{row.activities.slice(0,3).map(activity=><span key={activity.id} className="badge-navy">{templateMap[activity.templateId]?.name||'Activity'}{activity.startTime?` · ${activityTimeLabel(activity.startTime)}`:''}</span>)}</div>}
             <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-2 mt-4 text-sm">
               {[['Breakfast',row.breakfast],['Brunch',row.brunch],['Lunch',row.lunch],['Early Snack',row.earlySnack],['Dinner',row.dinner],['Late Snack',row.lateSnack]].map(([label,slot])=><div key={label} className="bg-cream rounded-xl p-3"><b className="text-navy">{label}</b><p className="mt-1 text-stone">{mealSummary(slot,recipeMap)}</p></div>)}
             </div>
           </Link>)}
-        </div>
+        </div>}
       </section>
-
     </div>
     <PhotoRail/>
   </div>
