@@ -1,0 +1,5 @@
+src/pages/Dashboard.jsx
+package.json
+RELEASE-NOTES-v3.7.7.md
+INSTALL-v3.7.7.txt
+FILES-IN-RELEASE-v3.7.7.txt

@@ -37,56 +37,59 @@ function timeLabel(value){
   return new Date(2026,0,1,hour,minute).toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit'})
 }
 
+function daypartForActivity(activity){
+  const minutes=minutesFromTime(activity.startTime||'12:00')
+  if(minutes<12*60)return 'morning'
+  if(minutes<17*60)return 'afternoon'
+  return 'evening'
+}
+
 function CalendarView({dayRows,recipeMap,templateMap,currentDate}){
-  const timeline=useMemo(()=>{
-    const times=new Set(MEAL_TYPES.map(item=>item.defaultTime))
-    dayRows.forEach(row=>{
-      row.mealSlots.forEach(slot=>times.add(slot.time||MEAL_TYPES.find(item=>item.id===slot.type)?.defaultTime||'12:00'))
-      row.activities.forEach(activity=>{if(activity.startTime)times.add(activity.startTime)})
-    })
-    return [...times].sort((a,b)=>minutesFromTime(a)-minutesFromTime(b))
-  },[dayRows])
+  const dayparts=[
+    {id:'morning',label:'Morning',mealTypes:['breakfast','brunch']},
+    {id:'afternoon',label:'Afternoon',mealTypes:['lunch','early-snack']},
+    {id:'evening',label:'Evening',mealTypes:['dinner','late-snack']}
+  ]
 
   return <div className="rounded-2xl border border-stone-200 bg-white overflow-hidden">
     <div className="overflow-x-auto">
-      <div className="min-w-[1120px]">
-        <div className="grid border-b border-stone-200 bg-cream" style={{gridTemplateColumns:`90px repeat(${dayRows.length}, minmax(145px,1fr))`}}>
-          <div className="p-3 text-xs font-bold uppercase tracking-wide text-stone">Time</div>
-          {dayRows.map(row=><Link key={row.date} to={`/daily/${row.date}`} className={`p-3 border-l border-stone-200 hover:bg-white/70 ${row.date===currentDate?'bg-forest/10':''}`}>
-            <div className="font-extrabold text-navy">{formatShortDate(row.date)}</div>
-            <div className="mt-1 text-xs text-stone flex items-center gap-1"><Users size={12}/>{row.siteCount} on site</div>
-            <div className="mt-2 text-xs">
-              {row.weather?<span className="font-semibold text-navy">{row.weather.icon} {Math.round(row.weather.high)}°/{Math.round(row.weather.low)}° · {row.weather.rainChance??'—'}% rain</span>:<span className="text-stone">Forecast available soon</span>}
+      <div className="min-w-[1040px]">
+        <div className="grid border-b border-stone-200 bg-cream" style={{gridTemplateColumns:`100px repeat(${dayRows.length}, minmax(104px,1fr))`}}>
+          <div className="p-3 text-xs font-bold uppercase tracking-wide text-stone">Day</div>
+          {dayRows.map(row=><Link key={row.date} to={`/daily/${row.date}`} className={`p-2.5 border-l border-stone-200 hover:bg-white/70 ${row.date===currentDate?'bg-forest/10':''}`}>
+            <div className="font-extrabold text-sm text-navy">{formatShortDate(row.date)}</div>
+            <div className="mt-1 text-[11px] text-stone flex items-center gap-1"><Users size={11}/>{row.siteCount} on site</div>
+            <div className="mt-1 text-[11px]">
+              {row.weather?<span className="font-semibold text-navy">{row.weather.icon} {Math.round(row.weather.high)}°/{Math.round(row.weather.low)}°</span>:<span className="text-stone">Forecast soon</span>}
             </div>
           </Link>)}
         </div>
 
-        {timeline.map(time=><div key={time} className="grid border-b border-stone-100 last:border-b-0" style={{gridTemplateColumns:`90px repeat(${dayRows.length}, minmax(145px,1fr))`}}>
-          <div className="p-3 text-sm font-bold text-navy bg-stone-50">{timeLabel(time)}</div>
+        {dayparts.map(part=><div key={part.id} className="grid border-b border-stone-100 last:border-b-0" style={{gridTemplateColumns:`100px repeat(${dayRows.length}, minmax(104px,1fr))`}}>
+          <div className="p-3 bg-stone-50"><div className="text-sm font-extrabold text-navy">{part.label}</div></div>
           {dayRows.map(row=>{
-            const meals=row.mealSlots.filter(slot=>(slot.time||MEAL_TYPES.find(item=>item.id===slot.type)?.defaultTime)===time)
-            const activities=row.activities.filter(activity=>activity.startTime===time)
-            const hasContent=meals.length||activities.length
-            return <div key={`${row.date}-${time}`} className={`min-h-[92px] p-2 border-l border-stone-100 space-y-2 ${row.date===currentDate?'bg-forest/[0.025]':''}`}>
-              {!hasContent&&<div className="h-full"/>}
-              {activities.map(activity=><Link to="/activities" key={activity.id} className="block rounded-lg bg-navy text-white px-2.5 py-2 text-xs hover:opacity-90">
-                <div className="font-bold">{templateMap[activity.templateId]?.name||'Activity'}</div>
-                {activity.endTime&&<div className="mt-0.5 opacity-75">until {activityTimeLabel(activity.endTime)}</div>}
+            const meals=row.mealSlots.filter(slot=>part.mealTypes.includes(slot.type))
+            const activities=row.activities.filter(activity=>daypartForActivity(activity)===part.id)
+            return <div key={`${row.date}-${part.id}`} className={`min-h-[150px] p-2 border-l border-stone-100 space-y-1.5 ${row.date===currentDate?'bg-forest/[0.025]':''}`}>
+              {activities.map(activity=><Link to="/activities" key={activity.id} className="block rounded-lg bg-navy text-white px-2 py-1.5 text-[11px] hover:opacity-90">
+                <div className="font-bold leading-tight">{templateMap[activity.templateId]?.name||'Activity'}</div>
+                {activity.startTime&&<div className="mt-0.5 opacity-75">{activityTimeLabel(activity.startTime)}{activity.endTime?`–${activityTimeLabel(activity.endTime)}`:''}</div>}
               </Link>)}
               {meals.map(slot=>{
                 const summary=mealSummary(slot,recipeMap)
                 const planned=slot.planType!=='none'
-                return <Link to={`/daily/${row.date}`} key={slot.id} className={`block rounded-lg px-2.5 py-2 text-xs ${planned?'bg-cream text-navy':'bg-stone-50 text-stone'}`}>
-                  <div className="font-bold">{slot.label}</div>
-                  <div className="mt-1 line-clamp-4">{summary}</div>
+                return <Link to={`/daily/${row.date}`} key={slot.id} className={`block rounded-lg px-2 py-1.5 text-[11px] ${planned?'bg-cream text-navy':'bg-stone-50 text-stone'}`}>
+                  <div className="font-bold leading-tight">{slot.label}{slot.time?<span className="font-normal text-stone"> · {timeLabel(slot.time)}</span>:''}</div>
+                  {planned&&<div className="mt-0.5 leading-tight line-clamp-3">{summary}</div>}
                 </Link>
               })}
+              {!activities.length&&!meals.length&&<span className="text-[11px] text-stone/60">—</span>}
             </div>
           })}
         </div>)}
       </div>
     </div>
-    <div className="sm:hidden px-3 py-2 text-xs text-stone border-t border-stone-100">Swipe sideways to see the full calendar.</div>
+    <div className="sm:hidden px-3 py-2 text-xs text-stone border-t border-stone-100">Swipe sideways to see the full week.</div>
   </div>
 }
 
