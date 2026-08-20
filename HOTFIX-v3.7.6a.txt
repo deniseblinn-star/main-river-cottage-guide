@@ -1,0 +1,4 @@
+v3.7.6a Netlify dependency hotfix
+- Pins @netlify/blobs to 10.7.9 instead of latest.
+- Avoids the failed @netlify/otel 7.x dependency resolution.
+- No planner data or UI changes.
